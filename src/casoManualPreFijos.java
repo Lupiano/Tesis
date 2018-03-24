@@ -3,7 +3,7 @@ import java.util.List;
 
 public class casoManualPreFijos{
 	
-	
+	//hola
 	private List<RefactorizacionManual> casosManuales = new ArrayList<RefactorizacionManual>();
 	public List<RefactorizacionManual> getCasosManuales() {
 		return casosManuales;
