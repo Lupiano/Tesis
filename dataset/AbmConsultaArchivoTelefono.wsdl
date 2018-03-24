@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaTelefono">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaTelefonoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaTelefonoResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionTelefono">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_busqueda" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionTelefonoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionTelefonoResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaTelefono">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_busqueda" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaTelefonoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaTelefonoResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+      <s:element name="ConsultaTelefono">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_busqueda" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaTelefonoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaTelefonoResult" type="tns:DatosConsulta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosConsulta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosConsulta" nillable="true" type="tns:DatosConsulta" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaTelefonoSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaTelefono" />
+  </wsdl:message>
+  <wsdl:message name="AltaTelefonoSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaTelefonoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaTelefonoHttpGetIn">
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="direccion" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AltaTelefonoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaTelefonoHttpPostIn">
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="direccion" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AltaTelefonoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionTelefonoSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionTelefono" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionTelefonoSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionTelefonoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionTelefonoHttpGetIn">
+    <wsdl:part name="tipo_busqueda" type="s:short" />
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+    <wsdl:part name="direccion" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionTelefonoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionTelefonoHttpPostIn">
+    <wsdl:part name="tipo_busqueda" type="s:short" />
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+    <wsdl:part name="direccion" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionTelefonoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="BajaTelefonoSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaTelefono" />
+  </wsdl:message>
+  <wsdl:message name="BajaTelefonoSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaTelefonoResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaTelefonoHttpGetIn">
+    <wsdl:part name="tipo_busqueda" type="s:short" />
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BajaTelefonoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaTelefonoHttpPostIn">
+    <wsdl:part name="tipo_busqueda" type="s:short" />
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="BajaTelefonoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefonoSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaTelefono" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefonoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaTelefonoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefonoHttpGetIn">
+    <wsdl:part name="tipo_busqueda" type="s:short" />
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefonoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosConsulta" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefonoHttpPostIn">
+    <wsdl:part name="tipo_busqueda" type="s:short" />
+    <wsdl:part name="nombre" type="s:string" />
+    <wsdl:part name="localidad" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaTelefonoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosConsulta" />
+  </wsdl:message>
+  <wsdl:portType name="AbmConsultaArchivoTelefonoSoap">
+    <wsdl:operation name="AltaTelefono">
+      <wsdl:input message="tns:AltaTelefonoSoapIn" />
+      <wsdl:output message="tns:AltaTelefonoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionTelefono">
+      <wsdl:input message="tns:ModificacionTelefonoSoapIn" />
+      <wsdl:output message="tns:ModificacionTelefonoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaTelefono">
+      <wsdl:input message="tns:BajaTelefonoSoapIn" />
+      <wsdl:output message="tns:BajaTelefonoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefono">
+      <wsdl:input message="tns:ConsultaTelefonoSoapIn" />
+      <wsdl:output message="tns:ConsultaTelefonoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmConsultaArchivoTelefonoHttpGet">
+    <wsdl:operation name="AltaTelefono">
+      <wsdl:input message="tns:AltaTelefonoHttpGetIn" />
+      <wsdl:output message="tns:AltaTelefonoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionTelefono">
+      <wsdl:input message="tns:ModificacionTelefonoHttpGetIn" />
+      <wsdl:output message="tns:ModificacionTelefonoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaTelefono">
+      <wsdl:input message="tns:BajaTelefonoHttpGetIn" />
+      <wsdl:output message="tns:BajaTelefonoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefono">
+      <wsdl:input message="tns:ConsultaTelefonoHttpGetIn" />
+      <wsdl:output message="tns:ConsultaTelefonoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmConsultaArchivoTelefonoHttpPost">
+    <wsdl:operation name="AltaTelefono">
+      <wsdl:input message="tns:AltaTelefonoHttpPostIn" />
+      <wsdl:output message="tns:AltaTelefonoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionTelefono">
+      <wsdl:input message="tns:ModificacionTelefonoHttpPostIn" />
+      <wsdl:output message="tns:ModificacionTelefonoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaTelefono">
+      <wsdl:input message="tns:BajaTelefonoHttpPostIn" />
+      <wsdl:output message="tns:BajaTelefonoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefono">
+      <wsdl:input message="tns:ConsultaTelefonoHttpPostIn" />
+      <wsdl:output message="tns:ConsultaTelefonoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmConsultaArchivoTelefonoSoap" type="tns:AbmConsultaArchivoTelefonoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaTelefono">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaTelefono" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionTelefono">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionTelefono" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTelefono">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaTelefono" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefono">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ConsultaTelefono" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmConsultaArchivoTelefonoSoap12" type="tns:AbmConsultaArchivoTelefonoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaTelefono">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaTelefono" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionTelefono">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionTelefono" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTelefono">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaTelefono" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefono">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ConsultaTelefono" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmConsultaArchivoTelefonoHttpGet" type="tns:AbmConsultaArchivoTelefonoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaTelefono">
+      <http:operation location="/AltaTelefono" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionTelefono">
+      <http:operation location="/ModificacionTelefono" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTelefono">
+      <http:operation location="/BajaTelefono" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefono">
+      <http:operation location="/ConsultaTelefono" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmConsultaArchivoTelefonoHttpPost" type="tns:AbmConsultaArchivoTelefonoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaTelefono">
+      <http:operation location="/AltaTelefono" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionTelefono">
+      <http:operation location="/ModificacionTelefono" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTelefono">
+      <http:operation location="/BajaTelefono" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaTelefono">
+      <http:operation location="/ConsultaTelefono" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmConsultaArchivoTelefono">
+    <wsdl:port name="AbmConsultaArchivoTelefonoSoap" binding="tns:AbmConsultaArchivoTelefonoSoap">
+      <soap:address location="http://localhost:1390/AbmConsultaArchivoTelefono.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmConsultaArchivoTelefonoSoap12" binding="tns:AbmConsultaArchivoTelefonoSoap12">
+      <soap12:address location="http://localhost:1390/AbmConsultaArchivoTelefono.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmConsultaArchivoTelefonoHttpGet" binding="tns:AbmConsultaArchivoTelefonoHttpGet">
+      <http:address location="http://localhost:1390/AbmConsultaArchivoTelefono.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmConsultaArchivoTelefonoHttpPost" binding="tns:AbmConsultaArchivoTelefonoHttpPost">
+      <http:address location="http://localhost:1390/AbmConsultaArchivoTelefono.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ArmarRegistroRetenciones">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArmarRegistroRetencionesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArmarRegistroRetencionesResult" type="tns:ArrayOfDatosRetencion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosRetencion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosRetencion" nillable="true" type="tns:DatosRetencion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosRetencion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="tipo" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosRetencion" nillable="true" type="tns:ArrayOfDatosRetencion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ArmarRegistroRetencionesSoapIn">
+    <wsdl:part name="parameters" element="tns:ArmarRegistroRetenciones" />
+  </wsdl:message>
+  <wsdl:message name="ArmarRegistroRetencionesSoapOut">
+    <wsdl:part name="parameters" element="tns:ArmarRegistroRetencionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArmarRegistroRetencionesHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarRegistroRetencionesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosRetencion" />
+  </wsdl:message>
+  <wsdl:message name="ArmarRegistroRetencionesHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarRegistroRetencionesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosRetencion" />
+  </wsdl:message>
+  <wsdl:portType name="ArmaRegistroRetencionesSoap">
+    <wsdl:operation name="ArmarRegistroRetenciones">
+      <wsdl:input message="tns:ArmarRegistroRetencionesSoapIn" />
+      <wsdl:output message="tns:ArmarRegistroRetencionesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmaRegistroRetencionesHttpGet">
+    <wsdl:operation name="ArmarRegistroRetenciones">
+      <wsdl:input message="tns:ArmarRegistroRetencionesHttpGetIn" />
+      <wsdl:output message="tns:ArmarRegistroRetencionesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmaRegistroRetencionesHttpPost">
+    <wsdl:operation name="ArmarRegistroRetenciones">
+      <wsdl:input message="tns:ArmarRegistroRetencionesHttpPostIn" />
+      <wsdl:output message="tns:ArmarRegistroRetencionesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ArmaRegistroRetencionesSoap" type="tns:ArmaRegistroRetencionesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarRegistroRetenciones">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ArmarRegistroRetenciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmaRegistroRetencionesSoap12" type="tns:ArmaRegistroRetencionesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarRegistroRetenciones">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ArmarRegistroRetenciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmaRegistroRetencionesHttpGet" type="tns:ArmaRegistroRetencionesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ArmarRegistroRetenciones">
+      <http:operation location="/ArmarRegistroRetenciones" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmaRegistroRetencionesHttpPost" type="tns:ArmaRegistroRetencionesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ArmarRegistroRetenciones">
+      <http:operation location="/ArmarRegistroRetenciones" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ArmaRegistroRetenciones">
+    <wsdl:port name="ArmaRegistroRetencionesSoap" binding="tns:ArmaRegistroRetencionesSoap">
+      <soap:address location="http://localhost:1390/ArmaRegistroRetenciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmaRegistroRetencionesSoap12" binding="tns:ArmaRegistroRetencionesSoap12">
+      <soap12:address location="http://localhost:1390/ArmaRegistroRetenciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmaRegistroRetencionesHttpGet" binding="tns:ArmaRegistroRetencionesHttpGet">
+      <http:address location="http://localhost:1390/ArmaRegistroRetenciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmaRegistroRetencionesHttpPost" binding="tns:ArmaRegistroRetencionesHttpPost">
+      <http:address location="http://localhost:1390/ArmaRegistroRetenciones.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

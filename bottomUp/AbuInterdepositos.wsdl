@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaInterdeposito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cuenta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaInterdepositoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaInterdepositoResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="UtilizacionInterdeposito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cuenta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UtilizacionInterdepositoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UtilizacionInterdepositoResult" type="tns:DatosUtilizacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosUtilizacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosUtilizacion" nillable="true" type="tns:DatosUtilizacion" />
+      <s:element name="BajaInterdeposito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cuenta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaInterdepositoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaInterdepositoResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaInterdepositoSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaInterdeposito" />
+  </wsdl:message>
+  <wsdl:message name="AltaInterdepositoSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaInterdepositoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaInterdepositoHttpGetIn">
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero" type="s:long" />
+    <wsdl:part name="importe" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="AltaInterdepositoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaInterdepositoHttpPostIn">
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero" type="s:long" />
+    <wsdl:part name="importe" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="AltaInterdepositoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="UtilizacionInterdepositoSoapIn">
+    <wsdl:part name="parameters" element="tns:UtilizacionInterdeposito" />
+  </wsdl:message>
+  <wsdl:message name="UtilizacionInterdepositoSoapOut">
+    <wsdl:part name="parameters" element="tns:UtilizacionInterdepositoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UtilizacionInterdepositoHttpGetIn">
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="UtilizacionInterdepositoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosUtilizacion" />
+  </wsdl:message>
+  <wsdl:message name="UtilizacionInterdepositoHttpPostIn">
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="UtilizacionInterdepositoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosUtilizacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaInterdepositoSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaInterdeposito" />
+  </wsdl:message>
+  <wsdl:message name="BajaInterdepositoSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaInterdepositoResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaInterdepositoHttpGetIn">
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="BajaInterdepositoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaInterdepositoHttpPostIn">
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="BajaInterdepositoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbuInterdepositosSoap">
+    <wsdl:operation name="AltaInterdeposito">
+      <wsdl:input message="tns:AltaInterdepositoSoapIn" />
+      <wsdl:output message="tns:AltaInterdepositoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UtilizacionInterdeposito">
+      <wsdl:input message="tns:UtilizacionInterdepositoSoapIn" />
+      <wsdl:output message="tns:UtilizacionInterdepositoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaInterdeposito">
+      <wsdl:input message="tns:BajaInterdepositoSoapIn" />
+      <wsdl:output message="tns:BajaInterdepositoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbuInterdepositosHttpGet">
+    <wsdl:operation name="AltaInterdeposito">
+      <wsdl:input message="tns:AltaInterdepositoHttpGetIn" />
+      <wsdl:output message="tns:AltaInterdepositoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UtilizacionInterdeposito">
+      <wsdl:input message="tns:UtilizacionInterdepositoHttpGetIn" />
+      <wsdl:output message="tns:UtilizacionInterdepositoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaInterdeposito">
+      <wsdl:input message="tns:BajaInterdepositoHttpGetIn" />
+      <wsdl:output message="tns:BajaInterdepositoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbuInterdepositosHttpPost">
+    <wsdl:operation name="AltaInterdeposito">
+      <wsdl:input message="tns:AltaInterdepositoHttpPostIn" />
+      <wsdl:output message="tns:AltaInterdepositoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UtilizacionInterdeposito">
+      <wsdl:input message="tns:UtilizacionInterdepositoHttpPostIn" />
+      <wsdl:output message="tns:UtilizacionInterdepositoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaInterdeposito">
+      <wsdl:input message="tns:BajaInterdepositoHttpPostIn" />
+      <wsdl:output message="tns:BajaInterdepositoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbuInterdepositosSoap" type="tns:AbuInterdepositosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaInterdeposito">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaInterdeposito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UtilizacionInterdeposito">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/UtilizacionInterdeposito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaInterdeposito">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaInterdeposito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbuInterdepositosSoap12" type="tns:AbuInterdepositosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaInterdeposito">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaInterdeposito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UtilizacionInterdeposito">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/UtilizacionInterdeposito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaInterdeposito">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaInterdeposito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbuInterdepositosHttpGet" type="tns:AbuInterdepositosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaInterdeposito">
+      <http:operation location="/AltaInterdeposito" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UtilizacionInterdeposito">
+      <http:operation location="/UtilizacionInterdeposito" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaInterdeposito">
+      <http:operation location="/BajaInterdeposito" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbuInterdepositosHttpPost" type="tns:AbuInterdepositosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaInterdeposito">
+      <http:operation location="/AltaInterdeposito" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UtilizacionInterdeposito">
+      <http:operation location="/UtilizacionInterdeposito" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaInterdeposito">
+      <http:operation location="/BajaInterdeposito" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbuInterdepositos">
+    <wsdl:port name="AbuInterdepositosSoap" binding="tns:AbuInterdepositosSoap">
+      <soap:address location="http://localhost:1390/AbuInterdepositos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbuInterdepositosSoap12" binding="tns:AbuInterdepositosSoap12">
+      <soap12:address location="http://localhost:1390/AbuInterdepositos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbuInterdepositosHttpGet" binding="tns:AbuInterdepositosHttpGet">
+      <http:address location="http://localhost:1390/AbuInterdepositos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbuInterdepositosHttpPost" binding="tns:AbuInterdepositosHttpPost">
+      <http:address location="http://localhost:1390/AbuInterdepositos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

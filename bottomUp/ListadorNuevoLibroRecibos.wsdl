@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoRecibos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_listado" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="cuenta_hojas" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoRecibosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoRecibosResult" type="tns:ArrayOfDatosRecibo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosRecibo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosRecibo" nillable="true" type="tns:DatosRecibo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosRecibo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_recibo" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_descuento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="importe_neto" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosRecibo" nillable="true" type="tns:ArrayOfDatosRecibo" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoRecibosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoRecibos" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoRecibosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoRecibosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoRecibosHttpGetIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="cuenta_hojas" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoRecibosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosRecibo" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoRecibosHttpPostIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="cuenta_hojas" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoRecibosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosRecibo" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorNuevoLibroRecibosSoap">
+    <wsdl:operation name="ObtenerListadoRecibos">
+      <wsdl:input message="tns:ObtenerListadoRecibosSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoRecibosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorNuevoLibroRecibosHttpGet">
+    <wsdl:operation name="ObtenerListadoRecibos">
+      <wsdl:input message="tns:ObtenerListadoRecibosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoRecibosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorNuevoLibroRecibosHttpPost">
+    <wsdl:operation name="ObtenerListadoRecibos">
+      <wsdl:input message="tns:ObtenerListadoRecibosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoRecibosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorNuevoLibroRecibosSoap" type="tns:ListadorNuevoLibroRecibosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoRecibos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoRecibos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNuevoLibroRecibosSoap12" type="tns:ListadorNuevoLibroRecibosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoRecibos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoRecibos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNuevoLibroRecibosHttpGet" type="tns:ListadorNuevoLibroRecibosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoRecibos">
+      <http:operation location="/ObtenerListadoRecibos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNuevoLibroRecibosHttpPost" type="tns:ListadorNuevoLibroRecibosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoRecibos">
+      <http:operation location="/ObtenerListadoRecibos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorNuevoLibroRecibos">
+    <wsdl:port name="ListadorNuevoLibroRecibosSoap" binding="tns:ListadorNuevoLibroRecibosSoap">
+      <soap:address location="http://localhost:1390/ListadorNuevoLibroRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNuevoLibroRecibosSoap12" binding="tns:ListadorNuevoLibroRecibosSoap12">
+      <soap12:address location="http://localhost:1390/ListadorNuevoLibroRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNuevoLibroRecibosHttpGet" binding="tns:ListadorNuevoLibroRecibosHttpGet">
+      <http:address location="http://localhost:1390/ListadorNuevoLibroRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNuevoLibroRecibosHttpPost" binding="tns:ListadorNuevoLibroRecibosHttpPost">
+      <http:address location="http://localhost:1390/ListadorNuevoLibroRecibos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

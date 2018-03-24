@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="LimpiarLibroCompras">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpiarLibroComprasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LimpiarLibroComprasResult" type="tns:DatosLibroCompras" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosLibroCompras">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="borradoCorrecto" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosLibroCompras" nillable="true" type="tns:DatosLibroCompras" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LimpiarLibroComprasSoapIn">
+    <wsdl:part name="parameters" element="tns:LimpiarLibroCompras" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroComprasSoapOut">
+    <wsdl:part name="parameters" element="tns:LimpiarLibroComprasResponse" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroComprasHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroComprasHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosLibroCompras" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroComprasHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroComprasHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosLibroCompras" />
+  </wsdl:message>
+  <wsdl:portType name="LimpiezaLibroComprasSoap">
+    <wsdl:operation name="LimpiarLibroCompras">
+      <wsdl:input message="tns:LimpiarLibroComprasSoapIn" />
+      <wsdl:output message="tns:LimpiarLibroComprasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaLibroComprasHttpGet">
+    <wsdl:operation name="LimpiarLibroCompras">
+      <wsdl:input message="tns:LimpiarLibroComprasHttpGetIn" />
+      <wsdl:output message="tns:LimpiarLibroComprasHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaLibroComprasHttpPost">
+    <wsdl:operation name="LimpiarLibroCompras">
+      <wsdl:input message="tns:LimpiarLibroComprasHttpPostIn" />
+      <wsdl:output message="tns:LimpiarLibroComprasHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LimpiezaLibroComprasSoap" type="tns:LimpiezaLibroComprasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarLibroCompras">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/LimpiarLibroCompras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaLibroComprasSoap12" type="tns:LimpiezaLibroComprasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarLibroCompras">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/LimpiarLibroCompras" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaLibroComprasHttpGet" type="tns:LimpiezaLibroComprasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="LimpiarLibroCompras">
+      <http:operation location="/LimpiarLibroCompras" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaLibroComprasHttpPost" type="tns:LimpiezaLibroComprasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="LimpiarLibroCompras">
+      <http:operation location="/LimpiarLibroCompras" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LimpiezaLibroCompras">
+    <wsdl:port name="LimpiezaLibroComprasSoap" binding="tns:LimpiezaLibroComprasSoap">
+      <soap:address location="http://localhost:1390/LimpiezaLibroCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaLibroComprasSoap12" binding="tns:LimpiezaLibroComprasSoap12">
+      <soap12:address location="http://localhost:1390/LimpiezaLibroCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaLibroComprasHttpGet" binding="tns:LimpiezaLibroComprasHttpGet">
+      <http:address location="http://localhost:1390/LimpiezaLibroCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaLibroComprasHttpPost" binding="tns:LimpiezaLibroComprasHttpPost">
+      <http:address location="http://localhost:1390/LimpiezaLibroCompras.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

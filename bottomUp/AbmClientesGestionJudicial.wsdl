@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nro_direccion_cliente" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="provincia_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_provincia_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuit_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ing_brutos_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultima_oper_cliente" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion_iva_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_documento_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento_cliente" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_flete_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="credito_cliente" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaClienteResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nro_direccion_cliente" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="provincia_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_provincia_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuit_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ing_brutos_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultima_oper_cliente" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion_iva_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_documento_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento_cliente" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_flete_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="credito_cliente" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionClienteResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaCliente">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaClienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaClienteResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaCliente" />
+  </wsdl:message>
+  <wsdl:message name="AltaClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaClienteHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="apellido_cliente" type="s:string" />
+    <wsdl:part name="nombre_cliente" type="s:string" />
+    <wsdl:part name="direccion_cliente" type="s:string" />
+    <wsdl:part name="nro_direccion_cliente" type="s:integer" />
+    <wsdl:part name="localidad_cliente" type="s:string" />
+    <wsdl:part name="provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_cliente" type="s:string" />
+    <wsdl:part name="cuit_cliente" type="s:string" />
+    <wsdl:part name="ing_brutos_cliente" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_cliente" type="s:integer" />
+    <wsdl:part name="condicion_iva_cliente" type="s:short" />
+    <wsdl:part name="tipo_documento_cliente" type="s:string" />
+    <wsdl:part name="numero_documento_cliente" type="s:long" />
+    <wsdl:part name="zona_flete_cliente" type="s:short" />
+    <wsdl:part name="credito_cliente" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="AltaClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaClienteHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="apellido_cliente" type="s:string" />
+    <wsdl:part name="nombre_cliente" type="s:string" />
+    <wsdl:part name="direccion_cliente" type="s:string" />
+    <wsdl:part name="nro_direccion_cliente" type="s:integer" />
+    <wsdl:part name="localidad_cliente" type="s:string" />
+    <wsdl:part name="provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_cliente" type="s:string" />
+    <wsdl:part name="cuit_cliente" type="s:string" />
+    <wsdl:part name="ing_brutos_cliente" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_cliente" type="s:integer" />
+    <wsdl:part name="condicion_iva_cliente" type="s:short" />
+    <wsdl:part name="tipo_documento_cliente" type="s:string" />
+    <wsdl:part name="numero_documento_cliente" type="s:long" />
+    <wsdl:part name="zona_flete_cliente" type="s:short" />
+    <wsdl:part name="credito_cliente" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="AltaClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionCliente" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionClienteHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="apellido_cliente" type="s:string" />
+    <wsdl:part name="nombre_cliente" type="s:string" />
+    <wsdl:part name="direccion_cliente" type="s:string" />
+    <wsdl:part name="nro_direccion_cliente" type="s:integer" />
+    <wsdl:part name="localidad_cliente" type="s:string" />
+    <wsdl:part name="provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_cliente" type="s:string" />
+    <wsdl:part name="cuit_cliente" type="s:string" />
+    <wsdl:part name="ing_brutos_cliente" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_cliente" type="s:integer" />
+    <wsdl:part name="condicion_iva_cliente" type="s:short" />
+    <wsdl:part name="tipo_documento_cliente" type="s:string" />
+    <wsdl:part name="numero_documento_cliente" type="s:long" />
+    <wsdl:part name="zona_flete_cliente" type="s:short" />
+    <wsdl:part name="credito_cliente" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionClienteHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="apellido_cliente" type="s:string" />
+    <wsdl:part name="nombre_cliente" type="s:string" />
+    <wsdl:part name="direccion_cliente" type="s:string" />
+    <wsdl:part name="nro_direccion_cliente" type="s:integer" />
+    <wsdl:part name="localidad_cliente" type="s:string" />
+    <wsdl:part name="provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_provincia_cliente" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_cliente" type="s:string" />
+    <wsdl:part name="cuit_cliente" type="s:string" />
+    <wsdl:part name="ing_brutos_cliente" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_cliente" type="s:integer" />
+    <wsdl:part name="condicion_iva_cliente" type="s:short" />
+    <wsdl:part name="tipo_documento_cliente" type="s:string" />
+    <wsdl:part name="numero_documento_cliente" type="s:long" />
+    <wsdl:part name="zona_flete_cliente" type="s:short" />
+    <wsdl:part name="credito_cliente" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaClienteSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaCliente" />
+  </wsdl:message>
+  <wsdl:message name="BajaClienteSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaClienteHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaClienteHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaClienteHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaClienteHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmClientesGestionJudicialSoap">
+    <wsdl:operation name="AltaCliente">
+      <wsdl:input message="tns:AltaClienteSoapIn" />
+      <wsdl:output message="tns:AltaClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCliente">
+      <wsdl:input message="tns:ModificacionClienteSoapIn" />
+      <wsdl:output message="tns:ModificacionClienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCliente">
+      <wsdl:input message="tns:BajaClienteSoapIn" />
+      <wsdl:output message="tns:BajaClienteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmClientesGestionJudicialHttpGet">
+    <wsdl:operation name="AltaCliente">
+      <wsdl:input message="tns:AltaClienteHttpGetIn" />
+      <wsdl:output message="tns:AltaClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCliente">
+      <wsdl:input message="tns:ModificacionClienteHttpGetIn" />
+      <wsdl:output message="tns:ModificacionClienteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCliente">
+      <wsdl:input message="tns:BajaClienteHttpGetIn" />
+      <wsdl:output message="tns:BajaClienteHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmClientesGestionJudicialHttpPost">
+    <wsdl:operation name="AltaCliente">
+      <wsdl:input message="tns:AltaClienteHttpPostIn" />
+      <wsdl:output message="tns:AltaClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCliente">
+      <wsdl:input message="tns:ModificacionClienteHttpPostIn" />
+      <wsdl:output message="tns:ModificacionClienteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCliente">
+      <wsdl:input message="tns:BajaClienteHttpPostIn" />
+      <wsdl:output message="tns:BajaClienteHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmClientesGestionJudicialSoap" type="tns:AbmClientesGestionJudicialSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCliente">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCliente">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCliente">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmClientesGestionJudicialSoap12" type="tns:AbmClientesGestionJudicialSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCliente">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCliente">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCliente">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmClientesGestionJudicialHttpGet" type="tns:AbmClientesGestionJudicialHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaCliente">
+      <http:operation location="/AltaCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCliente">
+      <http:operation location="/ModificacionCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCliente">
+      <http:operation location="/BajaCliente" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmClientesGestionJudicialHttpPost" type="tns:AbmClientesGestionJudicialHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaCliente">
+      <http:operation location="/AltaCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCliente">
+      <http:operation location="/ModificacionCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCliente">
+      <http:operation location="/BajaCliente" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmClientesGestionJudicial">
+    <wsdl:port name="AbmClientesGestionJudicialSoap" binding="tns:AbmClientesGestionJudicialSoap">
+      <soap:address location="http://localhost:1390/AbmClientesGestionJudicial.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmClientesGestionJudicialSoap12" binding="tns:AbmClientesGestionJudicialSoap12">
+      <soap12:address location="http://localhost:1390/AbmClientesGestionJudicial.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmClientesGestionJudicialHttpGet" binding="tns:AbmClientesGestionJudicialHttpGet">
+      <http:address location="http://localhost:1390/AbmClientesGestionJudicial.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmClientesGestionJudicialHttpPost" binding="tns:AbmClientesGestionJudicialHttpPost">
+      <http:address location="http://localhost:1390/AbmClientesGestionJudicial.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

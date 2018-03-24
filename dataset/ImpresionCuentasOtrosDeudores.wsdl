@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoCuentasOtrosDeudores">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_listado" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_desde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_hasta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoCuentasOtrosDeudoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoCuentasOtrosDeudoresResult" type="tns:ArrayOfDatosCuentaOtroDeudor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCuentaOtroDeudor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCuentaOtroDeudor" nillable="true" type="tns:DatosCuentaOtroDeudor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCuentaOtroDeudor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_haber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saldo_anterior_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_anterior_haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_haber_total" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCuentaOtroDeudor" nillable="true" type="tns:ArrayOfDatosCuentaOtroDeudor" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoCuentasOtrosDeudoresSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCuentasOtrosDeudores" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasOtrosDeudoresSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCuentasOtrosDeudoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasOtrosDeudoresHttpGetIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasOtrosDeudoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaOtroDeudor" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasOtrosDeudoresHttpPostIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasOtrosDeudoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaOtroDeudor" />
+  </wsdl:message>
+  <wsdl:portType name="ImpresionCuentasOtrosDeudoresSoap">
+    <wsdl:operation name="ObtenerListadoCuentasOtrosDeudores">
+      <wsdl:input message="tns:ObtenerListadoCuentasOtrosDeudoresSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasOtrosDeudoresSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionCuentasOtrosDeudoresHttpGet">
+    <wsdl:operation name="ObtenerListadoCuentasOtrosDeudores">
+      <wsdl:input message="tns:ObtenerListadoCuentasOtrosDeudoresHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasOtrosDeudoresHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionCuentasOtrosDeudoresHttpPost">
+    <wsdl:operation name="ObtenerListadoCuentasOtrosDeudores">
+      <wsdl:input message="tns:ObtenerListadoCuentasOtrosDeudoresHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasOtrosDeudoresHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImpresionCuentasOtrosDeudoresSoap" type="tns:ImpresionCuentasOtrosDeudoresSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCuentasOtrosDeudores">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCuentasOtrosDeudores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionCuentasOtrosDeudoresSoap12" type="tns:ImpresionCuentasOtrosDeudoresSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCuentasOtrosDeudores">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCuentasOtrosDeudores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionCuentasOtrosDeudoresHttpGet" type="tns:ImpresionCuentasOtrosDeudoresHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoCuentasOtrosDeudores">
+      <http:operation location="/ObtenerListadoCuentasOtrosDeudores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionCuentasOtrosDeudoresHttpPost" type="tns:ImpresionCuentasOtrosDeudoresHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoCuentasOtrosDeudores">
+      <http:operation location="/ObtenerListadoCuentasOtrosDeudores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ImpresionCuentasOtrosDeudores">
+    <wsdl:port name="ImpresionCuentasOtrosDeudoresSoap" binding="tns:ImpresionCuentasOtrosDeudoresSoap">
+      <soap:address location="http://localhost:1390/ImpresionCuentasOtrosDeudores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionCuentasOtrosDeudoresSoap12" binding="tns:ImpresionCuentasOtrosDeudoresSoap12">
+      <soap12:address location="http://localhost:1390/ImpresionCuentasOtrosDeudores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionCuentasOtrosDeudoresHttpGet" binding="tns:ImpresionCuentasOtrosDeudoresHttpGet">
+      <http:address location="http://localhost:1390/ImpresionCuentasOtrosDeudores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionCuentasOtrosDeudoresHttpPost" binding="tns:ImpresionCuentasOtrosDeudoresHttpPost">
+      <http:address location="http://localhost:1390/ImpresionCuentasOtrosDeudores.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

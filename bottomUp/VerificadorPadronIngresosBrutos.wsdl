@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="VerificarPadronIngresosBrutos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cuit_padron" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificarPadronIngresosBrutosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificarPadronIngresosBrutosResult" type="tns:DatosVerificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosVerificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="verificacionCorrecta" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosVerificacion" nillable="true" type="tns:DatosVerificacion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VerificarPadronIngresosBrutosSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificarPadronIngresosBrutos" />
+  </wsdl:message>
+  <wsdl:message name="VerificarPadronIngresosBrutosSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificarPadronIngresosBrutosResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificarPadronIngresosBrutosHttpGetIn">
+    <wsdl:part name="cuit_padron" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerificarPadronIngresosBrutosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosVerificacion" />
+  </wsdl:message>
+  <wsdl:message name="VerificarPadronIngresosBrutosHttpPostIn">
+    <wsdl:part name="cuit_padron" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="VerificarPadronIngresosBrutosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosVerificacion" />
+  </wsdl:message>
+  <wsdl:portType name="VerificadorPadronIngresosBrutosSoap">
+    <wsdl:operation name="VerificarPadronIngresosBrutos">
+      <wsdl:input message="tns:VerificarPadronIngresosBrutosSoapIn" />
+      <wsdl:output message="tns:VerificarPadronIngresosBrutosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VerificadorPadronIngresosBrutosHttpGet">
+    <wsdl:operation name="VerificarPadronIngresosBrutos">
+      <wsdl:input message="tns:VerificarPadronIngresosBrutosHttpGetIn" />
+      <wsdl:output message="tns:VerificarPadronIngresosBrutosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VerificadorPadronIngresosBrutosHttpPost">
+    <wsdl:operation name="VerificarPadronIngresosBrutos">
+      <wsdl:input message="tns:VerificarPadronIngresosBrutosHttpPostIn" />
+      <wsdl:output message="tns:VerificarPadronIngresosBrutosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VerificadorPadronIngresosBrutosSoap" type="tns:VerificadorPadronIngresosBrutosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarPadronIngresosBrutos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/VerificarPadronIngresosBrutos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificadorPadronIngresosBrutosSoap12" type="tns:VerificadorPadronIngresosBrutosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarPadronIngresosBrutos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/VerificarPadronIngresosBrutos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificadorPadronIngresosBrutosHttpGet" type="tns:VerificadorPadronIngresosBrutosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="VerificarPadronIngresosBrutos">
+      <http:operation location="/VerificarPadronIngresosBrutos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificadorPadronIngresosBrutosHttpPost" type="tns:VerificadorPadronIngresosBrutosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="VerificarPadronIngresosBrutos">
+      <http:operation location="/VerificarPadronIngresosBrutos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VerificadorPadronIngresosBrutos">
+    <wsdl:port name="VerificadorPadronIngresosBrutosSoap" binding="tns:VerificadorPadronIngresosBrutosSoap">
+      <soap:address location="http://localhost:1390/VerificadorPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificadorPadronIngresosBrutosSoap12" binding="tns:VerificadorPadronIngresosBrutosSoap12">
+      <soap12:address location="http://localhost:1390/VerificadorPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificadorPadronIngresosBrutosHttpGet" binding="tns:VerificadorPadronIngresosBrutosHttpGet">
+      <http:address location="http://localhost:1390/VerificadorPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificadorPadronIngresosBrutosHttpPost" binding="tns:VerificadorPadronIngresosBrutosHttpPost">
+      <http:address location="http://localhost:1390/VerificadorPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosResult" type="tns:ArrayOfDatosCuentaCorrienteYArrastreSaldo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCuentaCorrienteYArrastreSaldo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCuentaCorrienteYArrastreSaldo" nillable="true" type="tns:DatosCuentaCorrienteYArrastreSaldo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCuentaCorrienteYArrastreSaldo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCuentaCorrienteYArrastreSaldo" nillable="true" type="tns:ArrayOfDatosCuentaCorrienteYArrastreSaldo" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpGetIn">
+    <wsdl:part name="fecha" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaCorrienteYArrastreSaldo" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpPostIn">
+  	<wsdl:part name="fecha" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaCorrienteYArrastreSaldo" />
+  </wsdl:message>
+  <wsdl:portType name="BalanceEntreCuentasCorrientesYArrastreSaldosSoap">
+    <wsdl:operation name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+      <wsdl:input message="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosSoapIn" />
+      <wsdl:output message="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceEntreCuentasCorrientesYArrastreSaldosHttpGet">
+    <wsdl:operation name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+      <wsdl:input message="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceEntreCuentasCorrientesYArrastreSaldosHttpPost">
+    <wsdl:operation name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+      <wsdl:input message="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerBalanceEntreCuentasCorrientesYArrastreSaldosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BalanceEntreCuentasCorrientesYArrastreSaldosSoap" type="tns:BalanceEntreCuentasCorrientesYArrastreSaldosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceEntreCuentasCorrientesYArrastreSaldosSoap12" type="tns:BalanceEntreCuentasCorrientesYArrastreSaldosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceEntreCuentasCorrientesYArrastreSaldosHttpGet" type="tns:BalanceEntreCuentasCorrientesYArrastreSaldosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+      <http:operation location="/ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceEntreCuentasCorrientesYArrastreSaldosHttpPost" type="tns:BalanceEntreCuentasCorrientesYArrastreSaldosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos">
+      <http:operation location="/ObtenerBalanceEntreCuentasCorrientesYArrastreSaldos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BalanceEntreCuentasCorrientesYArrastreSaldos">
+    <wsdl:port name="BalanceEntreCuentasCorrientesYArrastreSaldosSoap" binding="tns:BalanceEntreCuentasCorrientesYArrastreSaldosSoap">
+      <soap:address location="http://localhost:1390/BalanceEntreCuentasCorrientesYArrastreSaldos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceEntreCuentasCorrientesYArrastreSaldosSoap12" binding="tns:BalanceEntreCuentasCorrientesYArrastreSaldosSoap12">
+      <soap12:address location="http://localhost:1390/BalanceEntreCuentasCorrientesYArrastreSaldos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceEntreCuentasCorrientesYArrastreSaldosHttpGet" binding="tns:BalanceEntreCuentasCorrientesYArrastreSaldosHttpGet">
+      <http:address location="http://localhost:1390/BalanceEntreCuentasCorrientesYArrastreSaldos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceEntreCuentasCorrientesYArrastreSaldosHttpPost" binding="tns:BalanceEntreCuentasCorrientesYArrastreSaldosHttpPost">
+      <http:address location="http://localhost:1390/BalanceEntreCuentasCorrientesYArrastreSaldos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

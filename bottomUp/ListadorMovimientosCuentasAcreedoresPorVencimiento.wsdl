@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoMovimientos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoMovimientosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoMovimientosResult" type="tns:ArrayOfDatosMovimiento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosMovimiento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosMovimiento" nillable="true" type="tns:DatosMovimiento" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosMovimiento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="letra_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_haber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saldo_anterior_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_anterior_haber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saldo_debe_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_haber_total" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosMovimiento" nillable="true" type="tns:ArrayOfDatosMovimiento" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoMovimientosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMovimientos" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMovimientosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosHttpGetIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMovimiento" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosHttpPostIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMovimiento" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorMovimientosCuentasAcreedoresPorVencimientoSoap">
+    <wsdl:operation name="ObtenerListadoMovimientos">
+      <wsdl:input message="tns:ObtenerListadoMovimientosSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoMovimientosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorMovimientosCuentasAcreedoresPorVencimientoHttpGet">
+    <wsdl:operation name="ObtenerListadoMovimientos">
+      <wsdl:input message="tns:ObtenerListadoMovimientosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoMovimientosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorMovimientosCuentasAcreedoresPorVencimientoHttpPost">
+    <wsdl:operation name="ObtenerListadoMovimientos">
+      <wsdl:input message="tns:ObtenerListadoMovimientosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoMovimientosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorMovimientosCuentasAcreedoresPorVencimientoSoap" type="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMovimientos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMovimientos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorMovimientosCuentasAcreedoresPorVencimientoSoap12" type="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMovimientos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMovimientos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorMovimientosCuentasAcreedoresPorVencimientoHttpGet" type="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoMovimientos">
+      <http:operation location="/ObtenerListadoMovimientos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorMovimientosCuentasAcreedoresPorVencimientoHttpPost" type="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoMovimientos">
+      <http:operation location="/ObtenerListadoMovimientos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorMovimientosCuentasAcreedoresPorVencimiento">
+    <wsdl:port name="ListadorMovimientosCuentasAcreedoresPorVencimientoSoap" binding="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoSoap">
+      <soap:address location="http://localhost:1390/ListadorMovimientosCuentasAcreedoresPorVencimiento.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorMovimientosCuentasAcreedoresPorVencimientoSoap12" binding="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoSoap12">
+      <soap12:address location="http://localhost:1390/ListadorMovimientosCuentasAcreedoresPorVencimiento.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorMovimientosCuentasAcreedoresPorVencimientoHttpGet" binding="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoHttpGet">
+      <http:address location="http://localhost:1390/ListadorMovimientosCuentasAcreedoresPorVencimiento.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorMovimientosCuentasAcreedoresPorVencimientoHttpPost" binding="tns:ListadorMovimientosCuentasAcreedoresPorVencimientoHttpPost">
+      <http:address location="http://localhost:1390/ListadorMovimientosCuentasAcreedoresPorVencimiento.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

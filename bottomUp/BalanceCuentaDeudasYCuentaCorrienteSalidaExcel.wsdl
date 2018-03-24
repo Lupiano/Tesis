@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          	<s:element minOccurs="0" maxOccurs="1" name="acepta_nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelResult" type="tns:ArrayOfDatosCuentaDeudasYCuentaCorriente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCuentaDeudasYCuentaCorriente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCuentaDeudasYCuentaCorriente" nillable="true" type="tns:DatosCuentaDeudasYCuentaCorriente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCuentaDeudasYCuentaCorriente">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_deudas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_cuentas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="diferencia" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCuentaDeudasYCuentaCorriente" nillable="true" type="tns:ArrayOfDatosCuentaDeudasYCuentaCorriente" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="acepta_nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaDeudasYCuentaCorriente" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPostIn">
+  	<wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="acepta_nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaDeudasYCuentaCorriente" />
+  </wsdl:message>
+  <wsdl:portType name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap">
+    <wsdl:operation name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+      <wsdl:input message="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoapIn" />
+      <wsdl:output message="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+      <wsdl:input message="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGetIn" />
+      <wsdl:output message="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+      <wsdl:input message="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPostIn" />
+      <wsdl:output message="tns:ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap" type="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap12" type="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGet" type="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+      <http:operation location="/ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPost" type="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+      <http:operation location="/ObtenerBalanceCuentaDeudasYCuentaCorrienteSalidaExcel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcel">
+    <wsdl:port name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap" binding="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/BalanceCuentaDeudasYCuentaCorrienteSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap12" binding="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/BalanceCuentaDeudasYCuentaCorrienteSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGet" binding="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/BalanceCuentaDeudasYCuentaCorrienteSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPost" binding="tns:BalanceCuentaDeudasYCuentaCorrienteSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/BalanceCuentaDeudasYCuentaCorrienteSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

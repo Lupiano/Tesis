@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerBalanceSaldosClientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="acepta_fecha" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_listado" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_desde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_hasta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerBalanceSaldosClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerBalanceSaldosClientesResult" type="tns:ArrayOfDatosBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosBalance" nillable="true" type="tns:DatosBalance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosBalance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosBalance" nillable="true" type="tns:ArrayOfDatosBalance" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerBalanceSaldosClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceSaldosClientes" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceSaldosClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceSaldosClientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceSaldosClientesHttpGetIn">
+  	<wsdl:part name="acepta_fecha" type="s:integer" />
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceSaldosClientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceSaldosClientesHttpPostIn">
+  	<wsdl:part name="acepta_fecha" type="s:integer" />
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceSaldosClientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:portType name="BalanceSaldosClientesSoap">
+    <wsdl:operation name="ObtenerBalanceSaldosClientes">
+      <wsdl:input message="tns:ObtenerBalanceSaldosClientesSoapIn" />
+      <wsdl:output message="tns:ObtenerBalanceSaldosClientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceSaldosClientesHttpGet">
+    <wsdl:operation name="ObtenerBalanceSaldosClientes">
+      <wsdl:input message="tns:ObtenerBalanceSaldosClientesHttpGetIn" />
+      <wsdl:output message="tns:ObtenerBalanceSaldosClientesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceSaldosClientesHttpPost">
+    <wsdl:operation name="ObtenerBalanceSaldosClientes">
+      <wsdl:input message="tns:ObtenerBalanceSaldosClientesHttpPostIn" />
+      <wsdl:output message="tns:ObtenerBalanceSaldosClientesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BalanceSaldosClientesSoap" type="tns:BalanceSaldosClientesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceSaldosClientes">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceSaldosClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceSaldosClientesSoap12" type="tns:BalanceSaldosClientesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceSaldosClientes">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceSaldosClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceSaldosClientesHttpGet" type="tns:BalanceSaldosClientesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerBalanceSaldosClientes">
+      <http:operation location="/ObtenerBalanceSaldosClientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceSaldosClientesHttpPost" type="tns:BalanceSaldosClientesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerBalanceSaldosClientes">
+      <http:operation location="/ObtenerBalanceSaldosClientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BalanceSaldosClientes">
+    <wsdl:port name="BalanceSaldosClientesSoap" binding="tns:BalanceSaldosClientesSoap">
+      <soap:address location="http://localhost:1390/BalanceSaldosClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceSaldosClientesSoap12" binding="tns:BalanceSaldosClientesSoap12">
+      <soap12:address location="http://localhost:1390/BalanceSaldosClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceSaldosClientesHttpGet" binding="tns:BalanceSaldosClientesHttpGet">
+      <http:address location="http://localhost:1390/BalanceSaldosClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceSaldosClientesHttpPost" binding="tns:BalanceSaldosClientesHttpPost">
+      <http:address location="http://localhost:1390/BalanceSaldosClientes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

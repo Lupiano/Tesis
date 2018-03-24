@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoLibroIva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_listado" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="quincena" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoLibroIvaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoLibroIvaResult" type="tns:ArrayOfDatosLibroIva" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosLibroIva" nillable="true" type="tns:DatosLibroIva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="letra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_basico" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_condicional" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="percepciones" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_gravado" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_basico_total" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="percepciones_totales" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total_totales" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_adicional" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_gravado_totales" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="articulo_articulos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_articulos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_articulos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosLibroIva" nillable="true" type="tns:ArrayOfDatosLibroIva" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoLibroIvaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroIvaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroIvaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroIvaHttpGetIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="quincena" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroIvaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroIvaHttpPostIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="quincena" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroIvaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorLibroIvaSalidaExcelVariosPeriodosSoap">
+    <wsdl:operation name="ObtenerListadoLibroIva">
+      <wsdl:input message="tns:ObtenerListadoLibroIvaSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroIvaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorLibroIvaSalidaExcelVariosPeriodosHttpGet">
+    <wsdl:operation name="ObtenerListadoLibroIva">
+      <wsdl:input message="tns:ObtenerListadoLibroIvaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroIvaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorLibroIvaSalidaExcelVariosPeriodosHttpPost">
+    <wsdl:operation name="ObtenerListadoLibroIva">
+      <wsdl:input message="tns:ObtenerListadoLibroIvaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroIvaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorLibroIvaSalidaExcelVariosPeriodosSoap" type="tns:ListadorLibroIvaSalidaExcelVariosPeriodosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroIva">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroIva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorLibroIvaSalidaExcelVariosPeriodosSoap12" type="tns:ListadorLibroIvaSalidaExcelVariosPeriodosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroIva">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroIva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorLibroIvaSalidaExcelVariosPeriodosHttpGet" type="tns:ListadorLibroIvaSalidaExcelVariosPeriodosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoLibroIva">
+      <http:operation location="/ObtenerListadoLibroIva" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorLibroIvaSalidaExcelVariosPeriodosHttpPost" type="tns:ListadorLibroIvaSalidaExcelVariosPeriodosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoLibroIva">
+      <http:operation location="/ObtenerListadoLibroIva" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorLibroIvaSalidaExcelVariosPeriodos">
+    <wsdl:port name="ListadorLibroIvaSalidaExcelVariosPeriodosSoap" binding="tns:ListadorLibroIvaSalidaExcelVariosPeriodosSoap">
+      <soap:address location="http://localhost:1390/ListadorLibroIvaSalidaExcelVariosPeriodos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorLibroIvaSalidaExcelVariosPeriodosSoap12" binding="tns:ListadorLibroIvaSalidaExcelVariosPeriodosSoap12">
+      <soap12:address location="http://localhost:1390/ListadorLibroIvaSalidaExcelVariosPeriodos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorLibroIvaSalidaExcelVariosPeriodosHttpGet" binding="tns:ListadorLibroIvaSalidaExcelVariosPeriodosHttpGet">
+      <http:address location="http://localhost:1390/ListadorLibroIvaSalidaExcelVariosPeriodos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorLibroIvaSalidaExcelVariosPeriodosHttpPost" binding="tns:ListadorLibroIvaSalidaExcelVariosPeriodosHttpPost">
+      <http:address location="http://localhost:1390/ListadorLibroIvaSalidaExcelVariosPeriodos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

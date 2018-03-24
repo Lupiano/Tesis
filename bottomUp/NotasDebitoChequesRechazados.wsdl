@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="RealizarNotaDebito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tasa_iva" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="gravado_total" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="iva_basico" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="ing_brutos" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="descuento" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="con_banco_reserva" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia_cheque" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_cheque" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_cheque" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="descripcion_cheque" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="importe_cheque" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="nombre_firmante" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="percepcion_total" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RealizarNotaDebitoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RealizarNotaDebitoResult" type="tns:DatosNotaDebito" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosNotaDebito">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ejemplar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_remito" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_remito" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_direccion_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_postal_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="texto_condiciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="descuento" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosNotaDebito" nillable="true" type="tns:DatosNotaDebito" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RealizarNotaDebitoSoapIn">
+    <wsdl:part name="parameters" element="tns:RealizarNotaDebito" />
+  </wsdl:message>
+  <wsdl:message name="RealizarNotaDebitoSoapOut">
+    <wsdl:part name="parameters" element="tns:RealizarNotaDebitoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RealizarNotaDebitoHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="tipo_comprobante" type="s:short" />
+    <wsdl:part name="tasa_iva" type="s:float" />
+    <wsdl:part name="importe_total" type="s:double" />
+    <wsdl:part name="gravado_total" type="s:double" />
+    <wsdl:part name="excento_total" type="s:double" />
+    <wsdl:part name="iva_basico" type="s:double" />
+    <wsdl:part name="ing_brutos" type="s:double" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="tipo_precio" type="s:string" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="condicion" type="s:short" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="dia_cheque" type="s:short" />
+    <wsdl:part name="mes_cheque" type="s:short" />
+    <wsdl:part name="anio_cheque" type="s:short" />
+    <wsdl:part name="descripcion_cheque" type="s:string" />
+    <wsdl:part name="importe_cheque" type="s:double" />
+    <wsdl:part name="nombre_firmante" type="s:string" />
+    <wsdl:part name="percepcion_total" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="RealizarNotaDebitoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosNotaDebito" />
+  </wsdl:message>
+  <wsdl:message name="RealizarNotaDebitoHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="tipo_comprobante" type="s:short" />
+    <wsdl:part name="tasa_iva" type="s:float" />
+    <wsdl:part name="importe_total" type="s:double" />
+    <wsdl:part name="gravado_total" type="s:double" />
+    <wsdl:part name="excento_total" type="s:double" />
+    <wsdl:part name="iva_basico" type="s:double" />
+    <wsdl:part name="ing_brutos" type="s:double" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="tipo_precio" type="s:string" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="condicion" type="s:short" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="dia_cheque" type="s:short" />
+    <wsdl:part name="mes_cheque" type="s:short" />
+    <wsdl:part name="anio_cheque" type="s:short" />
+    <wsdl:part name="descripcion_cheque" type="s:string" />
+    <wsdl:part name="importe_cheque" type="s:double" />
+    <wsdl:part name="nombre_firmante" type="s:string" />
+    <wsdl:part name="percepcion_total" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="RealizarNotaDebitoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosNotaDebito" />
+  </wsdl:message>
+  <wsdl:portType name="NotasDebitoChequesRechazadosSoap">
+    <wsdl:operation name="RealizarNotaDebito">
+      <wsdl:input message="tns:RealizarNotaDebitoSoapIn" />
+      <wsdl:output message="tns:RealizarNotaDebitoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="NotasDebitoChequesRechazadosHttpGet">
+    <wsdl:operation name="RealizarNotaDebito">
+      <wsdl:input message="tns:RealizarNotaDebitoHttpGetIn" />
+      <wsdl:output message="tns:RealizarNotaDebitoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="NotasDebitoChequesRechazadosHttpPost">
+    <wsdl:operation name="RealizarNotaDebito">
+      <wsdl:input message="tns:RealizarNotaDebitoHttpPostIn" />
+      <wsdl:output message="tns:RealizarNotaDebitoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NotasDebitoChequesRechazadosSoap" type="tns:NotasDebitoChequesRechazadosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RealizarNotaDebito">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/RealizarNotaDebito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NotasDebitoChequesRechazadosSoap12" type="tns:NotasDebitoChequesRechazadosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RealizarNotaDebito">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/RealizarNotaDebito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NotasDebitoChequesRechazadosHttpGet" type="tns:NotasDebitoChequesRechazadosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="RealizarNotaDebito">
+      <http:operation location="/RealizarNotaDebito" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NotasDebitoChequesRechazadosHttpPost" type="tns:NotasDebitoChequesRechazadosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="RealizarNotaDebito">
+      <http:operation location="/RealizarNotaDebito" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NotasDebitoChequesRechazados">
+    <wsdl:port name="NotasDebitoChequesRechazadosSoap" binding="tns:NotasDebitoChequesRechazadosSoap">
+      <soap:address location="http://localhost:1390/NotasDebitoChequesRechazados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NotasDebitoChequesRechazadosSoap12" binding="tns:NotasDebitoChequesRechazadosSoap12">
+      <soap12:address location="http://localhost:1390/NotasDebitoChequesRechazados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NotasDebitoChequesRechazadosHttpGet" binding="tns:NotasDebitoChequesRechazadosHttpGet">
+      <http:address location="http://localhost:1390/NotasDebitoChequesRechazados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="NotasDebitoChequesRechazadosHttpPost" binding="tns:NotasDebitoChequesRechazadosHttpPost">
+      <http:address location="http://localhost:1390/NotasDebitoChequesRechazados.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

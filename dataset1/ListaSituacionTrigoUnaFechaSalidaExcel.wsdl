@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoSituacionTrigo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cosecha" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoSituacionTrigoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoSituacionTrigoResult" type="tns:ArrayOfDatosSituacionTrigo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosSituacionTrigo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosSituacionTrigo" nillable="true" type="tns:DatosSituacionTrigo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosSituacionTrigo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="titular_contrato" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="denominacion_acreedores" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kilos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="compra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="a_recibir" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="de_terceros" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="nuestro_numero" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="kilos_netos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosSituacionTrigo" nillable="true" type="tns:ArrayOfDatosSituacionTrigo" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoSituacionTrigoSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoSituacionTrigo" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSituacionTrigoSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoSituacionTrigoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSituacionTrigoHttpGetIn">
+    <wsdl:part name="cosecha" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSituacionTrigoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSituacionTrigo" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSituacionTrigoHttpPostIn">
+  	<wsdl:part name="cosecha" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSituacionTrigoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSituacionTrigo" />
+  </wsdl:message>
+  <wsdl:portType name="ListaSituacionTrigoUnaFechaSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoSituacionTrigo">
+      <wsdl:input message="tns:ObtenerListadoSituacionTrigoSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoSituacionTrigoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaSituacionTrigoUnaFechaSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoSituacionTrigo">
+      <wsdl:input message="tns:ObtenerListadoSituacionTrigoHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoSituacionTrigoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaSituacionTrigoUnaFechaSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoSituacionTrigo">
+      <wsdl:input message="tns:ObtenerListadoSituacionTrigoHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoSituacionTrigoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListaSituacionTrigoUnaFechaSalidaExcelSoap" type="tns:ListaSituacionTrigoUnaFechaSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoSituacionTrigo">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoSituacionTrigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaSituacionTrigoUnaFechaSalidaExcelSoap12" type="tns:ListaSituacionTrigoUnaFechaSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoSituacionTrigo">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoSituacionTrigo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaSituacionTrigoUnaFechaSalidaExcelHttpGet" type="tns:ListaSituacionTrigoUnaFechaSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoSituacionTrigo">
+      <http:operation location="/ObtenerListadoSituacionTrigo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaSituacionTrigoUnaFechaSalidaExcelHttpPost" type="tns:ListaSituacionTrigoUnaFechaSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoSituacionTrigo">
+      <http:operation location="/ObtenerListadoSituacionTrigo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListaSituacionTrigoUnaFechaSalidaExcel">
+    <wsdl:port name="ListaSituacionTrigoUnaFechaSalidaExcelSoap" binding="tns:ListaSituacionTrigoUnaFechaSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListaSituacionTrigoUnaFechaSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaSituacionTrigoUnaFechaSalidaExcelSoap12" binding="tns:ListaSituacionTrigoUnaFechaSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListaSituacionTrigoUnaFechaSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaSituacionTrigoUnaFechaSalidaExcelHttpGet" binding="tns:ListaSituacionTrigoUnaFechaSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListaSituacionTrigoUnaFechaSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaSituacionTrigoUnaFechaSalidaExcelHttpPost" binding="tns:ListaSituacionTrigoUnaFechaSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListaSituacionTrigoUnaFechaSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

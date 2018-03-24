@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AnularRemito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="factura_envases" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="factura" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta_bolsas" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnularRemitoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AnularRemitoResult" type="tns:DatosRemito" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosRemito">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="numero_factura" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosRemito" nillable="true" type="tns:DatosRemito" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AnularRemitoSoapIn">
+    <wsdl:part name="parameters" element="tns:AnularRemito" />
+  </wsdl:message>
+  <wsdl:message name="AnularRemitoSoapOut">
+    <wsdl:part name="parameters" element="tns:AnularRemitoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnularRemitoHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="factura" type="s:integer" />
+    <wsdl:part name="factura_envases" type="s:short" />
+    <wsdl:part name="cuenta_bolsas" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AnularRemitoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosRemito" />
+  </wsdl:message>
+  <wsdl:message name="AnularRemitoHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="factura" type="s:integer" />
+    <wsdl:part name="factura_envases" type="s:short" />
+    <wsdl:part name="cuenta_bolsas" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AnularRemitoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosRemito" />
+  </wsdl:message>
+  <wsdl:portType name="AnulacionRemitosMercaderiaEntregadaSoap">
+    <wsdl:operation name="AnularRemito">
+      <wsdl:input message="tns:AnularRemitoSoapIn" />
+      <wsdl:output message="tns:AnularRemitoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnulacionRemitosMercaderiaEntregadaHttpGet">
+    <wsdl:operation name="AnularRemito">
+      <wsdl:input message="tns:AnularRemitoHttpGetIn" />
+      <wsdl:output message="tns:AnularRemitoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnulacionRemitosMercaderiaEntregadaHttpPost">
+    <wsdl:operation name="AnularRemito">
+      <wsdl:input message="tns:AnularRemitoHttpPostIn" />
+      <wsdl:output message="tns:AnularRemitoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AnulacionRemitosMercaderiaEntregadaSoap" type="tns:AnulacionRemitosMercaderiaEntregadaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnularRemito">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AnularRemito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnulacionRemitosMercaderiaEntregadaSoap12" type="tns:AnulacionRemitosMercaderiaEntregadaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnularRemito">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AnularRemito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnulacionRemitosMercaderiaEntregadaHttpGet" type="tns:AnulacionRemitosMercaderiaEntregadaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AnularRemito">
+      <http:operation location="/AnularRemito" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnulacionRemitosMercaderiaEntregadaHttpPost" type="tns:AnulacionRemitosMercaderiaEntregadaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AnularRemito">
+      <http:operation location="/AnularRemito" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnulacionRemitosMercaderiaEntregada">
+    <wsdl:port name="AnulacionRemitosMercaderiaEntregadaSoap" binding="tns:AnulacionRemitosMercaderiaEntregadaSoap">
+      <soap:address location="http://localhost:1390/AnulacionRemitosMercaderiaEntregada.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnulacionRemitosMercaderiaEntregadaSoap12" binding="tns:AnulacionRemitosMercaderiaEntregadaSoap12">
+      <soap12:address location="http://localhost:1390/AnulacionRemitosMercaderiaEntregada.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnulacionRemitosMercaderiaEntregadaHttpGet" binding="tns:AnulacionRemitosMercaderiaEntregadaHttpGet">
+      <http:address location="http://localhost:1390/AnulacionRemitosMercaderiaEntregada.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnulacionRemitosMercaderiaEntregadaHttpPost" binding="tns:AnulacionRemitosMercaderiaEntregadaHttpPost">
+      <http:address location="http://localhost:1390/AnulacionRemitosMercaderiaEntregada.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

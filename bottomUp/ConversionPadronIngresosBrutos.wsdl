@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ConvertirPadronIngresosBrutos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConvertirPadronIngresosBrutosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConvertirPadronIngresosBrutosResult" type="tns:DatosConversion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosConversion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="conversionCorrecta" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosConversion" nillable="true" type="tns:DatosConversion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConvertirPadronIngresosBrutosSoapIn">
+    <wsdl:part name="parameters" element="tns:ConvertirPadronIngresosBrutos" />
+  </wsdl:message>
+  <wsdl:message name="ConvertirPadronIngresosBrutosSoapOut">
+    <wsdl:part name="parameters" element="tns:ConvertirPadronIngresosBrutosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConvertirPadronIngresosBrutosHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ConvertirPadronIngresosBrutosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosConversion" />
+  </wsdl:message>
+  <wsdl:message name="ConvertirPadronIngresosBrutosHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ConvertirPadronIngresosBrutosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosConversion" />
+  </wsdl:message>
+  <wsdl:portType name="ConversionPadronIngresosBrutosSoap">
+    <wsdl:operation name="ConvertirPadronIngresosBrutos">
+      <wsdl:input message="tns:ConvertirPadronIngresosBrutosSoapIn" />
+      <wsdl:output message="tns:ConvertirPadronIngresosBrutosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConversionPadronIngresosBrutosHttpGet">
+    <wsdl:operation name="ConvertirPadronIngresosBrutos">
+      <wsdl:input message="tns:ConvertirPadronIngresosBrutosHttpGetIn" />
+      <wsdl:output message="tns:ConvertirPadronIngresosBrutosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConversionPadronIngresosBrutosHttpPost">
+    <wsdl:operation name="ConvertirPadronIngresosBrutos">
+      <wsdl:input message="tns:ConvertirPadronIngresosBrutosHttpPostIn" />
+      <wsdl:output message="tns:ConvertirPadronIngresosBrutosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConversionPadronIngresosBrutosSoap" type="tns:ConversionPadronIngresosBrutosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConvertirPadronIngresosBrutos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ConvertirPadronIngresosBrutos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConversionPadronIngresosBrutosSoap12" type="tns:ConversionPadronIngresosBrutosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConvertirPadronIngresosBrutos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ConvertirPadronIngresosBrutos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConversionPadronIngresosBrutosHttpGet" type="tns:ConversionPadronIngresosBrutosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ConvertirPadronIngresosBrutos">
+      <http:operation location="/ConvertirPadronIngresosBrutos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConversionPadronIngresosBrutosHttpPost" type="tns:ConversionPadronIngresosBrutosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ConvertirPadronIngresosBrutos">
+      <http:operation location="/ConvertirPadronIngresosBrutos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConversionPadronIngresosBrutos">
+    <wsdl:port name="ConversionPadronIngresosBrutosSoap" binding="tns:ConversionPadronIngresosBrutosSoap">
+      <soap:address location="http://localhost:1390/ConversionPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConversionPadronIngresosBrutosSoap12" binding="tns:ConversionPadronIngresosBrutosSoap12">
+      <soap12:address location="http://localhost:1390/ConversionPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConversionPadronIngresosBrutosHttpGet" binding="tns:ConversionPadronIngresosBrutosHttpGet">
+      <http:address location="http://localhost:1390/ConversionPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConversionPadronIngresosBrutosHttpPost" binding="tns:ConversionPadronIngresosBrutosHttpPost">
+      <http:address location="http://localhost:1390/ConversionPadronIngresosBrutos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

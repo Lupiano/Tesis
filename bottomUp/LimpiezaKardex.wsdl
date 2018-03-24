@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="LimpiarKardex">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="1" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpiarKardexResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LimpiarKardexResult" type="tns:DatosKardex" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosKardex">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="borradoCorrecto" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosKardex" nillable="true" type="tns:DatosKardex" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LimpiarKardexSoapIn">
+    <wsdl:part name="parameters" element="tns:LimpiarKardex" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarKardexSoapOut">
+    <wsdl:part name="parameters" element="tns:LimpiarKardexResponse" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarKardexHttpGetIn">
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarKardexHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosKardex" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarKardexHttpPostIn">
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarKardexHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosKardex" />
+  </wsdl:message>
+  <wsdl:portType name="LimpiezaKardexSoap">
+    <wsdl:operation name="LimpiarKardex">
+      <wsdl:input message="tns:LimpiarKardexSoapIn" />
+      <wsdl:output message="tns:LimpiarKardexSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaKardexHttpGet">
+    <wsdl:operation name="LimpiarKardex">
+      <wsdl:input message="tns:LimpiarKardexHttpGetIn" />
+      <wsdl:output message="tns:LimpiarKardexHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaKardexHttpPost">
+    <wsdl:operation name="LimpiarKardex">
+      <wsdl:input message="tns:LimpiarKardexHttpPostIn" />
+      <wsdl:output message="tns:LimpiarKardexHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LimpiezaKardexSoap" type="tns:LimpiezaKardexSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarKardex">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/LimpiarKardex" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaKardexSoap12" type="tns:LimpiezaKardexSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarKardex">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/LimpiarKardex" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaKardexHttpGet" type="tns:LimpiezaKardexHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="LimpiarKardex">
+      <http:operation location="/LimpiarKardex" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaKardexHttpPost" type="tns:LimpiezaKardexHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="LimpiarKardex">
+      <http:operation location="/LimpiarKardex" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LimpiezaKardex">
+    <wsdl:port name="LimpiezaKardexSoap" binding="tns:LimpiezaKardexSoap">
+      <soap:address location="http://localhost:1390/LimpiezaKardex.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaKardexSoap12" binding="tns:LimpiezaKardexSoap12">
+      <soap12:address location="http://localhost:1390/LimpiezaKardex.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaKardexHttpGet" binding="tns:LimpiezaKardexHttpGet">
+      <http:address location="http://localhost:1390/LimpiezaKardex.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaKardexHttpPost" binding="tns:LimpiezaKardexHttpPost">
+      <http:address location="http://localhost:1390/LimpiezaKardex.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

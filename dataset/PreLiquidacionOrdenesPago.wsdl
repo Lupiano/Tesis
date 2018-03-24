@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="LiquidarOrdenPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_tipo_calculo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_declaracion" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_declaracion" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sin_personal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe_retenido" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="retencion_ganancias" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="neto_ganancias" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="retencion_iva" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="retencion_suss" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago_anterior" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago_efectivo" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago_cheques_terceros" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LiquidarOrdenPagoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LiquidarOrdenPagoResult" type="tns:DatosLiquidacionOrdenPago" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosLiquidacionOrdenPago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_beneficiario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_calculo_orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="concepto_orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_orden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_neto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_iva" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_bruto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_neto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_iva" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_bruto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="comentario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_ganancias" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="comentario_ganancias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_suss" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="comentario_suss" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total_retenciones" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_anterior" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_efectivo" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_cheques_terceros" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalles_propios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_propios" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_pagado" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="pagos_acumulados" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="deduccion_acumulado" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="retenciones" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_retencion" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="periodo_declaracion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="porcentaje_exento" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_certificado" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_certificado" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosLiquidacionOrdenPago" nillable="true" type="tns:DatosLiquidacionOrdenPago" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LiquidarOrdenPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:LiquidarOrdenPago" />
+  </wsdl:message>
+  <wsdl:message name="LiquidarOrdenPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:LiquidarOrdenPagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LiquidarOrdenPagoHttpGetIn">
+  	<wsdl:part name="codigo" type="s:short" />
+  	<wsdl:part name="acepta_tipo_calculo" type="s:short" />
+  	<wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="mes_declaracion" type="s:short" />
+    <wsdl:part name="anio_declaracion" type="s:short" />
+    <wsdl:part name="sin_personal" type="s:short" />
+    <wsdl:part name="importe_retenido" type="s:double" />
+    <wsdl:part name="retencion_ganancias" type="s:double" />
+    <wsdl:part name="neto_ganancias" type="s:double" />
+    <wsdl:part name="retencion_iva" type="s:double" />
+    <wsdl:part name="retencion_suss" type="s:double" />
+    <wsdl:part name="pago_anterior" type="s:double" />
+    <wsdl:part name="pago_efectivo" type="s:double" />
+    <wsdl:part name="pago_cheques_terceros" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="LiquidarOrdenPagoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosLiquidacionOrdenPago" />
+  </wsdl:message>
+  <wsdl:message name="LiquidarOrdenPagoHttpPostIn">
+    <wsdl:part name="codigo" type="s:short" />
+  	<wsdl:part name="acepta_tipo_calculo" type="s:short" />
+  	<wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="mes_declaracion" type="s:short" />
+    <wsdl:part name="anio_declaracion" type="s:short" />
+    <wsdl:part name="sin_personal" type="s:short" />
+    <wsdl:part name="importe_retenido" type="s:double" />
+    <wsdl:part name="retencion_ganancias" type="s:double" />
+    <wsdl:part name="neto_ganancias" type="s:double" />
+    <wsdl:part name="retencion_iva" type="s:double" />
+    <wsdl:part name="retencion_suss" type="s:double" />
+    <wsdl:part name="pago_anterior" type="s:double" />
+    <wsdl:part name="pago_efectivo" type="s:double" />
+    <wsdl:part name="pago_cheques_terceros" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="LiquidarOrdenPagoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosLiquidacionOrdenPago" />
+  </wsdl:message>
+  <wsdl:portType name="PreLiquidacionOrdenesPagoSoap">
+    <wsdl:operation name="LiquidarOrdenPago">
+      <wsdl:input message="tns:LiquidarOrdenPagoSoapIn" />
+      <wsdl:output message="tns:LiquidarOrdenPagoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PreLiquidacionOrdenesPagoHttpGet">
+    <wsdl:operation name="LiquidarOrdenPago">
+      <wsdl:input message="tns:LiquidarOrdenPagoHttpGetIn" />
+      <wsdl:output message="tns:LiquidarOrdenPagoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PreLiquidacionOrdenesPagoHttpPost">
+    <wsdl:operation name="LiquidarOrdenPago">
+      <wsdl:input message="tns:LiquidarOrdenPagoHttpPostIn" />
+      <wsdl:output message="tns:LiquidarOrdenPagoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PreLiquidacionOrdenesPagoSoap" type="tns:PreLiquidacionOrdenesPagoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LiquidarOrdenPago">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/LiquidarOrdenPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PreLiquidacionOrdenesPagoSoap12" type="tns:PreLiquidacionOrdenesPagoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LiquidarOrdenPago">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/LiquidarOrdenPago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PreLiquidacionOrdenesPagoHttpGet" type="tns:PreLiquidacionOrdenesPagoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="LiquidarOrdenPago">
+      <http:operation location="/LiquidarOrdenPago" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PreLiquidacionOrdenesPagoHttpPost" type="tns:PreLiquidacionOrdenesPagoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="LiquidarOrdenPago">
+      <http:operation location="/LiquidarOrdenPago" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PreLiquidacionOrdenesPago">
+    <wsdl:port name="PreLiquidacionOrdenesPagoSoap" binding="tns:PreLiquidacionOrdenesPagoSoap">
+      <soap:address location="http://localhost:1390/PreLiquidacionOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PreLiquidacionOrdenesPagoSoap12" binding="tns:PreLiquidacionOrdenesPagoSoap12">
+      <soap12:address location="http://localhost:1390/PreLiquidacionOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PreLiquidacionOrdenesPagoHttpGet" binding="tns:PreLiquidacionOrdenesPagoHttpGet">
+      <http:address location="http://localhost:1390/PreLiquidacionOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PreLiquidacionOrdenesPagoHttpPost" binding="tns:PreLiquidacionOrdenesPagoHttpPost">
+      <http:address location="http://localhost:1390/PreLiquidacionOrdenesPago.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

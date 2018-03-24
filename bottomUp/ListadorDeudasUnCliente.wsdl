@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoDeudas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="acepta_fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoDeudasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoDeudasResult" type="tns:ArrayOfDatosDeuda" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosDeuda">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosDeuda" nillable="true" type="tns:DatosDeuda" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosDeuda">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="observaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolsas" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="neto_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saldo_anterior_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe_total" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosDeuda" nillable="true" type="tns:ArrayOfDatosDeuda" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoDeudasSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudas" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasHttpGetIn">
+  	<wsdl:part name="acepta_fecha" type="s:string" />
+    <wsdl:part name="zona_desde" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDeuda" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasHttpPostIn">
+    <wsdl:part name="acepta_fecha" type="s:string" />
+    <wsdl:part name="zona_desde" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDeuda" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorDeudasUnClienteSoap">
+    <wsdl:operation name="ObtenerListadoDeudas">
+      <wsdl:input message="tns:ObtenerListadoDeudasSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorDeudasUnClienteHttpGet">
+    <wsdl:operation name="ObtenerListadoDeudas">
+      <wsdl:input message="tns:ObtenerListadoDeudasHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudasHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorDeudasUnClienteHttpPost">
+    <wsdl:operation name="ObtenerListadoDeudas">
+      <wsdl:input message="tns:ObtenerListadoDeudasHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudasHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorDeudasUnClienteSoap" type="tns:ListadorDeudasUnClienteSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudas">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorDeudasUnClienteSoap12" type="tns:ListadorDeudasUnClienteSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudas">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorDeudasUnClienteHttpGet" type="tns:ListadorDeudasUnClienteHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoDeudas">
+      <http:operation location="/ObtenerListadoDeudas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorDeudasUnClienteHttpPost" type="tns:ListadorDeudasUnClienteHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoDeudas">
+      <http:operation location="/ObtenerListadoDeudas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorDeudasUnCliente">
+    <wsdl:port name="ListadorDeudasUnClienteSoap" binding="tns:ListadorDeudasUnClienteSoap">
+      <soap:address location="http://localhost:1390/ListadorDeudasUnCliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorDeudasUnClienteSoap12" binding="tns:ListadorDeudasUnClienteSoap12">
+      <soap12:address location="http://localhost:1390/ListadorDeudasUnCliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorDeudasUnClienteHttpGet" binding="tns:ListadorDeudasUnClienteHttpGet">
+      <http:address location="http://localhost:1390/ListadorDeudasUnCliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorDeudasUnClienteHttpPost" binding="tns:ListadorDeudasUnClienteHttpPost">
+      <http:address location="http://localhost:1390/ListadorDeudasUnCliente.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

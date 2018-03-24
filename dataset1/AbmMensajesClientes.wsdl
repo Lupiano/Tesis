@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaMensaje">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="texto_mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaMensajeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaMensajeResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionMensaje">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="texto_mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionMensajeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionMensajeResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaMensaje">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaMensajeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaMensajeResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaMensajeSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaMensaje" />
+  </wsdl:message>
+  <wsdl:message name="AltaMensajeSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaMensajeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaMensajeHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="texto_mensaje" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AltaMensajeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaMensajeHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="texto_mensaje" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AltaMensajeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionMensajeSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionMensaje" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionMensajeSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionMensajeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionMensajeHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="texto_mensaje" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionMensajeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionMensajeHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="texto_mensaje" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionMensajeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaMensajeSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaMensaje" />
+  </wsdl:message>
+  <wsdl:message name="BajaMensajeSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaMensajeResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaMensajeHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaMensajeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaMensajeHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaMensajeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmMensajesClientesSoap">
+    <wsdl:operation name="AltaMensaje">
+      <wsdl:input message="tns:AltaMensajeSoapIn" />
+      <wsdl:output message="tns:AltaMensajeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionMensaje">
+      <wsdl:input message="tns:ModificacionMensajeSoapIn" />
+      <wsdl:output message="tns:ModificacionMensajeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaMensaje">
+      <wsdl:input message="tns:BajaMensajeSoapIn" />
+      <wsdl:output message="tns:BajaMensajeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmMensajesClientesHttpGet">
+    <wsdl:operation name="AltaMensaje">
+      <wsdl:input message="tns:AltaMensajeHttpGetIn" />
+      <wsdl:output message="tns:AltaMensajeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionMensaje">
+      <wsdl:input message="tns:ModificacionMensajeHttpGetIn" />
+      <wsdl:output message="tns:ModificacionMensajeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaMensaje">
+      <wsdl:input message="tns:BajaMensajeHttpGetIn" />
+      <wsdl:output message="tns:BajaMensajeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmMensajesClientesHttpPost">
+    <wsdl:operation name="AltaMensaje">
+      <wsdl:input message="tns:AltaMensajeHttpPostIn" />
+      <wsdl:output message="tns:AltaMensajeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionMensaje">
+      <wsdl:input message="tns:ModificacionMensajeHttpPostIn" />
+      <wsdl:output message="tns:ModificacionMensajeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaMensaje">
+      <wsdl:input message="tns:BajaMensajeHttpPostIn" />
+      <wsdl:output message="tns:BajaMensajeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmMensajesClientesSoap" type="tns:AbmMensajesClientesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaMensaje">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaMensaje" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionMensaje">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionMensaje" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaMensaje">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaMensaje" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmMensajesClientesSoap12" type="tns:AbmMensajesClientesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaMensaje">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaMensaje" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionMensaje">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionMensaje" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaMensaje">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaMensaje" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmMensajesClientesHttpGet" type="tns:AbmMensajesClientesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaMensaje">
+      <http:operation location="/AltaMensaje" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionMensaje">
+      <http:operation location="/ModificacionMensaje" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaMensaje">
+      <http:operation location="/BajaMensaje" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmMensajesClientesHttpPost" type="tns:AbmMensajesClientesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaMensaje">
+      <http:operation location="/AltaMensaje" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionMensaje">
+      <http:operation location="/ModificacionMensaje" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaMensaje">
+      <http:operation location="/BajaMensaje" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmMensajesClientes">
+    <wsdl:port name="AbmMensajesClientesSoap" binding="tns:AbmMensajesClientesSoap">
+      <soap:address location="http://localhost:1390/AbmMensajesClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmMensajesClientesSoap12" binding="tns:AbmMensajesClientesSoap12">
+      <soap12:address location="http://localhost:1390/AbmMensajesClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmMensajesClientesHttpGet" binding="tns:AbmMensajesClientesHttpGet">
+      <http:address location="http://localhost:1390/AbmMensajesClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmMensajesClientesHttpPost" binding="tns:AbmMensajesClientesHttpPost">
+      <http:address location="http://localhost:1390/AbmMensajesClientes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="RealizarDeposito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fecha_sistema" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cuenta" type="s:integer" />
+            <s:element minOccurs="1" maxOccurs="1" name="descripcion_ctascont" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_cheque" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RealizarDepositoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RealizarDepositoResult" type="tns:DatosDeposito" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosDeposito">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="denominacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_firmante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit_firmante" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosDeposito" nillable="true" type="tns:DatosDeposito" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="RealizarDepositoSoapIn">
+    <wsdl:part name="parameters" element="tns:RealizarDeposito" />
+  </wsdl:message>
+  <wsdl:message name="RealizarDepositoSoapOut">
+    <wsdl:part name="parameters" element="tns:RealizarDepositoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RealizarDepositoHttpGetIn">
+    <wsdl:part name="fecha_sistema" type="s:string" />
+    <wsdl:part name="cuenta" type="s:integer" />
+    <wsdl:part name="descripcion_ctascont" type="s:string" />
+    <wsdl:part name="numero_cheque" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="RealizarDepositoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosDeposito" />
+  </wsdl:message>
+  <wsdl:message name="RealizarDepositoHttpPostIn">
+    <wsdl:part name="fecha_sistema" type="s:string" />
+    <wsdl:part name="cuenta" type="s:integer" />
+    <wsdl:part name="descripcion_ctascont" type="s:string" />
+    <wsdl:part name="numero_cheque" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="RealizarDepositoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosDeposito" />
+  </wsdl:message>
+  <wsdl:portType name="DepositoEntregaChequesEnCarteraSoap">
+    <wsdl:operation name="RealizarDeposito">
+      <wsdl:input message="tns:RealizarDepositoSoapIn" />
+      <wsdl:output message="tns:RealizarDepositoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DepositoEntregaChequesEnCarteraHttpGet">
+    <wsdl:operation name="RealizarDeposito">
+      <wsdl:input message="tns:RealizarDepositoHttpGetIn" />
+      <wsdl:output message="tns:RealizarDepositoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DepositoEntregaChequesEnCarteraHttpPost">
+    <wsdl:operation name="RealizarDeposito">
+      <wsdl:input message="tns:RealizarDepositoHttpPostIn" />
+      <wsdl:output message="tns:RealizarDepositoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DepositoEntregaChequesEnCarteraSoap" type="tns:DepositoEntregaChequesEnCarteraSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RealizarDeposito">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/RealizarDeposito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DepositoEntregaChequesEnCarteraSoap12" type="tns:DepositoEntregaChequesEnCarteraSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RealizarDeposito">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/RealizarDeposito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DepositoEntregaChequesEnCarteraHttpGet" type="tns:DepositoEntregaChequesEnCarteraHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="RealizarDeposito">
+      <http:operation location="/RealizarDeposito" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DepositoEntregaChequesEnCarteraHttpPost" type="tns:DepositoEntregaChequesEnCarteraHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="RealizarDeposito">
+      <http:operation location="/RealizarDeposito" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DepositoEntregaChequesEnCartera">
+    <wsdl:port name="DepositoEntregaChequesEnCarteraSoap" binding="tns:DepositoEntregaChequesEnCarteraSoap">
+      <soap:address location="http://localhost:1390/DepositoEntregaChequesEnCartera.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DepositoEntregaChequesEnCarteraSoap12" binding="tns:DepositoEntregaChequesEnCarteraSoap12">
+      <soap12:address location="http://localhost:1390/DepositoEntregaChequesEnCartera.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DepositoEntregaChequesEnCarteraHttpGet" binding="tns:DepositoEntregaChequesEnCarteraHttpGet">
+      <http:address location="http://localhost:1390/DepositoEntregaChequesEnCartera.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DepositoEntregaChequesEnCarteraHttpPost" binding="tns:DepositoEntregaChequesEnCarteraHttpPost">
+      <http:address location="http://localhost:1390/DepositoEntregaChequesEnCartera.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

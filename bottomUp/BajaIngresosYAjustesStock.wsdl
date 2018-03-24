@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="BajaIngreso">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_trabajo" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="serie_factura" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="factura" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="secuencia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaIngresoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaIngresoResult" type="tns:DatosIngreso" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosIngreso">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosIngreso" nillable="true" type="tns:DatosIngreso" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BajaIngresoSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaIngreso" />
+  </wsdl:message>
+  <wsdl:message name="BajaIngresoSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaIngresoResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaIngresoHttpGetIn">
+    <wsdl:part name="fecha_trabajo" type="s:long" />
+    <wsdl:part name="serie_factura" type="s:short" />
+    <wsdl:part name="factura" type="s:integer" />
+    <wsdl:part name="secuencia" type="s:short" />
+    <wsdl:part name="articulo" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaIngresoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosIngreso" />
+  </wsdl:message>
+  <wsdl:message name="BajaIngresoHttpPostIn">
+    <wsdl:part name="fecha_trabajo" type="s:long" />
+    <wsdl:part name="serie_factura" type="s:short" />
+    <wsdl:part name="factura" type="s:integer" />
+    <wsdl:part name="secuencia" type="s:short" />
+    <wsdl:part name="articulo" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaIngresoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosIngreso" />
+  </wsdl:message>
+  <wsdl:portType name="BajaIngresosYAjustesStockSoap">
+    <wsdl:operation name="BajaIngreso">
+      <wsdl:input message="tns:BajaIngresoSoapIn" />
+      <wsdl:output message="tns:BajaIngresoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BajaIngresosYAjustesStockHttpGet">
+    <wsdl:operation name="BajaIngreso">
+      <wsdl:input message="tns:BajaIngresoHttpGetIn" />
+      <wsdl:output message="tns:BajaIngresoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BajaIngresosYAjustesStockHttpPost">
+    <wsdl:operation name="BajaIngreso">
+      <wsdl:input message="tns:BajaIngresoHttpPostIn" />
+      <wsdl:output message="tns:BajaIngresoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BajaIngresosYAjustesStockSoap" type="tns:BajaIngresosYAjustesStockSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BajaIngreso">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaIngreso" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BajaIngresosYAjustesStockSoap12" type="tns:BajaIngresosYAjustesStockSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BajaIngreso">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaIngreso" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BajaIngresosYAjustesStockHttpGet" type="tns:BajaIngresosYAjustesStockHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="BajaIngreso">
+      <http:operation location="/BajaIngreso" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BajaIngresosYAjustesStockHttpPost" type="tns:BajaIngresosYAjustesStockHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="BajaIngreso">
+      <http:operation location="/BajaIngreso" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BajaIngresosYAjustesStock">
+    <wsdl:port name="BajaIngresosYAjustesStockSoap" binding="tns:BajaIngresosYAjustesStockSoap">
+      <soap:address location="http://localhost:1390/BajaIngresosYAjustesStock.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BajaIngresosYAjustesStockSoap12" binding="tns:BajaIngresosYAjustesStockSoap12">
+      <soap12:address location="http://localhost:1390/BajaIngresosYAjustesStock.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BajaIngresosYAjustesStockHttpGet" binding="tns:BajaIngresosYAjustesStockHttpGet">
+      <http:address location="http://localhost:1390/BajaIngresosYAjustesStock.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BajaIngresosYAjustesStockHttpPost" binding="tns:BajaIngresosYAjustesStockHttpPost">
+      <http:address location="http://localhost:1390/BajaIngresosYAjustesStock.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

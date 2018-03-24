@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaDevolucionBolsa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaDevolucionBolsaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaDevolucionBolsaResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="BajaDevolucionBolsa">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaDevolucionBolsaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaDevolucionBolsaResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaDevolucionBolsaSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaDevolucionBolsa" />
+  </wsdl:message>
+  <wsdl:message name="AltaDevolucionBolsaSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaDevolucionBolsaResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaDevolucionBolsaHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="cantidad" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="AltaDevolucionBolsaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaDevolucionBolsaHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="cantidad" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="AltaDevolucionBolsaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="BajaDevolucionBolsaSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaDevolucionBolsa" />
+  </wsdl:message>
+  <wsdl:message name="BajaDevolucionBolsaSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaDevolucionBolsaResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaDevolucionBolsaHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaDevolucionBolsaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaDevolucionBolsaHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaDevolucionBolsaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AltasYBajasDevolucionBolsasSoap">
+    <wsdl:operation name="AltaDevolucionBolsa">
+      <wsdl:input message="tns:AltaDevolucionBolsaSoapIn" />
+      <wsdl:output message="tns:AltaDevolucionBolsaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaDevolucionBolsa">
+      <wsdl:input message="tns:BajaDevolucionBolsaSoapIn" />
+      <wsdl:output message="tns:BajaDevolucionBolsaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AltasYBajasDevolucionBolsasHttpGet">
+    <wsdl:operation name="AltaDevolucionBolsa">
+      <wsdl:input message="tns:AltaDevolucionBolsaHttpGetIn" />
+      <wsdl:output message="tns:AltaDevolucionBolsaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaDevolucionBolsa">
+      <wsdl:input message="tns:BajaDevolucionBolsaHttpGetIn" />
+      <wsdl:output message="tns:BajaDevolucionBolsaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AltasYBajasDevolucionBolsasHttpPost">
+    <wsdl:operation name="AltaDevolucionBolsa">
+      <wsdl:input message="tns:AltaDevolucionBolsaHttpPostIn" />
+      <wsdl:output message="tns:AltaDevolucionBolsaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaDevolucionBolsa">
+      <wsdl:input message="tns:BajaDevolucionBolsaHttpPostIn" />
+      <wsdl:output message="tns:BajaDevolucionBolsaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AltasYBajasDevolucionBolsasSoap" type="tns:AltasYBajasDevolucionBolsasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaDevolucionBolsa">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaDevolucionBolsa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaDevolucionBolsa">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaDevolucionBolsa" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AltasYBajasDevolucionBolsasSoap12" type="tns:AltasYBajasDevolucionBolsasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaDevolucionBolsa">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaDevolucionBolsa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaDevolucionBolsa">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaDevolucionBolsa" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AltasYBajasDevolucionBolsasHttpGet" type="tns:AltasYBajasDevolucionBolsasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaDevolucionBolsa">
+      <http:operation location="/AltaDevolucionBolsa" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaDevolucionBolsa">
+      <http:operation location="/BajaDevolucionBolsa" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AltasYBajasDevolucionBolsasHttpPost" type="tns:AltasYBajasDevolucionBolsasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaDevolucionBolsa">
+      <http:operation location="/AltaDevolucionBolsa" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaDevolucionBolsa">
+      <http:operation location="/BajaDevolucionBolsa" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AltasYBajasDevolucionBolsas">
+    <wsdl:port name="AltasYBajasDevolucionBolsasSoap" binding="tns:AltasYBajasDevolucionBolsasSoap">
+      <soap:address location="http://localhost:1390/AltasYBajasDevolucionBolsas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AltasYBajasDevolucionBolsasSoap12" binding="tns:AltasYBajasDevolucionBolsasSoap12">
+      <soap12:address location="http://localhost:1390/AltasYBajasDevolucionBolsas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AltasYBajasDevolucionBolsasHttpGet" binding="tns:AltasYBajasDevolucionBolsasHttpGet">
+      <http:address location="http://localhost:1390/AltasYBajasDevolucionBolsas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AltasYBajasDevolucionBolsasHttpPost" binding="tns:AltasYBajasDevolucionBolsasHttpPost">
+      <http:address location="http://localhost:1390/AltasYBajasDevolucionBolsas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

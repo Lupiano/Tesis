@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarResult" type="tns:ArrayOfDatosMovimiento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosMovimiento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosMovimiento" nillable="true" type="tns:DatosMovimiento" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosMovimiento">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia_movimiento" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="mes_movimiento" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio_movimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kilos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_articulo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosMovimiento" nillable="true" type="tns:ArrayOfDatosMovimiento" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregar" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpGetIn">
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMovimiento" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpPostIn">
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMovimiento" />
+  </wsdl:message>
+  <wsdl:portType name="BusquedaMovimientosRepetidosMercaderiaAEntregarSoap">
+    <wsdl:operation name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+      <wsdl:input message="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregarSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregarSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BusquedaMovimientosRepetidosMercaderiaAEntregarHttpGet">
+    <wsdl:operation name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+      <wsdl:input message="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BusquedaMovimientosRepetidosMercaderiaAEntregarHttpPost">
+    <wsdl:operation name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+      <wsdl:input message="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoMovimientosRepetidosMercaderiaAEntregarHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BusquedaMovimientosRepetidosMercaderiaAEntregarSoap" type="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMovimientosRepetidosMercaderiaAEntregar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BusquedaMovimientosRepetidosMercaderiaAEntregarSoap12" type="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMovimientosRepetidosMercaderiaAEntregar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BusquedaMovimientosRepetidosMercaderiaAEntregarHttpGet" type="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+      <http:operation location="/ObtenerListadoMovimientosRepetidosMercaderiaAEntregar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BusquedaMovimientosRepetidosMercaderiaAEntregarHttpPost" type="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoMovimientosRepetidosMercaderiaAEntregar">
+      <http:operation location="/ObtenerListadoMovimientosRepetidosMercaderiaAEntregar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BusquedaMovimientosRepetidosMercaderiaAEntregar">
+    <wsdl:port name="BusquedaMovimientosRepetidosMercaderiaAEntregarSoap" binding="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarSoap">
+      <soap:address location="http://localhost:1390/BusquedaMovimientosRepetidosMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BusquedaMovimientosRepetidosMercaderiaAEntregarSoap12" binding="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarSoap12">
+      <soap12:address location="http://localhost:1390/BusquedaMovimientosRepetidosMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BusquedaMovimientosRepetidosMercaderiaAEntregarHttpGet" binding="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarHttpGet">
+      <http:address location="http://localhost:1390/BusquedaMovimientosRepetidosMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BusquedaMovimientosRepetidosMercaderiaAEntregarHttpPost" binding="tns:BusquedaMovimientosRepetidosMercaderiaAEntregarHttpPost">
+      <http:address location="http://localhost:1390/BusquedaMovimientosRepetidosMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

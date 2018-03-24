@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleResult" type="tns:ArrayOfDatosVentaPorZona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosVentaPorZona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosVentaPorZona" nillable="true" type="tns:DatosVentaPorZona" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosVentaPorZona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="origen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_ventas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolsas_vendidas" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="precio" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolsas_entregadas" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolsas_devueltas" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosVentaPorZona" nillable="true" type="tns:ArrayOfDatosVentaPorZona" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpGetIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="articulo_desde" type="s:short" />
+    <wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosVentaPorZona" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpPostIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="articulo_desde" type="s:short" />
+    <wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosVentaPorZona" />
+  </wsdl:message>
+  <wsdl:portType name="VentasPorZonaSubproductoMesSalidaExcelDetalleSoap">
+    <wsdl:operation name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+      <wsdl:input message="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VentasPorZonaSubproductoMesSalidaExcelDetalleHttpGet">
+    <wsdl:operation name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+      <wsdl:input message="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VentasPorZonaSubproductoMesSalidaExcelDetalleHttpPost">
+    <wsdl:operation name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+      <wsdl:input message="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalleHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VentasPorZonaSubproductoMesSalidaExcelDetalleSoap" type="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VentasPorZonaSubproductoMesSalidaExcelDetalleSoap12" type="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VentasPorZonaSubproductoMesSalidaExcelDetalleHttpGet" type="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+      <http:operation location="/ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VentasPorZonaSubproductoMesSalidaExcelDetalleHttpPost" type="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle">
+      <http:operation location="/ObtenerListadoVentasPorZonaSubproductoMesSalidaExcelDetalle" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VentasPorZonaSubproductoMesSalidaExcelDetalle">
+    <wsdl:port name="VentasPorZonaSubproductoMesSalidaExcelDetalleSoap" binding="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleSoap">
+      <soap:address location="http://localhost:1390/VentasPorZonaSubproductoMesSalidaExcelDetalle.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VentasPorZonaSubproductoMesSalidaExcelDetalleSoap12" binding="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleSoap12">
+      <soap12:address location="http://localhost:1390/VentasPorZonaSubproductoMesSalidaExcelDetalle.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VentasPorZonaSubproductoMesSalidaExcelDetalleHttpGet" binding="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleHttpGet">
+      <http:address location="http://localhost:1390/VentasPorZonaSubproductoMesSalidaExcelDetalle.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VentasPorZonaSubproductoMesSalidaExcelDetalleHttpPost" binding="tns:VentasPorZonaSubproductoMesSalidaExcelDetalleHttpPost">
+      <http:address location="http://localhost:1390/VentasPorZonaSubproductoMesSalidaExcelDetalle.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

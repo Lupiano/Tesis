@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="CruzarTotalesMovimientos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CruzarTotalesMovimientosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CruzarTotalesMovimientosResult" type="tns:ArrayOfDatosMovimiento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosMovimiento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosMovimiento" nillable="true" type="tns:DatosMovimiento" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosMovimiento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="fuente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_remito" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="unitario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_ficha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="movimiento_ficha" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="a_ubicar" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosMovimiento" nillable="true" type="tns:ArrayOfDatosMovimiento" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CruzarTotalesMovimientosSoapIn">
+    <wsdl:part name="parameters" element="tns:CruzarTotalesMovimientos" />
+  </wsdl:message>
+  <wsdl:message name="CruzarTotalesMovimientosSoapOut">
+    <wsdl:part name="parameters" element="tns:CruzarTotalesMovimientosResponse" />
+  </wsdl:message>
+  <wsdl:message name="CruzarTotalesMovimientosHttpGetIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="articulo_desde" type="s:short" />
+    <wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="CruzarTotalesMovimientosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMovimiento" />
+  </wsdl:message>
+  <wsdl:message name="CruzarTotalesMovimientosHttpPostIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="articulo_desde" type="s:short" />
+    <wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="CruzarTotalesMovimientosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMovimiento" />
+  </wsdl:message>
+  <wsdl:portType name="CruceTotalesMovimientoMercaderiasSalidaExcelSoap">
+    <wsdl:operation name="CruzarTotalesMovimientos">
+      <wsdl:input message="tns:CruzarTotalesMovimientosSoapIn" />
+      <wsdl:output message="tns:CruzarTotalesMovimientosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CruceTotalesMovimientoMercaderiasSalidaExcelHttpGet">
+    <wsdl:operation name="CruzarTotalesMovimientos">
+      <wsdl:input message="tns:CruzarTotalesMovimientosHttpGetIn" />
+      <wsdl:output message="tns:CruzarTotalesMovimientosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CruceTotalesMovimientoMercaderiasSalidaExcelHttpPost">
+    <wsdl:operation name="CruzarTotalesMovimientos">
+      <wsdl:input message="tns:CruzarTotalesMovimientosHttpPostIn" />
+      <wsdl:output message="tns:CruzarTotalesMovimientosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CruceTotalesMovimientoMercaderiasSalidaExcelSoap" type="tns:CruceTotalesMovimientoMercaderiasSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CruzarTotalesMovimientos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/CruzarTotalesMovimientos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CruceTotalesMovimientoMercaderiasSalidaExcelSoap12" type="tns:CruceTotalesMovimientoMercaderiasSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CruzarTotalesMovimientos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/CruzarTotalesMovimientos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CruceTotalesMovimientoMercaderiasSalidaExcelHttpGet" type="tns:CruceTotalesMovimientoMercaderiasSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CruzarTotalesMovimientos">
+      <http:operation location="/CruzarTotalesMovimientos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CruceTotalesMovimientoMercaderiasSalidaExcelHttpPost" type="tns:CruceTotalesMovimientoMercaderiasSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CruzarTotalesMovimientos">
+      <http:operation location="/CruzarTotalesMovimientos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CruceTotalesMovimientoMercaderiasSalidaExcel">
+    <wsdl:port name="CruceTotalesMovimientoMercaderiasSalidaExcelSoap" binding="tns:CruceTotalesMovimientoMercaderiasSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/CruceTotalesMovimientoMercaderiasSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CruceTotalesMovimientoMercaderiasSalidaExcelSoap12" binding="tns:CruceTotalesMovimientoMercaderiasSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/CruceTotalesMovimientoMercaderiasSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CruceTotalesMovimientoMercaderiasSalidaExcelHttpGet" binding="tns:CruceTotalesMovimientoMercaderiasSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/CruceTotalesMovimientoMercaderiasSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CruceTotalesMovimientoMercaderiasSalidaExcelHttpPost" binding="tns:CruceTotalesMovimientoMercaderiasSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/CruceTotalesMovimientoMercaderiasSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AnalizarSituacionZonasDeVenta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnalizarSituacionZonasDeVentaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AnalizarSituacionZonasDeVentaResult" type="tns:ArrayOfDatosAnalisis" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosAnalisis">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosAnalisis" nillable="true" type="tns:DatosAnalisis" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosAnalisis">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_anterior_corriente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_anterior_judicial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ventas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cobranza" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pase_a_judicial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cobro_judicial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ajustes_cuentas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ajustes_judicial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="neto" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosAnalisis" nillable="true" type="tns:ArrayOfDatosAnalisis" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AnalizarSituacionZonasDeVentaSoapIn">
+    <wsdl:part name="parameters" element="tns:AnalizarSituacionZonasDeVenta" />
+  </wsdl:message>
+  <wsdl:message name="AnalizarSituacionZonasDeVentaSoapOut">
+    <wsdl:part name="parameters" element="tns:AnalizarSituacionZonasDeVentaResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnalizarSituacionZonasDeVentaHttpGetIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AnalizarSituacionZonasDeVentaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosAnalisis" />
+  </wsdl:message>
+  <wsdl:message name="AnalizarSituacionZonasDeVentaHttpPostIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AnalizarSituacionZonasDeVentaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosAnalisis" />
+  </wsdl:message>
+  <wsdl:portType name="AnalisisSituacionZonasDeVentaSoap">
+    <wsdl:operation name="AnalizarSituacionZonasDeVenta">
+      <wsdl:input message="tns:AnalizarSituacionZonasDeVentaSoapIn" />
+      <wsdl:output message="tns:AnalizarSituacionZonasDeVentaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnalisisSituacionZonasDeVentaHttpGet">
+    <wsdl:operation name="AnalizarSituacionZonasDeVenta">
+      <wsdl:input message="tns:AnalizarSituacionZonasDeVentaHttpGetIn" />
+      <wsdl:output message="tns:AnalizarSituacionZonasDeVentaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnalisisSituacionZonasDeVentaHttpPost">
+    <wsdl:operation name="AnalizarSituacionZonasDeVenta">
+      <wsdl:input message="tns:AnalizarSituacionZonasDeVentaHttpPostIn" />
+      <wsdl:output message="tns:AnalizarSituacionZonasDeVentaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AnalisisSituacionZonasDeVentaSoap" type="tns:AnalisisSituacionZonasDeVentaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnalizarSituacionZonasDeVenta">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AnalizarSituacionZonasDeVenta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnalisisSituacionZonasDeVentaSoap12" type="tns:AnalisisSituacionZonasDeVentaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnalizarSituacionZonasDeVenta">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AnalizarSituacionZonasDeVenta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnalisisSituacionZonasDeVentaHttpGet" type="tns:AnalisisSituacionZonasDeVentaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AnalizarSituacionZonasDeVenta">
+      <http:operation location="/AnalizarSituacionZonasDeVenta" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnalisisSituacionZonasDeVentaHttpPost" type="tns:AnalisisSituacionZonasDeVentaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AnalizarSituacionZonasDeVenta">
+      <http:operation location="/AnalizarSituacionZonasDeVenta" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnalisisSituacionZonasDeVenta">
+    <wsdl:port name="AnalisisSituacionZonasDeVentaSoap" binding="tns:AnalisisSituacionZonasDeVentaSoap">
+      <soap:address location="http://localhost:1390/AnalisisSituacionZonasDeVenta.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnalisisSituacionZonasDeVentaSoap12" binding="tns:AnalisisSituacionZonasDeVentaSoap12">
+      <soap12:address location="http://localhost:1390/AnalisisSituacionZonasDeVenta.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnalisisSituacionZonasDeVentaHttpGet" binding="tns:AnalisisSituacionZonasDeVentaHttpGet">
+      <http:address location="http://localhost:1390/AnalisisSituacionZonasDeVenta.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnalisisSituacionZonasDeVentaHttpPost" binding="tns:AnalisisSituacionZonasDeVentaHttpPost">
+      <http:address location="http://localhost:1390/AnalisisSituacionZonasDeVenta.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

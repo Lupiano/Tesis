@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoHistoriaCobranzas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoHistoriaCobranzasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoHistoriaCobranzasResult" type="tns:ArrayOfDatosCobranza" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCobranza">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCobranza" nillable="true" type="tns:DatosCobranza" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCobranza">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="signo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_cobro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="signo_1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolsas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="signo_2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="signo_3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="promedio" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCobranza" nillable="true" type="tns:ArrayOfDatosCobranza" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoHistoriaCobranzasSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoHistoriaCobranzas" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHistoriaCobranzasSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoHistoriaCobranzasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHistoriaCobranzasHttpGetIn">
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHistoriaCobranzasHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCobranza" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHistoriaCobranzasHttpPostIn">
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHistoriaCobranzasHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCobranza" />
+  </wsdl:message>
+  <wsdl:portType name="ListadoHistoriaCobranzasSoap">
+    <wsdl:operation name="ObtenerListadoHistoriaCobranzas">
+      <wsdl:input message="tns:ObtenerListadoHistoriaCobranzasSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoHistoriaCobranzasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoHistoriaCobranzasHttpGet">
+    <wsdl:operation name="ObtenerListadoHistoriaCobranzas">
+      <wsdl:input message="tns:ObtenerListadoHistoriaCobranzasHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoHistoriaCobranzasHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoHistoriaCobranzasHttpPost">
+    <wsdl:operation name="ObtenerListadoHistoriaCobranzas">
+      <wsdl:input message="tns:ObtenerListadoHistoriaCobranzasHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoHistoriaCobranzasHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadoHistoriaCobranzasSoap" type="tns:ListadoHistoriaCobranzasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoHistoriaCobranzas">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoHistoriaCobranzas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoHistoriaCobranzasSoap12" type="tns:ListadoHistoriaCobranzasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoHistoriaCobranzas">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoHistoriaCobranzas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoHistoriaCobranzasHttpGet" type="tns:ListadoHistoriaCobranzasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoHistoriaCobranzas">
+      <http:operation location="/ObtenerListadoHistoriaCobranzas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoHistoriaCobranzasHttpPost" type="tns:ListadoHistoriaCobranzasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoHistoriaCobranzas">
+      <http:operation location="/ObtenerListadoHistoriaCobranzas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadoHistoriaCobranzas">
+    <wsdl:port name="ListadoHistoriaCobranzasSoap" binding="tns:ListadoHistoriaCobranzasSoap">
+      <soap:address location="http://localhost:1390/ListadoHistoriaCobranzas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoHistoriaCobranzasSoap12" binding="tns:ListadoHistoriaCobranzasSoap12">
+      <soap12:address location="http://localhost:1390/ListadoHistoriaCobranzas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoHistoriaCobranzasHttpGet" binding="tns:ListadoHistoriaCobranzasHttpGet">
+      <http:address location="http://localhost:1390/ListadoHistoriaCobranzas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoHistoriaCobranzasHttpPost" binding="tns:ListadoHistoriaCobranzasHttpPost">
+      <http:address location="http://localhost:1390/ListadoHistoriaCobranzas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

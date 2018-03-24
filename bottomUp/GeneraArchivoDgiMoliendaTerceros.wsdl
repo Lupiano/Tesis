@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="GenerarArchivoDgi">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerarArchivoDgiResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerarArchivoDgiResult" type="tns:DatosDgiMoliendaTerceros" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosDgiMoliendaTerceros">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="generacionCorrecta" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosDgiMoliendaTerceros" nillable="true" type="tns:DatosDgiMoliendaTerceros" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GenerarArchivoDgiSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerarArchivoDgi" />
+  </wsdl:message>
+  <wsdl:message name="GenerarArchivoDgiSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerarArchivoDgiResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerarArchivoDgiHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="GenerarArchivoDgiHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosDgiMoliendaTerceros" />
+  </wsdl:message>
+  <wsdl:message name="GenerarArchivoDgiHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="GenerarArchivoDgiHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosDgiMoliendaTerceros" />
+  </wsdl:message>
+  <wsdl:portType name="GeneraArchivoDgiMoliendaTercerosSoap">
+    <wsdl:operation name="GenerarArchivoDgi">
+      <wsdl:input message="tns:GenerarArchivoDgiSoapIn" />
+      <wsdl:output message="tns:GenerarArchivoDgiSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GeneraArchivoDgiMoliendaTercerosHttpGet">
+    <wsdl:operation name="GenerarArchivoDgi">
+      <wsdl:input message="tns:GenerarArchivoDgiHttpGetIn" />
+      <wsdl:output message="tns:GenerarArchivoDgiHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="GeneraArchivoDgiMoliendaTercerosHttpPost">
+    <wsdl:operation name="GenerarArchivoDgi">
+      <wsdl:input message="tns:GenerarArchivoDgiHttpPostIn" />
+      <wsdl:output message="tns:GenerarArchivoDgiHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GeneraArchivoDgiMoliendaTercerosSoap" type="tns:GeneraArchivoDgiMoliendaTercerosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerarArchivoDgi">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/GenerarArchivoDgi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GeneraArchivoDgiMoliendaTercerosSoap12" type="tns:GeneraArchivoDgiMoliendaTercerosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerarArchivoDgi">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/GenerarArchivoDgi" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GeneraArchivoDgiMoliendaTercerosHttpGet" type="tns:GeneraArchivoDgiMoliendaTercerosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GenerarArchivoDgi">
+      <http:operation location="/GenerarArchivoDgi" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GeneraArchivoDgiMoliendaTercerosHttpPost" type="tns:GeneraArchivoDgiMoliendaTercerosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GenerarArchivoDgi">
+      <http:operation location="/GenerarArchivoDgi" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GeneraArchivoDgiMoliendaTerceros">
+    <wsdl:port name="GeneraArchivoDgiMoliendaTercerosSoap" binding="tns:GeneraArchivoDgiMoliendaTercerosSoap">
+      <soap:address location="http://localhost:1390/GeneraArchivoDgiMoliendaTerceros.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GeneraArchivoDgiMoliendaTercerosSoap12" binding="tns:GeneraArchivoDgiMoliendaTercerosSoap12">
+      <soap12:address location="http://localhost:1390/GeneraArchivoDgiMoliendaTerceros.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GeneraArchivoDgiMoliendaTercerosHttpGet" binding="tns:GeneraArchivoDgiMoliendaTercerosHttpGet">
+      <http:address location="http://localhost:1390/GeneraArchivoDgiMoliendaTerceros.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GeneraArchivoDgiMoliendaTercerosHttpPost" binding="tns:GeneraArchivoDgiMoliendaTercerosHttpPost">
+      <http:address location="http://localhost:1390/GeneraArchivoDgiMoliendaTerceros.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

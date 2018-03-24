@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelResult" type="tns:ArrayOfDatosDeudor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosDeudor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosDeudor" nillable="true" type="tns:DatosDeudor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosDeudor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosDeudor" nillable="true" type="tns:ArrayOfDatosDeudor" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDeudor" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDeudor" />
+  </wsdl:message>
+  <wsdl:portType name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap" type="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap12" type="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGet" type="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+      <http:operation location="/ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPost" type="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+      <http:operation location="/ObtenerListadoDeudoresGestionJudicialPorZonaMesSalidaExcel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcel">
+    <wsdl:port name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap" binding="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListadoDeudoresGestionJudicialPorZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap12" binding="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListadoDeudoresGestionJudicialPorZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGet" binding="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListadoDeudoresGestionJudicialPorZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPost" binding="tns:ListadoDeudoresGestionJudicialPorZonaMesSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListadoDeudoresGestionJudicialPorZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

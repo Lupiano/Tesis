@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelResult" type="tns:ArrayOfDatosDeudor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosDeudor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosDeudor" nillable="true" type="tns:DatosDeudor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosDeudor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_90" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_60" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_30" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_0" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosDeudor" nillable="true" type="tns:ArrayOfDatosDeudor" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpGetIn">
+    <wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDeudor" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpPostIn">
+    <wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDeudor" />
+  </wsdl:message>
+  <wsdl:portType name="ListadoDeudoresPorVentasZonaMesSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoDeudoresPorVentasZonaMesSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoDeudoresPorVentasZonaMesSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudoresPorVentasZonaMesSalidaExcelHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadoDeudoresPorVentasZonaMesSalidaExcelSoap" type="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoDeudoresPorVentasZonaMesSalidaExcelSoap12" type="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoDeudoresPorVentasZonaMesSalidaExcelHttpGet" type="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+      <http:operation location="/ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoDeudoresPorVentasZonaMesSalidaExcelHttpPost" type="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel">
+      <http:operation location="/ObtenerListadoDeudoresPorVentasZonaMesSalidaExcel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadoDeudoresPorVentasZonaMesSalidaExcel">
+    <wsdl:port name="ListadoDeudoresPorVentasZonaMesSalidaExcelSoap" binding="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListadoDeudoresPorVentasZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoDeudoresPorVentasZonaMesSalidaExcelSoap12" binding="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListadoDeudoresPorVentasZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoDeudoresPorVentasZonaMesSalidaExcelHttpGet" binding="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListadoDeudoresPorVentasZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoDeudoresPorVentasZonaMesSalidaExcelHttpPost" binding="tns:ListadoDeudoresPorVentasZonaMesSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListadoDeudoresPorVentasZonaMesSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

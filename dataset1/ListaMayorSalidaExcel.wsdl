@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoMayor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wempresa" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="subcuenta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="desde_fecha" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="hasta_fecha" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoMayorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoMayorResult" type="tns:ArrayOfDatosMayor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosMayor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosMayor" nillable="true" type="tns:DatosMayor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosMayor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="asiento" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="leyenda" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosMayor" nillable="true" type="tns:ArrayOfDatosMayor" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoMayorSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMayor" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMayorSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMayorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMayorHttpGetIn">
+  	<wsdl:part name="wempresa" type="s:short" />
+    <wsdl:part name="subcuenta" type="s:short" />
+    <wsdl:part name="desde_fecha" type="s:string" />
+    <wsdl:part name="hasta_fecha" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMayorHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMayor" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMayorHttpPostIn">
+  	<wsdl:part name="wempresa" type="s:short" />
+    <wsdl:part name="subcuenta" type="s:short" />
+    <wsdl:part name="desde_fecha" type="s:string" />
+    <wsdl:part name="hasta_fecha" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMayorHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMayor" />
+  </wsdl:message>
+  <wsdl:portType name="ListaMayorSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoMayor">
+      <wsdl:input message="tns:ObtenerListadoMayorSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoMayorSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaMayorSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoMayor">
+      <wsdl:input message="tns:ObtenerListadoMayorHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoMayorHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaMayorSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoMayor">
+      <wsdl:input message="tns:ObtenerListadoMayorHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoMayorHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListaMayorSalidaExcelSoap" type="tns:ListaMayorSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMayor">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMayor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaMayorSalidaExcelSoap12" type="tns:ListaMayorSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMayor">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMayor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaMayorSalidaExcelHttpGet" type="tns:ListaMayorSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoMayor">
+      <http:operation location="/ObtenerListadoMayor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaMayorSalidaExcelHttpPost" type="tns:ListaMayorSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoMayor">
+      <http:operation location="/ObtenerListadoMayor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListaMayorSalidaExcel">
+    <wsdl:port name="ListaMayorSalidaExcelSoap" binding="tns:ListaMayorSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListaMayorSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaMayorSalidaExcelSoap12" binding="tns:ListaMayorSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListaMayorSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaMayorSalidaExcelHttpGet" binding="tns:ListaMayorSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListaMayorSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaMayorSalidaExcelHttpPost" binding="tns:ListaMayorSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListaMayorSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

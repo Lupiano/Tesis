@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoAcreedores">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_listado" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_desde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_hasta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoAcreedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoAcreedoresResult" type="tns:ArrayOfDatosAcreedor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosAcreedor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosAcreedor" nillable="true" type="tns:DatosAcreedor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosAcreedor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_direccion" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ing_brutos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ult_oper" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosAcreedor" nillable="true" type="tns:ArrayOfDatosAcreedor" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoAcreedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoAcreedores" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoAcreedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoAcreedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoAcreedoresHttpGetIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoAcreedoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosAcreedor" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoAcreedoresHttpPostIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoAcreedoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosAcreedor" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorArchivoAcreedoresSoap">
+    <wsdl:operation name="ObtenerListadoAcreedores">
+      <wsdl:input message="tns:ObtenerListadoAcreedoresSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoAcreedoresSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorArchivoAcreedoresHttpGet">
+    <wsdl:operation name="ObtenerListadoAcreedores">
+      <wsdl:input message="tns:ObtenerListadoAcreedoresHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoAcreedoresHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorArchivoAcreedoresHttpPost">
+    <wsdl:operation name="ObtenerListadoAcreedores">
+      <wsdl:input message="tns:ObtenerListadoAcreedoresHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoAcreedoresHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorArchivoAcreedoresSoap" type="tns:ListadorArchivoAcreedoresSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoAcreedores">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoAcreedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorArchivoAcreedoresSoap12" type="tns:ListadorArchivoAcreedoresSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoAcreedores">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoAcreedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorArchivoAcreedoresHttpGet" type="tns:ListadorArchivoAcreedoresHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoAcreedores">
+      <http:operation location="/ObtenerListadoAcreedores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorArchivoAcreedoresHttpPost" type="tns:ListadorArchivoAcreedoresHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoAcreedores">
+      <http:operation location="/ObtenerListadoAcreedores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorArchivoAcreedores">
+    <wsdl:port name="ListadorArchivoAcreedoresSoap" binding="tns:ListadorArchivoAcreedoresSoap">
+      <soap:address location="http://localhost:1390/ListadorArchivoAcreedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorArchivoAcreedoresSoap12" binding="tns:ListadorArchivoAcreedoresSoap12">
+      <soap12:address location="http://localhost:1390/ListadorArchivoAcreedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorArchivoAcreedoresHttpGet" binding="tns:ListadorArchivoAcreedoresHttpGet">
+      <http:address location="http://localhost:1390/ListadorArchivoAcreedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorArchivoAcreedoresHttpPost" binding="tns:ListadorArchivoAcreedoresHttpPost">
+      <http:address location="http://localhost:1390/ListadorArchivoAcreedores.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

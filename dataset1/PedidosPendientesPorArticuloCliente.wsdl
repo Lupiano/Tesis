@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoPedidosPendientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fecha_trabajo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="saldados_si" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_articulo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="desde_zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="hasta_zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="pedido_buscado" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_nombre" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoPedidosPendientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoPedidosPendientesResult" type="tns:ArrayOfDatosPedidoPendiente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosPedidoPendiente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosPedidoPendiente" nillable="true" type="tns:DatosPedidoPendiente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosPedidoPendiente">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia_entrega" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_entrega" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_entrega" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="precio_basico" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="pendiente_factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pendiente_entrega" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_comprobante" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_remito" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_articulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_remito" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosPedidoPendiente" nillable="true" type="tns:ArrayOfDatosPedidoPendiente" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoPedidosPendientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoPedidosPendientes" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPedidosPendientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoPedidosPendientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPedidosPendientesHttpGetIn">
+    <wsdl:part name="fecha_trabajo" type="s:string" />
+    <wsdl:part name="saldados_si" type="s:short" />
+    <wsdl:part name="codigo_articulo" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="desde_zona" type="s:short" />
+    <wsdl:part name="hasta_zona" type="s:short" />
+    <wsdl:part name="pedido_buscado" type="s:integer" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="acepta_nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPedidosPendientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosPedidoPendiente" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPedidosPendientesHttpPostIn">
+    <wsdl:part name="fecha_trabajo" type="s:string" />
+    <wsdl:part name="saldados_si" type="s:short" />
+    <wsdl:part name="codigo_articulo" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="desde_zona" type="s:short" />
+    <wsdl:part name="hasta_zona" type="s:short" />
+    <wsdl:part name="pedido_buscado" type="s:integer" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="acepta_nombre" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPedidosPendientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosPedidoPendiente" />
+  </wsdl:message>
+  <wsdl:portType name="PedidosPendientesPorArticuloClienteSoap">
+    <wsdl:operation name="ObtenerListadoPedidosPendientes">
+      <wsdl:input message="tns:ObtenerListadoPedidosPendientesSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoPedidosPendientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PedidosPendientesPorArticuloClienteHttpGet">
+    <wsdl:operation name="ObtenerListadoPedidosPendientes">
+      <wsdl:input message="tns:ObtenerListadoPedidosPendientesHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoPedidosPendientesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PedidosPendientesPorArticuloClienteHttpPost">
+    <wsdl:operation name="ObtenerListadoPedidosPendientes">
+      <wsdl:input message="tns:ObtenerListadoPedidosPendientesHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoPedidosPendientesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PedidosPendientesPorArticuloClienteSoap" type="tns:PedidosPendientesPorArticuloClienteSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoPedidosPendientes">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoPedidosPendientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PedidosPendientesPorArticuloClienteSoap12" type="tns:PedidosPendientesPorArticuloClienteSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoPedidosPendientes">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoPedidosPendientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PedidosPendientesPorArticuloClienteHttpGet" type="tns:PedidosPendientesPorArticuloClienteHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoPedidosPendientes">
+      <http:operation location="/ObtenerListadoPedidosPendientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PedidosPendientesPorArticuloClienteHttpPost" type="tns:PedidosPendientesPorArticuloClienteHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoPedidosPendientes">
+      <http:operation location="/ObtenerListadoPedidosPendientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PedidosPendientesPorArticuloCliente">
+    <wsdl:port name="PedidosPendientesPorArticuloClienteSoap" binding="tns:PedidosPendientesPorArticuloClienteSoap">
+      <soap:address location="http://localhost:1390/PedidosPendientesPorArticuloCliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PedidosPendientesPorArticuloClienteSoap12" binding="tns:PedidosPendientesPorArticuloClienteSoap12">
+      <soap12:address location="http://localhost:1390/PedidosPendientesPorArticuloCliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PedidosPendientesPorArticuloClienteHttpGet" binding="tns:PedidosPendientesPorArticuloClienteHttpGet">
+      <http:address location="http://localhost:1390/PedidosPendientesPorArticuloCliente.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PedidosPendientesPorArticuloClienteHttpPost" binding="tns:PedidosPendientesPorArticuloClienteHttpPost">
+      <http:address location="http://localhost:1390/PedidosPendientesPorArticuloCliente.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

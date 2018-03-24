@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoFacturacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoFacturacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoFacturacionResult" type="tns:ArrayOfDatosFacturacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosFacturacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosFacturacion" nillable="true" type="tns:DatosFacturacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosFacturacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="letra" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_basico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_adicional" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="percepciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_gravado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosFacturacion" nillable="true" type="tns:ArrayOfDatosFacturacion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoFacturacionSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoFacturacion" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoFacturacionSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoFacturacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoFacturacionHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoFacturacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosFacturacion" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoFacturacionHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoFacturacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosFacturacion" />
+  </wsdl:message>
+  <wsdl:portType name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoFacturacion">
+      <wsdl:input message="tns:ObtenerListadoFacturacionSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoFacturacionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoFacturacion">
+      <wsdl:input message="tns:ObtenerListadoFacturacionHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoFacturacionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoFacturacion">
+      <wsdl:input message="tns:ObtenerListadoFacturacionHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoFacturacionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap" type="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoFacturacion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoFacturacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap12" type="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoFacturacion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoFacturacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpGet" type="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoFacturacion">
+      <http:operation location="/ObtenerListadoFacturacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpPost" type="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoFacturacion">
+      <http:operation location="/ObtenerListadoFacturacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcel">
+    <wsdl:port name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap" binding="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListadoFacturadoClienteEntreFechasAPedidoSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap12" binding="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListadoFacturadoClienteEntreFechasAPedidoSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpGet" binding="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListadoFacturadoClienteEntreFechasAPedidoSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpPost" binding="tns:ListadoFacturadoClienteEntreFechasAPedidoSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListadoFacturadoClienteEntreFechasAPedidoSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

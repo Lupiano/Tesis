@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaAcreedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_acreedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nro_direccion_acreedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="provincia_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_provincia_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuit_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ing_brutos_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultima_oper_acreedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion_iva_acreedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_documento_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento_acreedor" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_ing_brutos_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_ing_bruto" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_ing_bruto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_ganancias_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_ganancias" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_ganancias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_iva_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_iva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_iva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_suss_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_suss" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_suss" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaAcreedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaAcreedorResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionAcreedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_acreedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nro_direccion_acreedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="provincia_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_provincia_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuit_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ing_brutos_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultima_oper_acreedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion_iva_acreedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_documento_acreedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento_acreedor" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_ing_brutos_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_ing_bruto" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_ing_bruto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_ganancias_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_ganancias" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_ganancias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_iva_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_iva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_iva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca_suss_exento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_suss" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_exencion_suss" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionAcreedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionAcreedorResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaAcreedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_acreedor" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaAcreedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaAcreedorResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaAcreedorSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaAcreedor" />
+  </wsdl:message>
+  <wsdl:message name="AltaAcreedorSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaAcreedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaAcreedorHttpGetIn">
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="apellido_acreedor" type="s:string" />
+    <wsdl:part name="nombre_acreedor" type="s:string" />
+    <wsdl:part name="direccion_acreedor" type="s:string" />
+    <wsdl:part name="nro_direccion_acreedor" type="s:integer" />
+    <wsdl:part name="localidad_acreedor" type="s:string" />
+    <wsdl:part name="provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_acreedor" type="s:string" />
+    <wsdl:part name="cuit_acreedor" type="s:string" />
+    <wsdl:part name="ing_brutos_acreedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_acreedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_acreedor" type="s:short" />
+    <wsdl:part name="tipo_documento_acreedor" type="s:string" />
+    <wsdl:part name="numero_documento_acreedor" type="s:long" />
+    <wsdl:part name="marca_ing_brutos_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_ing_bruto" type="s:short" />
+    <wsdl:part name="fecha_exencion_ing_bruto" type="s:string" />
+    <wsdl:part name="marca_ganancias_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_ganancias" type="s:short" />
+    <wsdl:part name="fecha_exencion_ganancias" type="s:string" />
+    <wsdl:part name="marca_iva_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_iva" type="s:short" />
+    <wsdl:part name="fecha_exencion_iva" type="s:string" />
+    <wsdl:part name="marca_suss_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_suss" type="s:short" />
+    <wsdl:part name="fecha_exencion_suss" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AltaAcreedorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaAcreedorHttpPostIn">
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="apellido_acreedor" type="s:string" />
+    <wsdl:part name="nombre_acreedor" type="s:string" />
+    <wsdl:part name="direccion_acreedor" type="s:string" />
+    <wsdl:part name="nro_direccion_acreedor" type="s:integer" />
+    <wsdl:part name="localidad_acreedor" type="s:string" />
+    <wsdl:part name="provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_acreedor" type="s:string" />
+    <wsdl:part name="cuit_acreedor" type="s:string" />
+    <wsdl:part name="ing_brutos_acreedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_acreedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_acreedor" type="s:short" />
+    <wsdl:part name="tipo_documento_acreedor" type="s:string" />
+    <wsdl:part name="numero_documento_acreedor" type="s:long" />
+    <wsdl:part name="marca_ing_brutos_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_ing_bruto" type="s:short" />
+    <wsdl:part name="fecha_exencion_ing_bruto" type="s:string" />
+    <wsdl:part name="marca_ganancias_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_ganancias" type="s:short" />
+    <wsdl:part name="fecha_exencion_ganancias" type="s:string" />
+    <wsdl:part name="marca_iva_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_iva" type="s:short" />
+    <wsdl:part name="fecha_exencion_iva" type="s:string" />
+    <wsdl:part name="marca_suss_exento" type="s:short" />
+    <wsdl:part name="porciento_exencion_suss" type="s:short" />
+    <wsdl:part name="fecha_exencion_suss" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AltaAcreedorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionAcreedorSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionAcreedor" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionAcreedorSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionAcreedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionAcreedorHttpGetIn">
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="apellido_acreedor" type="s:string" />
+    <wsdl:part name="nombre_acreedor" type="s:string" />
+    <wsdl:part name="direccion_acreedor" type="s:string" />
+    <wsdl:part name="nro_direccion_acreedor" type="s:integer" />
+    <wsdl:part name="localidad_acreedor" type="s:string" />
+    <wsdl:part name="provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_acreedor" type="s:string" />
+    <wsdl:part name="cuit_acreedor" type="s:string" />
+    <wsdl:part name="ing_brutos_acreedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_acreedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_acreedor" type="s:short" />
+    <wsdl:part name="tipo_documento_acreedor" type="s:string" />
+    <wsdl:part name="numero_documento_acreedor" type="s:long" />
+    <wsdl:part name="zona_flete_acreedor" type="s:short" />
+    <wsdl:part name="credito_acreedor" type="s:long" />
+    <wsdl:part name="calificacion_acreedor" type="s:short" />
+    <wsdl:part name="exento_ingresos_brutos_acreedor" type="s:short" />
+    <wsdl:part name="localidad_domicilio_acreedor" type="s:short" />
+    <wsdl:part name="partido_domicilio_acreedor" type="s:short" />
+    <wsdl:part name="provincia_domicilio_acreedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionAcreedorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionAcreedorHttpPostIn">
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="apellido_acreedor" type="s:string" />
+    <wsdl:part name="nombre_acreedor" type="s:string" />
+    <wsdl:part name="direccion_acreedor" type="s:string" />
+    <wsdl:part name="nro_direccion_acreedor" type="s:integer" />
+    <wsdl:part name="localidad_acreedor" type="s:string" />
+    <wsdl:part name="provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_acreedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_acreedor" type="s:string" />
+    <wsdl:part name="cuit_acreedor" type="s:string" />
+    <wsdl:part name="ing_brutos_acreedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_acreedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_acreedor" type="s:short" />
+    <wsdl:part name="tipo_documento_acreedor" type="s:string" />
+    <wsdl:part name="numero_documento_acreedor" type="s:long" />
+    <wsdl:part name="zona_flete_acreedor" type="s:short" />
+    <wsdl:part name="credito_acreedor" type="s:long" />
+    <wsdl:part name="calificacion_acreedor" type="s:short" />
+    <wsdl:part name="exento_ingresos_brutos_acreedor" type="s:short" />
+    <wsdl:part name="localidad_domicilio_acreedor" type="s:short" />
+    <wsdl:part name="partido_domicilio_acreedor" type="s:short" />
+    <wsdl:part name="provincia_domicilio_acreedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionAcreedorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaAcreedorSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaAcreedor" />
+  </wsdl:message>
+  <wsdl:message name="BajaAcreedorSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaAcreedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaAcreedorHttpGetIn">
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaAcreedorHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaAcreedorHttpPostIn">
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaAcreedorHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmArchivoAcreedoresSoap">
+    <wsdl:operation name="AltaAcreedor">
+      <wsdl:input message="tns:AltaAcreedorSoapIn" />
+      <wsdl:output message="tns:AltaAcreedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionAcreedor">
+      <wsdl:input message="tns:ModificacionAcreedorSoapIn" />
+      <wsdl:output message="tns:ModificacionAcreedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaAcreedor">
+      <wsdl:input message="tns:BajaAcreedorSoapIn" />
+      <wsdl:output message="tns:BajaAcreedorSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmArchivoAcreedoresHttpGet">
+    <wsdl:operation name="AltaAcreedor">
+      <wsdl:input message="tns:AltaAcreedorHttpGetIn" />
+      <wsdl:output message="tns:AltaAcreedorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionAcreedor">
+      <wsdl:input message="tns:ModificacionAcreedorHttpGetIn" />
+      <wsdl:output message="tns:ModificacionAcreedorHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaAcreedor">
+      <wsdl:input message="tns:BajaAcreedorHttpGetIn" />
+      <wsdl:output message="tns:BajaAcreedorHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmArchivoAcreedoresHttpPost">
+    <wsdl:operation name="AltaAcreedor">
+      <wsdl:input message="tns:AltaAcreedorHttpPostIn" />
+      <wsdl:output message="tns:AltaAcreedorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionAcreedor">
+      <wsdl:input message="tns:ModificacionAcreedorHttpPostIn" />
+      <wsdl:output message="tns:ModificacionAcreedorHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaAcreedor">
+      <wsdl:input message="tns:BajaAcreedorHttpPostIn" />
+      <wsdl:output message="tns:BajaAcreedorHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmArchivoAcreedoresSoap" type="tns:AbmArchivoAcreedoresSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaAcreedor">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaAcreedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionAcreedor">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionAcreedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaAcreedor">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaAcreedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArchivoAcreedoresSoap12" type="tns:AbmArchivoAcreedoresSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaAcreedor">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaAcreedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionAcreedor">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionAcreedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaAcreedor">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaAcreedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArchivoAcreedoresHttpGet" type="tns:AbmArchivoAcreedoresHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaAcreedor">
+      <http:operation location="/AltaAcreedor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionAcreedor">
+      <http:operation location="/ModificacionAcreedor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaAcreedor">
+      <http:operation location="/BajaAcreedor" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArchivoAcreedoresHttpPost" type="tns:AbmArchivoAcreedoresHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaAcreedor">
+      <http:operation location="/AltaAcreedor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionAcreedor">
+      <http:operation location="/ModificacionAcreedor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaAcreedor">
+      <http:operation location="/BajaAcreedor" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmArchivoAcreedores">
+    <wsdl:port name="AbmArchivoAcreedoresSoap" binding="tns:AbmArchivoAcreedoresSoap">
+      <soap:address location="http://localhost:1390/AbmArchivoAcreedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArchivoAcreedoresSoap12" binding="tns:AbmArchivoAcreedoresSoap12">
+      <soap12:address location="http://localhost:1390/AbmArchivoAcreedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArchivoAcreedoresHttpGet" binding="tns:AbmArchivoAcreedoresHttpGet">
+      <http:address location="http://localhost:1390/AbmArchivoAcreedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArchivoAcreedoresHttpPost" binding="tns:AbmArchivoAcreedoresHttpPost">
+      <http:address location="http://localhost:1390/AbmArchivoAcreedores.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

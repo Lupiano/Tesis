@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="VerificarCuit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="campo_1" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="campo_2" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="campo_3" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificarCuitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificarCuitResult" type="tns:DatosVerificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosVerificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="verificacionCorrecta" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosVerificacion" nillable="true" type="tns:DatosVerificacion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VerificarCuitSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificarCuit" />
+  </wsdl:message>
+  <wsdl:message name="VerificarCuitSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificarCuitResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificarCuitHttpGetIn">
+    <wsdl:part name="campo_1" type="s:short" />
+    <wsdl:part name="campo_2" type="s:short" />
+    <wsdl:part name="campo_3" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="VerificarCuitHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosVerificacion" />
+  </wsdl:message>
+  <wsdl:message name="VerificarCuitHttpPostIn">
+    <wsdl:part name="campo_1" type="s:short" />
+    <wsdl:part name="campo_2" type="s:short" />
+    <wsdl:part name="campo_3" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="VerificarCuitHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosVerificacion" />
+  </wsdl:message>
+  <wsdl:portType name="VerificaCuitProveedoresAcreedoresClientesSoap">
+    <wsdl:operation name="VerificarCuit">
+      <wsdl:input message="tns:VerificarCuitSoapIn" />
+      <wsdl:output message="tns:VerificarCuitSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VerificaCuitProveedoresAcreedoresClientesHttpGet">
+    <wsdl:operation name="VerificarCuit">
+      <wsdl:input message="tns:VerificarCuitHttpGetIn" />
+      <wsdl:output message="tns:VerificarCuitHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VerificaCuitProveedoresAcreedoresClientesHttpPost">
+    <wsdl:operation name="VerificarCuit">
+      <wsdl:input message="tns:VerificarCuitHttpPostIn" />
+      <wsdl:output message="tns:VerificarCuitHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VerificaCuitProveedoresAcreedoresClientesSoap" type="tns:VerificaCuitProveedoresAcreedoresClientesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarCuit">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/VerificarCuit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificaCuitProveedoresAcreedoresClientesSoap12" type="tns:VerificaCuitProveedoresAcreedoresClientesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarCuit">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/VerificarCuit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificaCuitProveedoresAcreedoresClientesHttpGet" type="tns:VerificaCuitProveedoresAcreedoresClientesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="VerificarCuit">
+      <http:operation location="/VerificarCuit" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificaCuitProveedoresAcreedoresClientesHttpPost" type="tns:VerificaCuitProveedoresAcreedoresClientesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="VerificarCuit">
+      <http:operation location="/VerificarCuit" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VerificaCuitProveedoresAcreedoresClientes">
+    <wsdl:port name="VerificaCuitProveedoresAcreedoresClientesSoap" binding="tns:VerificaCuitProveedoresAcreedoresClientesSoap">
+      <soap:address location="http://localhost:1390/VerificaCuitProveedoresAcreedoresClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificaCuitProveedoresAcreedoresClientesSoap12" binding="tns:VerificaCuitProveedoresAcreedoresClientesSoap12">
+      <soap12:address location="http://localhost:1390/VerificaCuitProveedoresAcreedoresClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificaCuitProveedoresAcreedoresClientesHttpGet" binding="tns:VerificaCuitProveedoresAcreedoresClientesHttpGet">
+      <http:address location="http://localhost:1390/VerificaCuitProveedoresAcreedoresClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificaCuitProveedoresAcreedoresClientesHttpPost" binding="tns:VerificaCuitProveedoresAcreedoresClientesHttpPost">
+      <http:address location="http://localhost:1390/VerificaCuitProveedoresAcreedoresClientes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

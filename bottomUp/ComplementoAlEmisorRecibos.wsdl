@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ComplementarRecibos">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="1" maxOccurs="1" name="iva_basico" type="s:double" />
+          	<s:element minOccurs="1" maxOccurs="1" name="iva_adicional" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ComplementarRecibosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ComplementarRecibosResult" type="tns:DatosRecibo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosRecibo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ejemplar" type="s:string" />
+       	  <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+       	  <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+       	  <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_direccion" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="provincia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="fecha_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosRecibo" nillable="true" type="tns:DatosRecibo" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ComplementarRecibosSoapIn">
+    <wsdl:part name="parameters" element="tns:ComplementarRecibos" />
+  </wsdl:message>
+  <wsdl:message name="ComplementarRecibosSoapOut">
+    <wsdl:part name="parameters" element="tns:ComplementarRecibosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ComplementarRecibosHttpGetIn">
+    <wsdl:part name="iva_basico" type="s:double" />
+    <wsdl:part name="iva_adicional" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="ComplementarRecibosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosRecibo" />
+  </wsdl:message>
+  <wsdl:message name="ComplementarRecibosHttpPostIn">
+    <wsdl:part name="iva_basico" type="s:double" />
+    <wsdl:part name="iva_adicional" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="ComplementarRecibosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosRecibo" />
+  </wsdl:message>
+  <wsdl:portType name="ComplementoAlEmisorRecibosSoap">
+    <wsdl:operation name="ComplementarRecibos">
+      <wsdl:input message="tns:ComplementarRecibosSoapIn" />
+      <wsdl:output message="tns:ComplementarRecibosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ComplementoAlEmisorRecibosHttpGet">
+    <wsdl:operation name="ComplementarRecibos">
+      <wsdl:input message="tns:ComplementarRecibosHttpGetIn" />
+      <wsdl:output message="tns:ComplementarRecibosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ComplementoAlEmisorRecibosHttpPost">
+    <wsdl:operation name="ComplementarRecibos">
+      <wsdl:input message="tns:ComplementarRecibosHttpPostIn" />
+      <wsdl:output message="tns:ComplementarRecibosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ComplementoAlEmisorRecibosSoap" type="tns:ComplementoAlEmisorRecibosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComplementarRecibos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ComplementarRecibos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ComplementoAlEmisorRecibosSoap12" type="tns:ComplementoAlEmisorRecibosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComplementarRecibos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ComplementarRecibos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ComplementoAlEmisorRecibosHttpGet" type="tns:ComplementoAlEmisorRecibosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ComplementarRecibos">
+      <http:operation location="/ComplementarRecibos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ComplementoAlEmisorRecibosHttpPost" type="tns:ComplementoAlEmisorRecibosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ComplementarRecibos">
+      <http:operation location="/ComplementarRecibos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ComplementoAlEmisorRecibos">
+    <wsdl:port name="ComplementoAlEmisorRecibosSoap" binding="tns:ComplementoAlEmisorRecibosSoap">
+      <soap:address location="http://localhost:1390/ComplementoAlEmisorRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ComplementoAlEmisorRecibosSoap12" binding="tns:ComplementoAlEmisorRecibosSoap12">
+      <soap12:address location="http://localhost:1390/ComplementoAlEmisorRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ComplementoAlEmisorRecibosHttpGet" binding="tns:ComplementoAlEmisorRecibosHttpGet">
+      <http:address location="http://localhost:1390/ComplementoAlEmisorRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ComplementoAlEmisorRecibosHttpPost" binding="tns:ComplementoAlEmisorRecibosHttpPost">
+      <http:address location="http://localhost:1390/ComplementoAlEmisorRecibos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

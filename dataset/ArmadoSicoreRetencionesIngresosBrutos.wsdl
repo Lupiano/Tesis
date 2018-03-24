@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ArmarSicoreRetenciones">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArmarSicoreRetencionesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArmarSicoreRetencionesResult" type="tns:ArrayOfDatosSicore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosSicore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosSicore" nillable="true" type="tns:DatosSicore" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosSicore">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="campo_1" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="campo_2" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="campo_3" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="sucursal_comprobante" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_comprobante" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_comprobante" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosSicore" nillable="true" type="tns:ArrayOfDatosSicore" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ArmarSicoreRetencionesSoapIn">
+    <wsdl:part name="parameters" element="tns:ArmarSicoreRetenciones" />
+  </wsdl:message>
+  <wsdl:message name="ArmarSicoreRetencionesSoapOut">
+    <wsdl:part name="parameters" element="tns:ArmarSicoreRetencionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArmarSicoreRetencionesHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarSicoreRetencionesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSicore" />
+  </wsdl:message>
+  <wsdl:message name="ArmarSicoreRetencionesHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarSicoreRetencionesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSicore" />
+  </wsdl:message>
+  <wsdl:portType name="ArmadoSicoreRetencionesIngresosBrutosSoap">
+    <wsdl:operation name="ArmarSicoreRetenciones">
+      <wsdl:input message="tns:ArmarSicoreRetencionesSoapIn" />
+      <wsdl:output message="tns:ArmarSicoreRetencionesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoSicoreRetencionesIngresosBrutosHttpGet">
+    <wsdl:operation name="ArmarSicoreRetenciones">
+      <wsdl:input message="tns:ArmarSicoreRetencionesHttpGetIn" />
+      <wsdl:output message="tns:ArmarSicoreRetencionesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoSicoreRetencionesIngresosBrutosHttpPost">
+    <wsdl:operation name="ArmarSicoreRetenciones">
+      <wsdl:input message="tns:ArmarSicoreRetencionesHttpPostIn" />
+      <wsdl:output message="tns:ArmarSicoreRetencionesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ArmadoSicoreRetencionesIngresosBrutosSoap" type="tns:ArmadoSicoreRetencionesIngresosBrutosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarSicoreRetenciones">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ArmarSicoreRetenciones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoSicoreRetencionesIngresosBrutosSoap12" type="tns:ArmadoSicoreRetencionesIngresosBrutosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarSicoreRetenciones">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ArmarSicoreRetenciones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoSicoreRetencionesIngresosBrutosHttpGet" type="tns:ArmadoSicoreRetencionesIngresosBrutosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ArmarSicoreRetenciones">
+      <http:operation location="/ArmarSicoreRetenciones" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoSicoreRetencionesIngresosBrutosHttpPost" type="tns:ArmadoSicoreRetencionesIngresosBrutosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ArmarSicoreRetenciones">
+      <http:operation location="/ArmarSicoreRetenciones" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ArmadoSicoreRetencionesIngresosBrutos">
+    <wsdl:port name="ArmadoSicoreRetencionesIngresosBrutosSoap" binding="tns:ArmadoSicoreRetencionesIngresosBrutosSoap">
+      <soap:address location="http://localhost:1390/ArmadoSicoreRetencionesIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoSicoreRetencionesIngresosBrutosSoap12" binding="tns:ArmadoSicoreRetencionesIngresosBrutosSoap12">
+      <soap12:address location="http://localhost:1390/ArmadoSicoreRetencionesIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoSicoreRetencionesIngresosBrutosHttpGet" binding="tns:ArmadoSicoreRetencionesIngresosBrutosHttpGet">
+      <http:address location="http://localhost:1390/ArmadoSicoreRetencionesIngresosBrutos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoSicoreRetencionesIngresosBrutosHttpPost" binding="tns:ArmadoSicoreRetencionesIngresosBrutosHttpPost">
+      <http:address location="http://localhost:1390/ArmadoSicoreRetencionesIngresosBrutos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
