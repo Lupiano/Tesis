@@ -81,19 +81,19 @@ public class ServicesMediator
 	{
 		relatedOperations = osh.generateOperationSimilarity(listFiles, 10, bottomThreshold, topThreshold);
 
-		System.out.println("Relaciones entre operaciones");
+		//System.out.println("Relaciones entre operaciones");
 		for (final Iterator<Entry<Pair, Double>> i = relatedOperations.entrySet().iterator(); i.hasNext();)
 		{
 			final Entry<Pair, Double> ent = i.next();
-			System.out.println("Par " + ent.getKey().getLeft() + " : " + ent.getKey().getRight() + " : " + ent.getValue());
+			//System.out.println("Par " + ent.getKey().getLeft() + " : " + ent.getKey().getRight() + " : " + ent.getValue());
 
 		}
 
-		System.out.println("Relaciones entre operaciones adyacentes: ");
+		//System.out.println("Relaciones entre operaciones adyacentes: ");
 		for (final Iterator<Entry<String, Set<String>>> i = osh.getOpSimilSet().entrySet().iterator(); i.hasNext();)
 		{
 			final Entry<String, Set<String>> ent = i.next();
-			System.out.println("Par ad " + ent.getKey() + " links: " + ent.getValue());
+			//System.out.println("Par ad " + ent.getKey() + " links: " + ent.getValue());
 		}
 	}
 

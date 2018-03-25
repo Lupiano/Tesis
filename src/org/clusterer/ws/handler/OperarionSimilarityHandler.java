@@ -44,13 +44,13 @@ public class OperarionSimilarityHandler
 		final AbstractMap<Pair, Double> opSimil = new HashMap<Pair, Double>();
 		double simil = 0;
 
-		System.out.println("Simil Total Limit bottom " + botLimit + " top: " + topLimit);
+		//System.out.println("Simil Total Limit bottom " + botLimit + " top: " + topLimit);
 
 		for (int si = 1; si <= levels && simil < topLimit; si++)
 		{
 			simil = botLimit + (double) si / levels * (topLimit - botLimit);
 
-			System.out.println("Simil: " + simil);
+			//System.out.println("Simil: " + simil);
 			final ClusteringHandler ch = new ClusteringHandler();
 			final List<List<Operation>> res = (List<List<Operation>>) ch.clusterWSDLDocuments(listFiles, simil).get(
 					"clusterOperations");

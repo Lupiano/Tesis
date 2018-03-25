@@ -109,21 +109,21 @@ public class HEBServiceAdapter implements DataReader
 			}
 		}
 
-		System.out.println("Parent Nodes");
+		/*System.out.println("Parent Nodes");
 		for (int i = 0; i < parentNodes.length; i++)
 		{
 			System.out.print(parentNodes[i]);
-		}
+		}*/
 
-		System.out.println("Adjacency List");
+		//System.out.println("Adjacency List");
 		for (int i = 0; i < adjacencyList.length; i++)
 		{
 			final int[] fila = adjacencyList[i];
-			System.out.println("fila:");
+			/*System.out.println("fila:");
 			for (int j = 0; j < fila.length; j++)
 			{
 				System.out.print(fila[j] + ",");
-			}
+			}*/
 		}
 
 	}
