@@ -228,7 +228,7 @@ public class DesktopApp {
 		
 		ArrayList<ArrayList<String>> clusters = app.getOperations();
 		
-		casoManualPreFijos casoManual = new casoManualPreFijos();
+		casoManualPreFijosImeroni casoManual = new casoManualPreFijosImeroni();
 		
 		casoManual.cargarListas();
 		
