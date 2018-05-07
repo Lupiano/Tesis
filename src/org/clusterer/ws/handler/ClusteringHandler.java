@@ -104,15 +104,17 @@ public class ClusteringHandler
 			final InterfaceType portType = description.getInterfaces().get(0);
 			for (final Operation operation : portType.getOperations())
 			{
+				//Agregado Luciano - Brian.
 				String wsdlName = parseWSDLName(wsdlFile.getName());
 				String operationName = parseOperationName(operation.getQName());
-				
 				operation.setQName(new QName(wsdlName + "_" + operationName));
+				//Fin agregado.
+				
 				operations.add(operation);
 				fileDescriptions.put(operation, description);
 				mapFiles.put(operation.getQName().getLocalPart(), wsdlFile.getOriginalFilename());
 			}
-			}
+		}
 		
 		ArrayList<String> aux = new ArrayList<String>();
 		
