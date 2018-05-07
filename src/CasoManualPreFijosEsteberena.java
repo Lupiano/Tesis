@@ -549,7 +549,7 @@ public class CasoManualPreFijosEsteberena {
 			element.getClases().add(c);
 			
 			System.out.println("");
-			System.out.println("Cantidad de Operaciones Imeroni: " + cantidadOp);
+			System.out.println("Cantidad de Operaciones Esteberena: " + cantidadOp);
 			System.out.println("");
 			System.out.println("---------------------------------------------------------------------------");
 			

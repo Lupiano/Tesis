@@ -229,7 +229,11 @@ public class DesktopApp {
 		
 		ArrayList<ArrayList<String>> clusters = app.getOperations();
 		
-		casoManualPreFijosImeroni casoManual = new casoManualPreFijosImeroni();
+		//CasoManualPreFijosEsteberena casoManual = new CasoManualPreFijosEsteberena(); 252 OPERACIONES
+		//CasoManualPreFijosFernandezEmanuel casoManual = new CasoManualPreFijosFernandezEmanuel(); NO
+		//CasoManualPreFijosIglesias casoManual = new CasoManualPreFijosIglesias(); 	NO
+		//CasoManualPreFijosImeroni casoManual = new CasoManualPreFijosImeroni(); 252 OPERACIONES
+		CasoManualPreFijosMalavolta casoManual = new CasoManualPreFijosMalavolta(); //252 	OPERACIONES
 		
 		casoManual.cargarListas();
 		
