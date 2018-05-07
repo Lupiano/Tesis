@@ -41,7 +41,7 @@ public class DesktopApp {
 	private List<String> listFileNames;
 	private static int BOTTHRESHOLD = 30;
 	private static int TOPTHRESHOLD = 80;
-	private static String CLUSTERING_STRATEGY = "kmeans";
+	private static String CLUSTERING_STRATEGY = "hierarchy";
 	private static Integer CLUSTER_COUNT = 32;
 	
 	public ArrayList<ArrayList<String>> operations = new ArrayList<ArrayList<String>>();
@@ -98,11 +98,12 @@ public class DesktopApp {
 		final String jsonTreeMap = createJsonTreeData(data);
 		final String jsonFileMap = createJsonMapData(data);
 		//final PrintWriter out = response.getWriter();
-		System.out.println(jsonTreeMap);
-		System.out.println(jsonFileMap);
-		System.out.println(data.getNumberOfClusters());
-		System.out.println(data.getValidationInfo());
-		System.out.println(listFiles.size());
+		
+		//System.out.println(jsonTreeMap);
+		//System.out.println(jsonFileMap);
+		//System.out.println(data.getNumberOfClusters());
+		//System.out.println(data.getValidationInfo());
+		//System.out.println(listFiles.size());
 
 		for (final MultipartFile mFile : listFiles)
 		{
@@ -243,8 +244,6 @@ public class DesktopApp {
 		System.out.println("Cantidad de clusters: " + clusters.size());
 		System.out.println("Cantidad de clases: " + clases.size());
 
-		
-
 		ComparadorClusterClase comparador = new ComparadorClusterClase();
 		comparador.setMetodoOcurrencia(new MetodoOcurrenciaSinRep());
 		
@@ -259,15 +258,17 @@ public class DesktopApp {
 			}
 		}
 		
+		/*
 		for(int i=0; i<clusters.size(); i++) {
 			System.out.println("");
 			for(int j=0; j<clases.size(); j++) {
 				System.out.print(" " + data[i][j]);			
 			}
-		}
-		System.out.println("");
-		System.out.println("Contingency: "+ contingencyTable.toString());
+		}*/
 		
+		System.out.println("");
+		System.out.println("Contingency: ");
+		System.out.println(contingencyTable.toString());	
 		
 		ClusterEvaluator eval = new ClusterEvaluator();
 		
