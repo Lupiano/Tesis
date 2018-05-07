@@ -5,6 +5,14 @@ public class CasoManualPreFijosFernandezEmanuel {
 	private List<RefactorizacionManual> casosManuales = new ArrayList<RefactorizacionManual>();
 	private int cantidadOp=0;
 	
+	public List<RefactorizacionManual> getCasosManuales() {
+		return casosManuales;
+	}
+
+	public void setCasosManuales(List<RefactorizacionManual> casosManuales) {
+		this.casosManuales = casosManuales;
+	}
+	
 	public void imprimirListas() {
 		for(RefactorizacionManual m: casosManuales) {
 			System.out.println("");
@@ -27,7 +35,6 @@ public class CasoManualPreFijosFernandezEmanuel {
 		RefactorizacionManual element = new RefactorizacionManual();
 		
 		/*
-		element.setNombre("Imeroni");
 			
 		
 		c = new Clase();

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class casoManualPreFijosImeroni{
+public class CasoManualPreFijosImeroni{
 	
 	
 	private List<RefactorizacionManual> casosManuales = new ArrayList<RefactorizacionManual>();

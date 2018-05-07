@@ -903,7 +903,7 @@ public class CasoManualPreFijosIglesias {
 		
 		
 		System.out.println("");
-		System.out.println("Cantidad de Operaciones Imeroni: " + cantidadOp);
+		System.out.println("Cantidad de Operaciones Iglesias: " + cantidadOp);
 		System.out.println("");
 		System.out.println("---------------------------------------------------------------------------");
 		

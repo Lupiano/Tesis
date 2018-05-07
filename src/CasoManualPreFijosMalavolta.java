@@ -992,6 +992,11 @@ public class CasoManualPreFijosMalavolta {
 		c.getOperaciones().add("ImpresorCarteraDocumentosACobrar_ObtenerListadoCarteraDocumentosACobrar");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
+		
+		System.out.println("");
+		System.out.println("Cantidad de Operaciones Malavolta: " + cantidadOp);
+		System.out.println("");
+		System.out.println("---------------------------------------------------------------------------");
 
 		casosManuales.add(element);
 		//------------------------------------------------------------------------------------------
