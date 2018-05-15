@@ -41,7 +41,7 @@ public class DesktopApp {
 	private List<String> listFileNames;
 	private static int BOTTHRESHOLD = 30;
 	private static int TOPTHRESHOLD = 80;
-	private static String CLUSTERING_STRATEGY = "hierarchy";
+	private static String CLUSTERING_STRATEGY = "kmeans";
 	private static Integer CLUSTER_COUNT = 32;
 	
 	public ArrayList<ArrayList<String>> operations = new ArrayList<ArrayList<String>>();
@@ -271,7 +271,8 @@ public class DesktopApp {
 		System.out.println(contingencyTable.toString());	
 		
 		ClusterEvaluator eval = new ClusterEvaluator();
-		
+		XMeans xmeans = new XMeans();
+
 		
 		eval.setData(contingencyTable);
 		

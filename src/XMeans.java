@@ -59,18 +59,7 @@ import java.util.Vector;
  * Dan Pelleg, Andrew W. Moore: X-means: Extending K-means with Efficient Estimation of the Number of Clusters. In: Seventeenth International Conference on Machine Learning, 727-734, 2000.
  * <p/>
  <!-- globalinfo-end -->
- *
- <!-- technical-bibtex-start -->
- * BibTeX:
- * <pre>
- * &#64;inproceedings{Pelleg2000,
- *    author = {Dan Pelleg and Andrew W. Moore},
- *    booktitle = {Seventeenth International Conference on Machine Learning},
- *    pages = {727-734},
- *    publisher = {Morgan Kaufmann},
- *    title = {X-means: Extending K-means with Efficient Estimation of the Number of Clusters},
- *    year = {2000}
- * }
+ 
  * </pre>
  * <p/>
  <!-- technical-bibtex-end -->
@@ -141,13 +130,6 @@ import java.util.Vector;
  *  Random number seed.
  *  (default 10)</pre>
  * 
- <!-- options-end -->
- *
- * @author Gabi Schmidberger (gabi@cs.waikato.ac.nz)
- * @author Mark Hall (mhall@cs.waikato.ac.nz)
- * @author Malcolm Ware (mfw4@cs.waikato.ac.nz)
- * @version $Revision: 8109 $
- * @see RandomizableClusterer
  */
 public class XMeans 
   extends RandomizableClusterer
