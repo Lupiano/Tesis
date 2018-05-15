@@ -1,5 +1,7 @@
 package org.clusterer.strategy;
 
+import org.clusterer.app.XMeans;
+
 import weka.clusterers.EM;
 import weka.clusterers.SimpleKMeans;
 
@@ -21,6 +23,15 @@ public class StrategyConstructor
 				kmeans.setNumClusters(numberCluster);
 				strategy = new KmeansStrategy();
 				strategy.setClusterer(kmeans);
+				return strategy;
+			}
+			case "xmeans":
+			{
+				final XMeans xmeans = new XMeans();
+				xmeans.setMaxNumClusters(32);
+				xmeans.setMinNumClusters(32);
+				strategy = new KmeansStrategy();
+				strategy.setClusterer(xmeans);
 				return strategy;
 			}
 			case "em":
