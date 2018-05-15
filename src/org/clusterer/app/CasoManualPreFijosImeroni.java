@@ -1,10 +1,11 @@
+package org.clusterer.app;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CasoManualPreFijosFernandezEmanuel {
-	private List<RefactorizacionManual> casosManuales = new ArrayList<RefactorizacionManual>();
-	private int cantidadOp=0;
+public class CasoManualPreFijosImeroni{
 	
+	
+	private List<RefactorizacionManual> casosManuales = new ArrayList<RefactorizacionManual>();
 	public List<RefactorizacionManual> getCasosManuales() {
 		return casosManuales;
 	}
@@ -12,6 +13,8 @@ public class CasoManualPreFijosFernandezEmanuel {
 	public void setCasosManuales(List<RefactorizacionManual> casosManuales) {
 		this.casosManuales = casosManuales;
 	}
+
+	private int cantidadOp=0;
 	
 	public void imprimirListas() {
 		for(RefactorizacionManual m: casosManuales) {
@@ -34,8 +37,29 @@ public class CasoManualPreFijosFernandezEmanuel {
 		Clase c = new Clase();
 		RefactorizacionManual element = new RefactorizacionManual();
 		
-		/*
-			
+		
+		element.setNombre("Imeroni");
+		
+		c.setClase(0);
+		c.getOperaciones().add("AbmArchivoProveedores_AltaProveedor");
+		c.getOperaciones().add("AbmArchivoAcreedores_AltaAcreedor");
+		c.getOperaciones().add("AbmArchivoProveedores_BajaProveedor");
+		c.getOperaciones().add("AbmArchivoAcreedores_BajaAcreedor");
+		c.getOperaciones().add("AbmArchivoProveedores_ModificacionProveedor");
+		c.getOperaciones().add("AbmArchivoAcreedores_ModificacionAcreedor");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);		
+		
+		c = new Clase();
+		c.setClase(1);
+		c.getOperaciones().add("AbmArchivoVendedores_AltaVendedor");
+		c.getOperaciones().add("AbmArchivoClientes_AltaCliente");
+		c.getOperaciones().add("AbmArchivoVendedores_BajaVendedor");
+		c.getOperaciones().add("AbmArchivoClientes_BajaCliente");
+		c.getOperaciones().add("AbmArchivoVendedores_ModificacionVendedor");
+		c.getOperaciones().add("AbmArchivoClientes_ModificacionCliente");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
 		
 		c = new Clase();
 		c.setClase(2);
@@ -48,6 +72,25 @@ public class CasoManualPreFijosFernandezEmanuel {
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
 		
+		c = new Clase();
+		c.setClase(3);
+		c.getOperaciones().add("AbmClientesGestionJudicial_AltaCliente");
+		c.getOperaciones().add("AbmOtrosDeudores_AltaOtroDeudor");
+		c.getOperaciones().add("AbmClientesGestionJudicial_BajaCliente");
+		c.getOperaciones().add("AbmOtrosDeudores_BajaOtroDeudor");
+		c.getOperaciones().add("AbmClientesGestionJudicial_ModificacionCliente");
+		c.getOperaciones().add("AbmOtrosDeudores_ModificacionOtroDeudor");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(4);
+		c.getOperaciones().add("AltasYBajasTalonariosRecibosProvisoriosEnviados_AltaTalonario");
+		c.getOperaciones().add("AltasYBajasRecibosProvisoriosAnulados_AltaReciboProvisorio");
+		c.getOperaciones().add("AltasYBajasTalonariosRecibosProvisoriosEnviados_BajaTalonario");
+		c.getOperaciones().add("AltasYBajasRecibosProvisoriosAnulados_BajaReciboProvisorio");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
 		
 		c = new Clase();
 		c.setClase(5);
@@ -111,7 +154,7 @@ public class CasoManualPreFijosFernandezEmanuel {
 		
 		c = new Clase();
 		c.setClase(13);
-		c.getOperaciones().add("ControlRecibosProvisoriosRecibidosSalidaExcel_ObtenerListadoCuentasCorrientesAcreedores");
+		c.getOperaciones().add("CuentasCorrientesAcreedoresPorPantalla_ObtenerListadoCuentasCorrientesAcreedores");
 		c.getOperaciones().add("CuentasCorrientesProveedoresPorPantalla_ObtenerListadoCuentasCorrientesProveedores");
 		c.getOperaciones().add("CuentasCorrientesVendedoresPorPantalla_ObtenerListadoCuentasCorrientesVendedores");
 		c.getOperaciones().add("CuentasEnGestionJudicialPorPantalla_ObtenerListadoCuentasEnGestionJudicial");
@@ -187,6 +230,13 @@ public class CasoManualPreFijosFernandezEmanuel {
 		c.getOperaciones().add("LimpiezaEstadisticas_LimpiarEstadisticas");
 		c.getOperaciones().add("LimpiezaCuentasCorrientes_LimpiarCuentasCorrientes");
 		c.getOperaciones().add("LimpiaMercaderiaAEntregarDonaciones_LimpiarMercaderiaAEntregarDonaciones");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(23);
+		c.getOperaciones().add("ListadoCajaOrdenIngresosYEgresos_ObtenerListadoIngresosEgresos");
+		c.getOperaciones().add("ListadoCajaOrdenIngresosEgresos_ObtenerListadoIngresosEgresos");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
 		
@@ -283,6 +333,13 @@ public class CasoManualPreFijosFernandezEmanuel {
 		element.getClases().add(c);
 		
 		c = new Clase();
+		c.setClase(35);
+		c.getOperaciones().add("MercaderiaAEntregarPorZona_ObtenerListadoMercaderiaAEntregar");
+		c.getOperaciones().add("MercaderiaAEntregarPorZonaSalidaExcel_ObtenerListadoMercaderiaAEntregar");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
 		c.setClase(36);
 		c.getOperaciones().add("NotaDeCreditoSinRemitoConPedidos_RealizarNotaCredito");
 		c.getOperaciones().add("NotasDebitoChequesRechazados_RealizarNotaDebito");
@@ -315,6 +372,12 @@ public class CasoManualPreFijosFernandezEmanuel {
 		
 		c = new Clase();
 		c.setClase(40);
+		c.getOperaciones().add("AbmArchivoRecibos_AltaRecibo");
+		c.getOperaciones().add("AbmArchivoRecibos_BajaRecibo");
+		c.getOperaciones().add("AbmArchivoRecibos_ModificacionRecibo");
+		c.getOperaciones().add("AbmArchivoCreditosRecibosInterrumpidos_AltaCreditoReciboInterrumpido");
+		c.getOperaciones().add("AbmArchivoCreditosRecibosInterrumpidos_BajaCreditoReciboInterrumpido");
+		c.getOperaciones().add("AbmArchivoCreditosRecibosInterrumpidos_ModificacionCreditoReciboInterrumpido");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
 		
@@ -350,13 +413,71 @@ public class CasoManualPreFijosFernandezEmanuel {
 		element.getClases().add(c);
 		
 		c = new Clase();
+		c.setClase(45);
+		c.getOperaciones().add("AbmArticulos_AltaArticulo");
+		c.getOperaciones().add("AbmArticulos_BajaArticulo");
+		c.getOperaciones().add("AbmArticulos_ModificacionArticulo");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(46);
+		c.getOperaciones().add("AbmComisiones_AltaComision");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(47);
+		c.getOperaciones().add("AbmComprasSinInventario_AltaCompraSinInventario");
+		c.getOperaciones().add("AbmComprasSinInventario_BajaCompraSinInventario");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(48);
+		c.getOperaciones().add("AbmCondiciones_AltaCondicion");
+		c.getOperaciones().add("AbmCondiciones_BajaCondicion");
+		c.getOperaciones().add("AbmCondiciones_ModificacionCondicion");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
 		c.setClase(49);
+		c.getOperaciones().add("AbmConsultaArchivoTelefono_AltaTelefono");
+		c.getOperaciones().add("AbmConsultaArchivoTelefono_BajaTelefono");
 		c.getOperaciones().add("AbmConsultaArchivoTelefono_ConsultaTelefono");
+		c.getOperaciones().add("AbmConsultaArchivoTelefono_ModificacionTelefono");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(50);
+		c.getOperaciones().add("AbmFletes_AltaFlete");
+		c.getOperaciones().add("AbmFletes_BajaFlete");
+		c.getOperaciones().add("AbmFletes_ModificacionFlete");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(51);
+		c.getOperaciones().add("AbmMensajesClientes_AltaMensaje");
+		c.getOperaciones().add("AbmMensajesClientes_BajaMensaje");
+		c.getOperaciones().add("AbmMensajesClientes_ModificacionMensaje");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(52);
+		c.getOperaciones().add("AbmPedidos_AltaPedidos");
+		c.getOperaciones().add("AbmPedidos_BajaPedidos");
+		c.getOperaciones().add("AbmPedidos_ModificacionPedidos");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
 		
 		c = new Clase();
 		c.setClase(53);
+		c.getOperaciones().add("AbuInterdepositos_AltaInterdeposito");
+		c.getOperaciones().add("AbuInterdepositos_BajaInterdeposito");
 		c.getOperaciones().add("AbuInterdepositos_UtilizacionInterdeposito");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
@@ -364,6 +485,13 @@ public class CasoManualPreFijosFernandezEmanuel {
 		c = new Clase();
 		c.setClase(54);
 		c.getOperaciones().add("AcreditacionComisiones_AcreditarComision");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(55);
+		c.getOperaciones().add("AltasYBajasDevolucionBolsas_AltaDevolucionBolsa");
+		c.getOperaciones().add("AltasYBajasDevolucionBolsas_BajaDevolucionBolsa");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
 		
@@ -392,6 +520,24 @@ public class CasoManualPreFijosFernandezEmanuel {
 		element.getClases().add(c);
 		
 		c = new Clase();
+		c.setClase(60);
+		c.getOperaciones().add("BajaChequesEndosadosNoRechazados_DarBajaCheque");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(61);
+		c.getOperaciones().add("BajaIngresosYAjustesStock_BajaIngreso");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(62);
+		c.getOperaciones().add("BajaLibrosOrdenesPago_BajaOrdenPago");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
 		c.setClase(63);
 		c.getOperaciones().add("BalanceCuentasCorrientesGestionJudicial_ObtenerBalanceCuentasCorrientesGestionJudicial");
 		cantidadOp += c.getOperaciones().size();
@@ -412,6 +558,14 @@ public class CasoManualPreFijosFernandezEmanuel {
 		c = new Clase();
 		c.setClase(66);
 		c.getOperaciones().add("BusquedaMovimientosRepetidosMercaderiaAEntregar_ObtenerListadoMovimientosRepetidosMercaderiaAEntregar");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(67);
+		c.getOperaciones().add("CajaIngresosYEgresos_AltaCaja");
+		c.getOperaciones().add("CajaIngresosYEgresos_BajaCaja");
+		c.getOperaciones().add("CajaIngresosYEgresos_ModificacionCaja");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
 		
@@ -614,8 +768,20 @@ public class CasoManualPreFijosFernandezEmanuel {
 		element.getClases().add(c);
 		
 		c = new Clase();
+		c.setClase(101);
+		c.getOperaciones().add("ListaContabilizaBorraCaja_ObtenerListadoContabilizaBorraCaja");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
 		c.setClase(102);
 		c.getOperaciones().add("ListaDeudasND30_ObtenerListadoDeudas");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(103);
+		c.getOperaciones().add("ListadoCajaOrdenMayor_ObtenerListadoCajaOrdenMayor");
 		cantidadOp += c.getOperaciones().size();
 		element.getClases().add(c);
 		
@@ -710,6 +876,18 @@ public class CasoManualPreFijosFernandezEmanuel {
 		element.getClases().add(c);
 		
 		c = new Clase();
+		c.setClase(119);
+		c.getOperaciones().add("ModificacionesArrastreCaja_ModificarArrastreCaja");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
+		c.setClase(120);
+		c.getOperaciones().add("ModificacionesComisiones_ModificarComision");
+		cantidadOp += c.getOperaciones().size();
+		element.getClases().add(c);
+		
+		c = new Clase();
 		c.setClase(121);
 		c.getOperaciones().add("MovimientoCliente_ObtenerListadoMovimientosCliente");
 		cantidadOp += c.getOperaciones().size();
@@ -768,121 +946,6 @@ public class CasoManualPreFijosFernandezEmanuel {
 		System.out.println("");
 		System.out.println("---------------------------------------------------------------------------");
 		
-		casosManuales.add(element);*/
-		//-----------------------------------------------------------------------------------------
-		
-		cantidadOp = 0;
-		c = new Clase();
-		element = new RefactorizacionManual();
-		element.setNombre("FernandezEmanuel");
-		c.setClase(0);
-		c.getOperaciones().add("AbmArchivoAcreedores_AltaAcreedor");
-		c.getOperaciones().add("AbmArchivoClientes_AltaCliente");
-		c.getOperaciones().add("AbmArchivoCreditosRecibosInterrumpidos_AltaCreditoReciboInterrumpido");
-		c.getOperaciones().add("AbmArchivoProveedores_AltaProveedor");
-		c.getOperaciones().add("AbmArchivoRecibos_AltaRecibo");
-		c.getOperaciones().add("AbmArchivoVendedores_AltaVendedor");
-		c.getOperaciones().add("AbmArticulos_AltaArticulo");
-		c.getOperaciones().add("AbmClientesGestionJudicial_AltaCliente");
-		c.getOperaciones().add("AbmComisiones_AltaComision");
-		c.getOperaciones().add("AbmComprasSinInventario_AltaCompraSinInventario");
-		c.getOperaciones().add("AbmCondiciones_AltaCondicion");
-		c.getOperaciones().add("AbmConsultaArchivoTelefono_AltaTelefono");
-		c.getOperaciones().add("AbmFletes_AltaFlete");
-		c.getOperaciones().add("AbmMensajesClientes_AltaMensaje");
-		c.getOperaciones().add("AbmOtrosDeudores_AltaOtroDeudor");
-		c.getOperaciones().add("AbmPedidos_AltaPedidos");
-		c.getOperaciones().add("AbuInterdepositos_AltaInterdeposito");
-		c.getOperaciones().add("AltasYBajasDevolucionBolsas_AltaDevolucionBolsa");
-		c.getOperaciones().add("AltasYBajasRecibosProvisoriosAnulados_AltaReciboProvisorio");
-		c.getOperaciones().add("AltasYBajasTalonariosRecibosProvisoriosEnviados_AltaTalonario");
-		c.getOperaciones().add("CajaIngresosYEgresos_AltaCaja");
-		cantidadOp += c.getOperaciones().size();
-		element.getClases().add(c);; //21 faltan
-		
-		c = new Clase();
-		c.setClase(1);
-		c.getOperaciones().add("AbmArchivoAcreedores_ModificacionAcreedor");
-		c.getOperaciones().add("AbmArchivoClientes_ModificacionCliente");
-		c.getOperaciones().add("AbmArchivoCreditosRecibosInterrumpidos_ModificacionCreditoReciboInterrumpido");
-		c.getOperaciones().add("AbmArchivoProveedores_ModificacionProveedor");
-		c.getOperaciones().add("AbmArchivoRecibos_ModificacionRecibo");
-		c.getOperaciones().add("AbmArchivoVendedores_ModificacionVendedor");
-		c.getOperaciones().add("AbmArticulos_ModificacionArticulo");
-		c.getOperaciones().add("AbmClientesGestionJudicial_ModificacionCliente");
-		c.getOperaciones().add("AbmCondiciones_ModificacionCondicion");
-		c.getOperaciones().add("AbmConsultaArchivoTelefono_ModificacionTelefono");
-		c.getOperaciones().add("AbmFletes_ModificacionFlete");
-		c.getOperaciones().add("AbmMensajesClientes_ModificacionMensaje");
-		c.getOperaciones().add("AbmOtrosDeudores_ModificacionOtroDeudor");
-		c.getOperaciones().add("AbmPedidos_ModificacionPedidos");
-		c.getOperaciones().add("ModificacionesArrastreCaja_ModificarArrastreCaja");
-		c.getOperaciones().add("ModificacionesComisiones_ModificarComision");
-		c.getOperaciones().add("CajaIngresosYEgresos_ModificacionCaja");
-		cantidadOp += c.getOperaciones().size(); //17 faltan
-		element.getClases().add(c);
-		
-		c = new Clase();
-		c.setClase(2);
-		c.getOperaciones().add("AbmArchivoProveedores_BajaProveedor");
-		c.getOperaciones().add("AbmArchivoAcreedores_BajaAcreedor");
-		c.getOperaciones().add("AbmArchivoVendedores_BajaVendedor");
-		c.getOperaciones().add("AbmArchivoClientes_BajaCliente");
-		c.getOperaciones().add("AbmArchivoCreditosRecibosInterrumpidos_BajaCreditoReciboInterrumpido");
-		c.getOperaciones().add("AbmArchivoRecibos_BajaRecibo");
-		c.getOperaciones().add("AbmArticulos_BajaArticulo");
-		c.getOperaciones().add("AbmClientesGestionJudicial_BajaCliente");
-		c.getOperaciones().add("AbmComprasSinInventario_BajaCompraSinInventario");
-		c.getOperaciones().add("AbmCondiciones_BajaCondicion");
-		c.getOperaciones().add("AbmConsultaArchivoTelefono_BajaTelefono");
-		c.getOperaciones().add("AbmFletes_BajaFlete");
-		c.getOperaciones().add("AbmMensajesClientes_BajaMensaje");
-		c.getOperaciones().add("AbmOtrosDeudores_BajaOtroDeudor");
-		c.getOperaciones().add("AbmPedidos_BajaPedidos");
-		c.getOperaciones().add("AbuInterdepositos_BajaInterdeposito");
-		c.getOperaciones().add("AltasYBajasDevolucionBolsas_BajaDevolucionBolsa");
-		c.getOperaciones().add("AltasYBajasRecibosProvisoriosAnulados_BajaReciboProvisorio");
-		c.getOperaciones().add("AltasYBajasTalonariosRecibosProvisoriosEnviados_BajaTalonario");
-		c.getOperaciones().add("BajaChequesEndosadosNoRechazados_DarBajaCheque");
-		c.getOperaciones().add("BajaIngresosYAjustesStock_BajaIngreso");
-		c.getOperaciones().add("BajaLibrosOrdenesPago_BajaOrdenPago");
-		c.getOperaciones().add("CajaIngresosYEgresos_BajaCaja");
-		cantidadOp += c.getOperaciones().size(); //23 faltan
-		element.getClases().add(c);
-		
-		c = new Clase();
-		c.setClase(3);
-		c.getOperaciones().add("ListadoCajaOrdenIngresosYEgresos_ObtenerListadoIngresosEgresos");
-		c.getOperaciones().add("ListadoCajaOrdenIngresosEgresos_ObtenerListadoIngresosEgresos");
-		cantidadOp += c.getOperaciones().size(); //
-		element.getClases().add(c);
-		
-		c = new Clase();
-		c.setClase(4);
-		c.getOperaciones().add("ListaContabilizaBorraCaja_ObtenerListadoContabilizaBorraCaja");
-		c.getOperaciones().add("ListadoCajaOrdenMayor_ObtenerListadoCajaOrdenMayor");
-		cantidadOp += c.getOperaciones().size(); //
-		element.getClases().add(c);
-		
-		c = new Clase();
-		c.setClase(5);
-		c.getOperaciones().add("MercaderiaAEntregarPorZona_ObtenerListadoMercaderiaAEntregar");
-		c.getOperaciones().add("MercaderiaAEntregarPorZonaSalidaExcel_ObtenerListadoMercaderiaAEntregar");
-		cantidadOp += c.getOperaciones().size(); //
-		element.getClases().add(c);
-		
-		c = new Clase();
-		c.setClase(6);
-		
-		cantidadOp += c.getOperaciones().size(); //
-		element.getClases().add(c);
-		
-		System.out.println("");
-		System.out.println("Cantidad de Operaciones FernandezEmanuel: " + cantidadOp);
-		System.out.println("");
-		System.out.println("---------------------------------------------------------------------------");
-		
 		casosManuales.add(element);
-		//------------------------------------------------------------------------------------------
 	}
 }

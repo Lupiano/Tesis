@@ -149,6 +149,7 @@ public class ClusteringHandler
 
 
 
+	//Agregado Luciano - Brian.
 	private String parseOperationName(QName qName) {
 		//Eliminar {http://molinosbalcarce.com.ar}
 		String opName = qName.toString();
@@ -156,7 +157,7 @@ public class ClusteringHandler
 	}
 
 
-
+	//Agregado Luciano - Brian.
 	private String parseWSDLName(String name) {
 		//Eliminar .wsdl
 		return name.substring(0, name.length() - 5);
