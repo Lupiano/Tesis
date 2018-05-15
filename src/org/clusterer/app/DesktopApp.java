@@ -1,3 +1,4 @@
+package org.clusterer.app;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,7 +42,7 @@ public class DesktopApp {
 	private List<String> listFileNames;
 	private static int BOTTHRESHOLD = 30;
 	private static int TOPTHRESHOLD = 80;
-	private static String CLUSTERING_STRATEGY = "hierarchy";
+	private static String CLUSTERING_STRATEGY = "kmeans";
 	private static Integer CLUSTER_COUNT = 32;
 	
 	public ArrayList<ArrayList<String>> operations = new ArrayList<ArrayList<String>>();
@@ -220,8 +221,6 @@ public class DesktopApp {
 
 	public static void main(String[] args) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		//System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("output.txt"))));
 		
 		DesktopApp app = new DesktopApp();
 		
@@ -229,11 +228,9 @@ public class DesktopApp {
 		
 		ArrayList<ArrayList<String>> clusters = app.getOperations();
 		
-		//CasoManualPreFijosEsteberena casoManual = new CasoManualPreFijosEsteberena(); 252 OPERACIONES
-		//CasoManualPreFijosFernandezEmanuel casoManual = new CasoManualPreFijosFernandezEmanuel(); NO
-		//CasoManualPreFijosIglesias casoManual = new CasoManualPreFijosIglesias(); 	NO
-		//CasoManualPreFijosImeroni casoManual = new CasoManualPreFijosImeroni(); 252 OPERACIONES
-		CasoManualPreFijosMalavolta casoManual = new CasoManualPreFijosMalavolta(); //252 	OPERACIONES
+		//CasoManualPreFijosEsteberena casoManual = new CasoManualPreFijosEsteberena(); // 252 OPERACIONES
+		//CasoManualPreFijosImeroni casoManual = new CasoManualPreFijosImeroni(); // 252 OPERACIONES
+		CasoManualPreFijosMalavolta casoManual = new CasoManualPreFijosMalavolta(); // 252 OPERACIONES
 		
 		casoManual.cargarListas();
 		
@@ -247,6 +244,33 @@ public class DesktopApp {
 		ComparadorClusterClase comparador = new ComparadorClusterClase();
 		comparador.setMetodoOcurrencia(new MetodoOcurrenciaSinRep());
 		
+		//Prueba.
+		ClusterEvaluator eval = new ClusterEvaluator();
+		
+		Double[][] data = new Double[2][2];
+
+	    data[0][0] = 1.0;
+	    data[0][1] = 1.0;
+	    data[1][0] = 1.0;
+	    data[1][1] = 0.0;
+		
+		Double[][] data1 = new Double[clusters.size()][clases.size()];
+		for(int i=0; i<clusters.size(); i++) {
+			for(int j=0; j<clases.size(); j++) {
+				data1[i][j] = comparador.obtenerIntersecciones(clusters.get(i), (ArrayList<String>)clases.get(j).getOperaciones());
+			}
+		}
+		
+	    eval.setData(new ContingencyTable(data1));
+	    
+
+	    System.out.println("Solution A");
+	    System.out.println(eval.getData());
+	    System.out.println("V:" + eval.getVMeasure(1));
+		//Fin prueba
+		
+	    /*
+		//Carga de datos.
 		Double[][] data = new Double[clusters.size()][clases.size()];
 		
 		ContingencyTable contingencyTable = new ContingencyTable(clusters.size(),clases.size());
@@ -258,13 +282,6 @@ public class DesktopApp {
 			}
 		}
 		
-		/*
-		for(int i=0; i<clusters.size(); i++) {
-			System.out.println("");
-			for(int j=0; j<clases.size(); j++) {
-				System.out.print(" " + data[i][j]);			
-			}
-		}*/
 		
 		System.out.println("");
 		System.out.println("Contingency: ");
@@ -281,7 +298,7 @@ public class DesktopApp {
 		
 		//System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("output1.txt"))));
 		System.out.println("Termina.");
-		
+		*/
 	}
 
 }

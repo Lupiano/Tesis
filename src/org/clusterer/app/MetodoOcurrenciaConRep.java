@@ -1,3 +1,4 @@
+package org.clusterer.app;
 import java.util.ArrayList;
 
 public class MetodoOcurrenciaConRep implements MetodoOcurrencia {
