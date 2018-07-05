@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerBalanceArchivosDiarios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerBalanceArchivosDiariosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerBalanceArchivosDiariosResult" type="tns:ArrayOfDatosBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosBalance" nillable="true" type="tns:DatosBalance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosBalance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="observaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolsas_descuentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_bolsas_descuentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="precio_bolsas_descuentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva_descuentos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona_cuentas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona_deudas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona_facturas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comentarios" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_recibo" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosBalance" nillable="true" type="tns:ArrayOfDatosBalance" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerBalanceArchivosDiariosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceArchivosDiarios" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceArchivosDiariosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceArchivosDiariosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceArchivosDiariosHttpGetIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceArchivosDiariosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceArchivosDiariosHttpPostIn">
+  	<wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceArchivosDiariosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:portType name="BalanceArchivosDiariosSoap">
+    <wsdl:operation name="ObtenerBalanceArchivosDiarios">
+      <wsdl:input message="tns:ObtenerBalanceArchivosDiariosSoapIn" />
+      <wsdl:output message="tns:ObtenerBalanceArchivosDiariosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceArchivosDiariosHttpGet">
+    <wsdl:operation name="ObtenerBalanceArchivosDiarios">
+      <wsdl:input message="tns:ObtenerBalanceArchivosDiariosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerBalanceArchivosDiariosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceArchivosDiariosHttpPost">
+    <wsdl:operation name="ObtenerBalanceArchivosDiarios">
+      <wsdl:input message="tns:ObtenerBalanceArchivosDiariosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerBalanceArchivosDiariosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BalanceArchivosDiariosSoap" type="tns:BalanceArchivosDiariosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceArchivosDiarios">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceArchivosDiarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceArchivosDiariosSoap12" type="tns:BalanceArchivosDiariosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceArchivosDiarios">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceArchivosDiarios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceArchivosDiariosHttpGet" type="tns:BalanceArchivosDiariosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerBalanceArchivosDiarios">
+      <http:operation location="/ObtenerBalanceArchivosDiarios" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceArchivosDiariosHttpPost" type="tns:BalanceArchivosDiariosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerBalanceArchivosDiarios">
+      <http:operation location="/ObtenerBalanceArchivosDiarios" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BalanceArchivosDiarios">
+    <wsdl:port name="BalanceArchivosDiariosSoap" binding="tns:BalanceArchivosDiariosSoap">
+      <soap:address location="http://localhost:1390/BalanceArchivosDiarios.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceArchivosDiariosSoap12" binding="tns:BalanceArchivosDiariosSoap12">
+      <soap12:address location="http://localhost:1390/BalanceArchivosDiarios.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceArchivosDiariosHttpGet" binding="tns:BalanceArchivosDiariosHttpGet">
+      <http:address location="http://localhost:1390/BalanceArchivosDiarios.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceArchivosDiariosHttpPost" binding="tns:BalanceArchivosDiariosHttpPost">
+      <http:address location="http://localhost:1390/BalanceArchivosDiarios.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

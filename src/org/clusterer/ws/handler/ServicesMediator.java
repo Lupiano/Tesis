@@ -1,7 +1,7 @@
 package org.clusterer.ws.handler;
 
 import java.util.AbstractMap;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -10,8 +10,10 @@ import java.util.Set;
 
 import net.sf.json.JSONObject;
 
+import org.clusterer.distance.JaccardDistance;
 import org.clusterer.strategy.ClusteringStrategy;
 import org.clusterer.strategy.StrategyConstructor;
+import org.clusterer.strategy.XmeansStrategy;
 import org.clusterer.util.Pair;
 import org.ow2.easywsdl.wsdl.api.Description;
 import org.ow2.easywsdl.wsdl.api.Operation;
@@ -46,12 +48,58 @@ public class ServicesMediator
 
 	private void doClustering() throws Exception
 	{
-		final ClusteringStrategy strategy = StrategyConstructor.getStrategy(getClusteringStrategy(), getClusterNumber());
+		ClusteringStrategy strategy = StrategyConstructor.getStrategy(getClusteringStrategy(), getClusterNumber());
 		strategy.setThreshold(topThreshold);
 		ch.setClustererStrategy(strategy);
 		// operaciones agrupadas por similitud
-		clusteredInfo = ch.clusterWSDLDocumentsForCluster(listFiles, topThreshold);
- 
+		
+		
+		//Agregado Luciano - Brian.
+		ClusteringHandler chWSDL = new ClusteringHandler();
+		chWSDL.setClustererStrategy(strategy);
+		List<List<MultipartFile>> wsdlClusters = chWSDL.clusterWSDL(listFiles);
+		
+		System.out.println("Total WSDL Clusters: " + wsdlClusters.size());
+		
+		List<List<Operation>> totalClusters = new ArrayList<List<Operation>>();
+		int k = 0;
+		for(List<MultipartFile> list : wsdlClusters) {
+			strategy = StrategyConstructor.getStrategy(getClusteringStrategy(), getClusterNumber());
+			strategy.setThreshold(topThreshold);
+			ch.setClustererStrategy(strategy);
+			System.out.println("");
+			System.out.println("WSDL Cluster " + k);
+			@SuppressWarnings("unchecked")
+			List<List<Operation>> aux = (List<List<Operation>>)ch.clusterWSDLDocumentsForCluster(list, topThreshold).get("clusterOperations");
+			
+			totalClusters.addAll(aux);
+			k++;
+		}
+		
+		System.out.println("");
+		System.out.println("-----------------------");
+		System.out.println("");
+		
+		System.out.println("Total WSDL Clusters: " + wsdlClusters.size());
+		k = 0;
+		for(List<MultipartFile> list : wsdlClusters) {
+			ClusteringHandler handler = new ClusteringHandler();
+			handler.setClustererStrategy(strategy);
+			//@SuppressWarnings("unchecked")
+			System.out.println("WSDL Cluster " + k + " (" + list.size() + " wsdls)");
+			k++;
+		}
+		
+		System.out.println("");
+		System.out.println("Total clusters finales: " + totalClusters.size());
+		
+		for(int x=0; x<totalClusters.size(); x++) {
+			System.out.println("Cluster " + x + " (" + totalClusters.get(x).size() + " operaciones)");
+		}
+		
+		//clusteredInfo = ch.clusterWSDLDocumentsForCluster(list, topThreshold);
+		
+		/*
 		@SuppressWarnings("unchecked")
 		final List<List<Operation>> clusteredOperations = (List<List<Operation>>) clusteredInfo.get("clusterOperations");
 		System.out.println("Cantidad de Grupos> " + clusteredOperations.size() + "threshold:" + topThreshold);
@@ -67,7 +115,6 @@ public class ServicesMediator
 			System.out.println("ops: " + lo.toString());
 			System.out.println("**************************************");
 			cantidadTotal += lo.size();
-			
 		}
 		
 		System.out.println("El total es: " + cantidadTotal);
@@ -75,6 +122,7 @@ public class ServicesMediator
 
 		setClusterNumber(inum++);
 		setValidationInfo(strategy.validateCluster());
+		*/
 	}
 
 	private void doSimilRelations()

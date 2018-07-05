@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoCuentasCorrientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="acepta_nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_tope" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_tope" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_tope" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoCuentasCorrientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoCuentasCorrientesResult" type="tns:ArrayOfDatosCuentaCorriente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCuentaCorriente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCuentaCorriente" nillable="true" type="tns:DatosCuentaCorriente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCuentaCorriente">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_haber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saldo_anterior_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_anterior_haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comentario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="precio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_item" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCuentaCorriente" nillable="true" type="tns:ArrayOfDatosCuentaCorriente" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoCuentasCorrientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCuentasCorrientes" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasCorrientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCuentasCorrientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasCorrientesHttpGetIn">
+    <wsdl:part name="acepta_nombre" type="s:string" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="dia_tope" type="s:short" />
+    <wsdl:part name="mes_tope" type="s:short" />
+    <wsdl:part name="anio_tope" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasCorrientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaCorriente" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasCorrientesHttpPostIn">
+    <wsdl:part name="acepta_nombre" type="s:string" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="dia_tope" type="s:short" />
+    <wsdl:part name="mes_tope" type="s:short" />
+    <wsdl:part name="anio_tope" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasCorrientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaCorriente" />
+  </wsdl:message>
+  <wsdl:portType name="CuentasCorrientesPorPantallaSoap">
+    <wsdl:operation name="ObtenerListadoCuentasCorrientes">
+      <wsdl:input message="tns:ObtenerListadoCuentasCorrientesSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasCorrientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CuentasCorrientesPorPantallaHttpGet">
+    <wsdl:operation name="ObtenerListadoCuentasCorrientes">
+      <wsdl:input message="tns:ObtenerListadoCuentasCorrientesHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasCorrientesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CuentasCorrientesPorPantallaHttpPost">
+    <wsdl:operation name="ObtenerListadoCuentasCorrientes">
+      <wsdl:input message="tns:ObtenerListadoCuentasCorrientesHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasCorrientesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CuentasCorrientesPorPantallaSoap" type="tns:CuentasCorrientesPorPantallaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCuentasCorrientes">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCuentasCorrientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CuentasCorrientesPorPantallaSoap12" type="tns:CuentasCorrientesPorPantallaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCuentasCorrientes">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCuentasCorrientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CuentasCorrientesPorPantallaHttpGet" type="tns:CuentasCorrientesPorPantallaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoCuentasCorrientes">
+      <http:operation location="/ObtenerListadoCuentasCorrientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CuentasCorrientesPorPantallaHttpPost" type="tns:CuentasCorrientesPorPantallaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoCuentasCorrientes">
+      <http:operation location="/ObtenerListadoCuentasCorrientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CuentasCorrientesPorPantalla">
+    <wsdl:port name="CuentasCorrientesPorPantallaSoap" binding="tns:CuentasCorrientesPorPantallaSoap">
+      <soap:address location="http://localhost:1390/CuentasCorrientesPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CuentasCorrientesPorPantallaSoap12" binding="tns:CuentasCorrientesPorPantallaSoap12">
+      <soap12:address location="http://localhost:1390/CuentasCorrientesPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CuentasCorrientesPorPantallaHttpGet" binding="tns:CuentasCorrientesPorPantallaHttpGet">
+      <http:address location="http://localhost:1390/CuentasCorrientesPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CuentasCorrientesPorPantallaHttpPost" binding="tns:CuentasCorrientesPorPantallaHttpPost">
+      <http:address location="http://localhost:1390/CuentasCorrientesPorPantalla.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

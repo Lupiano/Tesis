@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"	
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ControlarNumeracionRecibos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ControlarNumeracionRecibosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ControlarNumeracionRecibosResult" type="tns:ArrayOfDatosNumeracionRecibos" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosNumeracionRecibos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosNumeracionRecibos" nillable="true" type="tns:DatosNumeracionRecibos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosNumeracionRecibos">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="comentario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosNumeracionRecibos" nillable="true" type="tns:ArrayOfDatosNumeracionRecibos" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ControlarNumeracionRecibosSoapIn">
+    <wsdl:part name="parameters" element="tns:ControlarNumeracionRecibos" />
+  </wsdl:message>
+  <wsdl:message name="ControlarNumeracionRecibosSoapOut">
+    <wsdl:part name="parameters" element="tns:ControlarNumeracionRecibosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ControlarNumeracionRecibosHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ControlarNumeracionRecibosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosNumeracionRecibos" />
+  </wsdl:message>
+  <wsdl:message name="ControlarNumeracionRecibosHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ControlarNumeracionRecibosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosNumeracionRecibos" />
+  </wsdl:message>
+  <wsdl:portType name="ControlNumeracionRecibosSoap">
+    <wsdl:operation name="ControlarNumeracionRecibos">
+      <wsdl:input message="tns:ControlarNumeracionRecibosSoapIn" />
+      <wsdl:output message="tns:ControlarNumeracionRecibosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlNumeracionRecibosHttpGet">
+    <wsdl:operation name="ControlarNumeracionRecibos">
+      <wsdl:input message="tns:ControlarNumeracionRecibosHttpGetIn" />
+      <wsdl:output message="tns:ControlarNumeracionRecibosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlNumeracionRecibosHttpPost">
+    <wsdl:operation name="ControlarNumeracionRecibos">
+      <wsdl:input message="tns:ControlarNumeracionRecibosHttpPostIn" />
+      <wsdl:output message="tns:ControlarNumeracionRecibosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ControlNumeracionRecibosSoap" type="tns:ControlNumeracionRecibosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ControlarNumeracionRecibos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ControlarNumeracionRecibos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlNumeracionRecibosSoap12" type="tns:ControlNumeracionRecibosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ControlarNumeracionRecibos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ControlarNumeracionRecibos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlNumeracionRecibosHttpGet" type="tns:ControlNumeracionRecibosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ControlarNumeracionRecibos">
+      <http:operation location="/ControlarNumeracionRecibos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlNumeracionRecibosHttpPost" type="tns:ControlNumeracionRecibosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ControlarNumeracionRecibos">
+      <http:operation location="/ControlarNumeracionRecibos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ControlNumeracionRecibos">
+    <wsdl:port name="ControlNumeracionRecibosSoap" binding="tns:ControlNumeracionRecibosSoap">
+      <soap:address location="http://localhost:1390/ControlNumeracionRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlNumeracionRecibosSoap12" binding="tns:ControlNumeracionRecibosSoap12">
+      <soap12:address location="http://localhost:1390/ControlNumeracionRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlNumeracionRecibosHttpGet" binding="tns:ControlNumeracionRecibosHttpGet">
+      <http:address location="http://localhost:1390/ControlNumeracionRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlNumeracionRecibosHttpPost" binding="tns:ControlNumeracionRecibosHttpPost">
+      <http:address location="http://localhost:1390/ControlNumeracionRecibos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

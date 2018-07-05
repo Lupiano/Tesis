@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoCobranzasPorZona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="con_movimientos" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoCobranzasPorZonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoCobranzasPorZonaResult" type="tns:ArrayOfDatosCobranzaPorZona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCobranzaPorZona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCobranzaPorZona" nillable="true" type="tns:DatosCobranzaPorZona" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCobranzaPorZona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_cobros" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_cheques" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_neto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCobranzaPorZona" nillable="true" type="tns:ArrayOfDatosCobranzaPorZona" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoCobranzasPorZonaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCobranzasPorZona" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCobranzasPorZonaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCobranzasPorZonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCobranzasPorZonaHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="con_movimientos" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCobranzasPorZonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCobranzaPorZona" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCobranzasPorZonaHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="con_movimientos" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCobranzasPorZonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCobranzaPorZona" />
+  </wsdl:message>
+  <wsdl:portType name="CobranzaPorZonaMesSoap">
+    <wsdl:operation name="ObtenerListadoCobranzasPorZona">
+      <wsdl:input message="tns:ObtenerListadoCobranzasPorZonaSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoCobranzasPorZonaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CobranzaPorZonaMesHttpGet">
+    <wsdl:operation name="ObtenerListadoCobranzasPorZona">
+      <wsdl:input message="tns:ObtenerListadoCobranzasPorZonaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoCobranzasPorZonaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CobranzaPorZonaMesHttpPost">
+    <wsdl:operation name="ObtenerListadoCobranzasPorZona">
+      <wsdl:input message="tns:ObtenerListadoCobranzasPorZonaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoCobranzasPorZonaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CobranzaPorZonaMesSoap" type="tns:CobranzaPorZonaMesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCobranzasPorZona">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCobranzasPorZona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CobranzaPorZonaMesSoap12" type="tns:CobranzaPorZonaMesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCobranzasPorZona">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCobranzasPorZona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CobranzaPorZonaMesHttpGet" type="tns:CobranzaPorZonaMesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoCobranzasPorZona">
+      <http:operation location="/ObtenerListadoCobranzasPorZona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CobranzaPorZonaMesHttpPost" type="tns:CobranzaPorZonaMesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoCobranzasPorZona">
+      <http:operation location="/ObtenerListadoCobranzasPorZona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CobranzaPorZonaMes">
+    <wsdl:port name="CobranzaPorZonaMesSoap" binding="tns:CobranzaPorZonaMesSoap">
+      <soap:address location="http://localhost:1390/CobranzaPorZonaMes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CobranzaPorZonaMesSoap12" binding="tns:CobranzaPorZonaMesSoap12">
+      <soap12:address location="http://localhost:1390/CobranzaPorZonaMes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CobranzaPorZonaMesHttpGet" binding="tns:CobranzaPorZonaMesHttpGet">
+      <http:address location="http://localhost:1390/CobranzaPorZonaMes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CobranzaPorZonaMesHttpPost" binding="tns:CobranzaPorZonaMesHttpPost">
+      <http:address location="http://localhost:1390/CobranzaPorZonaMes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

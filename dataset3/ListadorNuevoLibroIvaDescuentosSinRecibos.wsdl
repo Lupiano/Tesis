@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoNuevoLibroIva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iva_basico" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="iva_adicional" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta_hojas" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoNuevoLibroIvaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoNuevoLibroIvaResult" type="tns:ArrayOfDatosLibroIva" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosLibroIva" nillable="true" type="tns:DatosLibroIva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_recibo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_neto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_basico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_adicional" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_descuento" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosLibroIva" nillable="true" type="tns:ArrayOfDatosLibroIva" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoNuevoLibroIvaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoNuevoLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNuevoLibroIvaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoNuevoLibroIvaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNuevoLibroIvaHttpGetIn">
+    <wsdl:part name="iva_basico" type="s:float" />
+    <wsdl:part name="iva_adicional" type="s:float" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="cuenta_hojas" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNuevoLibroIvaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNuevoLibroIvaHttpPostIn">
+    <wsdl:part name="iva_basico" type="s:float" />
+    <wsdl:part name="iva_adicional" type="s:float" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="cuenta_hojas" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNuevoLibroIvaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorNuevoLibroIvaDescuentosSinRecibosSoap">
+    <wsdl:operation name="ObtenerListadoNuevoLibroIva">
+      <wsdl:input message="tns:ObtenerListadoNuevoLibroIvaSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoNuevoLibroIvaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorNuevoLibroIvaDescuentosSinRecibosHttpGet">
+    <wsdl:operation name="ObtenerListadoNuevoLibroIva">
+      <wsdl:input message="tns:ObtenerListadoNuevoLibroIvaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoNuevoLibroIvaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorNuevoLibroIvaDescuentosSinRecibosHttpPost">
+    <wsdl:operation name="ObtenerListadoNuevoLibroIva">
+      <wsdl:input message="tns:ObtenerListadoNuevoLibroIvaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoNuevoLibroIvaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorNuevoLibroIvaDescuentosSinRecibosSoap" type="tns:ListadorNuevoLibroIvaDescuentosSinRecibosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoNuevoLibroIva">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoNuevoLibroIva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNuevoLibroIvaDescuentosSinRecibosSoap12" type="tns:ListadorNuevoLibroIvaDescuentosSinRecibosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoNuevoLibroIva">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoNuevoLibroIva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNuevoLibroIvaDescuentosSinRecibosHttpGet" type="tns:ListadorNuevoLibroIvaDescuentosSinRecibosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoNuevoLibroIva">
+      <http:operation location="/ObtenerListadoNuevoLibroIva" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNuevoLibroIvaDescuentosSinRecibosHttpPost" type="tns:ListadorNuevoLibroIvaDescuentosSinRecibosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoNuevoLibroIva">
+      <http:operation location="/ObtenerListadoNuevoLibroIva" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorNuevoLibroIvaDescuentosSinRecibos">
+    <wsdl:port name="ListadorNuevoLibroIvaDescuentosSinRecibosSoap" binding="tns:ListadorNuevoLibroIvaDescuentosSinRecibosSoap">
+      <soap:address location="http://localhost:1390/ListadorNuevoLibroIvaDescuentosSinRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNuevoLibroIvaDescuentosSinRecibosSoap12" binding="tns:ListadorNuevoLibroIvaDescuentosSinRecibosSoap12">
+      <soap12:address location="http://localhost:1390/ListadorNuevoLibroIvaDescuentosSinRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNuevoLibroIvaDescuentosSinRecibosHttpGet" binding="tns:ListadorNuevoLibroIvaDescuentosSinRecibosHttpGet">
+      <http:address location="http://localhost:1390/ListadorNuevoLibroIvaDescuentosSinRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNuevoLibroIvaDescuentosSinRecibosHttpPost" binding="tns:ListadorNuevoLibroIvaDescuentosSinRecibosHttpPost">
+      <http:address location="http://localhost:1390/ListadorNuevoLibroIvaDescuentosSinRecibos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

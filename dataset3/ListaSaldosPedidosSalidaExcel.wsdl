@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoSaldosPedidos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fecha_sistema" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoSaldosPedidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoSaldosPedidosResult" type="tns:ArrayOfDatosSaldoPedido" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosSaldoPedido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosSaldoPedido" nillable="true" type="tns:DatosSaldoPedido" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosSaldoPedido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_pedido" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_entrega" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_entrega" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_entrega" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_articulo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_articulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="facturado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="entregado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosSaldoPedido" nillable="true" type="tns:ArrayOfDatosSaldoPedido" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoSaldosPedidosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoSaldosPedidos" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSaldosPedidosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoSaldosPedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSaldosPedidosHttpGetIn">
+    <wsdl:part name="fecha_sistema" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSaldosPedidosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSaldoPedido" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSaldosPedidosHttpPostIn">
+    <wsdl:part name="fecha_sistema" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoSaldosPedidosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSaldoPedido" />
+  </wsdl:message>
+  <wsdl:portType name="ListaSaldosPedidosSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoSaldosPedidos">
+      <wsdl:input message="tns:ObtenerListadoSaldosPedidosSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoSaldosPedidosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaSaldosPedidosSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoSaldosPedidos">
+      <wsdl:input message="tns:ObtenerListadoSaldosPedidosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoSaldosPedidosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaSaldosPedidosSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoSaldosPedidos">
+      <wsdl:input message="tns:ObtenerListadoSaldosPedidosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoSaldosPedidosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListaSaldosPedidosSalidaExcelSoap" type="tns:ListaSaldosPedidosSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoSaldosPedidos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoSaldosPedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaSaldosPedidosSalidaExcelSoap12" type="tns:ListaSaldosPedidosSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoSaldosPedidos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoSaldosPedidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaSaldosPedidosSalidaExcelHttpGet" type="tns:ListaSaldosPedidosSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoSaldosPedidos">
+      <http:operation location="/ObtenerListadoSaldosPedidos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaSaldosPedidosSalidaExcelHttpPost" type="tns:ListaSaldosPedidosSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoSaldosPedidos">
+      <http:operation location="/ObtenerListadoSaldosPedidos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListaSaldosPedidosSalidaExcel">
+    <wsdl:port name="ListaSaldosPedidosSalidaExcelSoap" binding="tns:ListaSaldosPedidosSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListaSaldosPedidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaSaldosPedidosSalidaExcelSoap12" binding="tns:ListaSaldosPedidosSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListaSaldosPedidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaSaldosPedidosSalidaExcelHttpGet" binding="tns:ListaSaldosPedidosSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListaSaldosPedidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaSaldosPedidosSalidaExcelHttpPost" binding="tns:ListaSaldosPedidosSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListaSaldosPedidosSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

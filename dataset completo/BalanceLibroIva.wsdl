@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerBalanceLibroIva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerBalanceLibroIvaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerBalanceLibroIvaResult" type="tns:ArrayOfDatosLibroIva" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosLibroIva" nillable="true" type="tns:DatosLibroIva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="facturas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="debitos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="creditos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosLibroIva" nillable="true" type="tns:ArrayOfDatosLibroIva" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerBalanceLibroIvaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceLibroIvaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceLibroIvaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceLibroIvaHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceLibroIvaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceLibroIvaHttpPostIn">
+  	<wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceLibroIvaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:portType name="BalanceLibroIvaSoap">
+    <wsdl:operation name="ObtenerBalanceLibroIva">
+      <wsdl:input message="tns:ObtenerBalanceLibroIvaSoapIn" />
+      <wsdl:output message="tns:ObtenerBalanceLibroIvaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceLibroIvaHttpGet">
+    <wsdl:operation name="ObtenerBalanceLibroIva">
+      <wsdl:input message="tns:ObtenerBalanceLibroIvaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerBalanceLibroIvaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceLibroIvaHttpPost">
+    <wsdl:operation name="ObtenerBalanceLibroIva">
+      <wsdl:input message="tns:ObtenerBalanceLibroIvaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerBalanceLibroIvaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BalanceLibroIvaSoap" type="tns:BalanceLibroIvaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceLibroIva">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceLibroIva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceLibroIvaSoap12" type="tns:BalanceLibroIvaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceLibroIva">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceLibroIva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceLibroIvaHttpGet" type="tns:BalanceLibroIvaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerBalanceLibroIva">
+      <http:operation location="/ObtenerBalanceLibroIva" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceLibroIvaHttpPost" type="tns:BalanceLibroIvaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerBalanceLibroIva">
+      <http:operation location="/ObtenerBalanceLibroIva" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BalanceLibroIva">
+    <wsdl:port name="BalanceLibroIvaSoap" binding="tns:BalanceLibroIvaSoap">
+      <soap:address location="http://localhost:1390/BalanceLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceLibroIvaSoap12" binding="tns:BalanceLibroIvaSoap12">
+      <soap12:address location="http://localhost:1390/BalanceLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceLibroIvaHttpGet" binding="tns:BalanceLibroIvaHttpGet">
+      <http:address location="http://localhost:1390/BalanceLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceLibroIvaHttpPost" binding="tns:BalanceLibroIvaHttpPost">
+      <http:address location="http://localhost:1390/BalanceLibroIva.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

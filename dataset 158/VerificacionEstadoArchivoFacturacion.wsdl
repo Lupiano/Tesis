@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="VerificarEstadoArchivoFacturacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificarEstadoArchivoFacturacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificarEstadoArchivoFacturacionResult" type="tns:DatosVerificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosVerificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="verificacionCorrecta" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosVerificacion" nillable="true" type="tns:DatosVerificacion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="VerificarEstadoArchivoFacturacionSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificarEstadoArchivoFacturacion" />
+  </wsdl:message>
+  <wsdl:message name="VerificarEstadoArchivoFacturacionSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificarEstadoArchivoFacturacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificarEstadoArchivoFacturacionHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="VerificarEstadoArchivoFacturacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosVerificacion" />
+  </wsdl:message>
+  <wsdl:message name="VerificarEstadoArchivoFacturacionHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="VerificarEstadoArchivoFacturacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosVerificacion" />
+  </wsdl:message>
+  <wsdl:portType name="VerificacionEstadoArchivoFacturacionSoap">
+    <wsdl:operation name="VerificarEstadoArchivoFacturacion">
+      <wsdl:input message="tns:VerificarEstadoArchivoFacturacionSoapIn" />
+      <wsdl:output message="tns:VerificarEstadoArchivoFacturacionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VerificacionEstadoArchivoFacturacionHttpGet">
+    <wsdl:operation name="VerificarEstadoArchivoFacturacion">
+      <wsdl:input message="tns:VerificarEstadoArchivoFacturacionHttpGetIn" />
+      <wsdl:output message="tns:VerificarEstadoArchivoFacturacionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VerificacionEstadoArchivoFacturacionHttpPost">
+    <wsdl:operation name="VerificarEstadoArchivoFacturacion">
+      <wsdl:input message="tns:VerificarEstadoArchivoFacturacionHttpPostIn" />
+      <wsdl:output message="tns:VerificarEstadoArchivoFacturacionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VerificacionEstadoArchivoFacturacionSoap" type="tns:VerificacionEstadoArchivoFacturacionSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarEstadoArchivoFacturacion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/VerificarEstadoArchivoFacturacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificacionEstadoArchivoFacturacionSoap12" type="tns:VerificacionEstadoArchivoFacturacionSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="VerificarEstadoArchivoFacturacion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/VerificarEstadoArchivoFacturacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificacionEstadoArchivoFacturacionHttpGet" type="tns:VerificacionEstadoArchivoFacturacionHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="VerificarEstadoArchivoFacturacion">
+      <http:operation location="/VerificarEstadoArchivoFacturacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VerificacionEstadoArchivoFacturacionHttpPost" type="tns:VerificacionEstadoArchivoFacturacionHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="VerificarEstadoArchivoFacturacion">
+      <http:operation location="/VerificarEstadoArchivoFacturacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VerificacionEstadoArchivoFacturacion">
+    <wsdl:port name="VerificacionEstadoArchivoFacturacionSoap" binding="tns:VerificacionEstadoArchivoFacturacionSoap">
+      <soap:address location="http://localhost:1390/VerificacionEstadoArchivoFacturacion.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificacionEstadoArchivoFacturacionSoap12" binding="tns:VerificacionEstadoArchivoFacturacionSoap12">
+      <soap12:address location="http://localhost:1390/VerificacionEstadoArchivoFacturacion.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificacionEstadoArchivoFacturacionHttpGet" binding="tns:VerificacionEstadoArchivoFacturacionHttpGet">
+      <http:address location="http://localhost:1390/VerificacionEstadoArchivoFacturacion.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VerificacionEstadoArchivoFacturacionHttpPost" binding="tns:VerificacionEstadoArchivoFacturacionHttpPost">
+      <http:address location="http://localhost:1390/VerificacionEstadoArchivoFacturacion.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

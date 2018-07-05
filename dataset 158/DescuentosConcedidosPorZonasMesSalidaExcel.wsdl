@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoDescuentos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoDescuentosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoDescuentosResult" type="tns:ArrayOfDatosDescuento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosDescuento">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosDescuento" nillable="true" type="tns:DatosDescuento" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosDescuento">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosDescuento" nillable="true" type="tns:ArrayOfDatosDescuento" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoDescuentosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDescuentos" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDescuentosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDescuentosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDescuentosHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDescuentosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDescuento" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDescuentosHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDescuentosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosDescuento" />
+  </wsdl:message>
+  <wsdl:portType name="DescuentosConcedidosPorZonasMesSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoDescuentos">
+      <wsdl:input message="tns:ObtenerListadoDescuentosSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoDescuentosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DescuentosConcedidosPorZonasMesSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoDescuentos">
+      <wsdl:input message="tns:ObtenerListadoDescuentosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoDescuentosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DescuentosConcedidosPorZonasMesSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoDescuentos">
+      <wsdl:input message="tns:ObtenerListadoDescuentosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoDescuentosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DescuentosConcedidosPorZonasMesSalidaExcelSoap" type="tns:DescuentosConcedidosPorZonasMesSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDescuentos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDescuentos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DescuentosConcedidosPorZonasMesSalidaExcelSoap12" type="tns:DescuentosConcedidosPorZonasMesSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDescuentos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDescuentos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DescuentosConcedidosPorZonasMesSalidaExcelHttpGet" type="tns:DescuentosConcedidosPorZonasMesSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoDescuentos">
+      <http:operation location="/ObtenerListadoDescuentos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DescuentosConcedidosPorZonasMesSalidaExcelHttpPost" type="tns:DescuentosConcedidosPorZonasMesSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoDescuentos">
+      <http:operation location="/ObtenerListadoDescuentos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DescuentosConcedidosPorZonasMesSalidaExcel">
+    <wsdl:port name="DescuentosConcedidosPorZonasMesSalidaExcelSoap" binding="tns:DescuentosConcedidosPorZonasMesSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/DescuentosConcedidosPorZonasMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DescuentosConcedidosPorZonasMesSalidaExcelSoap12" binding="tns:DescuentosConcedidosPorZonasMesSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/DescuentosConcedidosPorZonasMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DescuentosConcedidosPorZonasMesSalidaExcelHttpGet" binding="tns:DescuentosConcedidosPorZonasMesSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/DescuentosConcedidosPorZonasMesSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DescuentosConcedidosPorZonasMesSalidaExcelHttpPost" binding="tns:DescuentosConcedidosPorZonasMesSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/DescuentosConcedidosPorZonasMesSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

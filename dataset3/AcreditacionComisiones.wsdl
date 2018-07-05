@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AcreditarComision">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_vendedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_importe" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcreditarComisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AcreditarComisionResult" type="tns:DatosComision" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosComision">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="acreditacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosComision" nillable="true" type="tns:DatosComision" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AcreditarComisionSoapIn">
+    <wsdl:part name="parameters" element="tns:AcreditarComision" />
+  </wsdl:message>
+  <wsdl:message name="AcreditarComisionSoapOut">
+    <wsdl:part name="parameters" element="tns:AcreditarComisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AcreditarComisionHttpGetIn">
+    <wsdl:part name="codigo_vendedor" type="s:integer" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="acepta_importe" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="AcreditarComisionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosComision" />
+  </wsdl:message>
+  <wsdl:message name="AcreditarComisionHttpPostIn">
+    <wsdl:part name="codigo_vendedor" type="s:integer" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="acepta_importe" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="AcreditarComisionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosComision" />
+  </wsdl:message>
+  <wsdl:portType name="AcreditacionComisionesSoap">
+    <wsdl:operation name="AcreditarComision">
+      <wsdl:input message="tns:AcreditarComisionSoapIn" />
+      <wsdl:output message="tns:AcreditarComisionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AcreditacionComisionesHttpGet">
+    <wsdl:operation name="AcreditarComision">
+      <wsdl:input message="tns:AcreditarComisionHttpGetIn" />
+      <wsdl:output message="tns:AcreditarComisionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AcreditacionComisionesHttpPost">
+    <wsdl:operation name="AcreditarComision">
+      <wsdl:input message="tns:AcreditarComisionHttpPostIn" />
+      <wsdl:output message="tns:AcreditarComisionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AcreditacionComisionesSoap" type="tns:AcreditacionComisionesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AcreditarComision">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AcreditarComision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AcreditacionComisionesSoap12" type="tns:AcreditacionComisionesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AcreditarComision">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AcreditarComision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AcreditacionComisionesHttpGet" type="tns:AcreditacionComisionesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AcreditarComision">
+      <http:operation location="/AcreditarComision" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AcreditacionComisionesHttpPost" type="tns:AcreditacionComisionesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AcreditarComision">
+      <http:operation location="/AcreditarComision" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AcreditacionComisiones">
+    <wsdl:port name="AcreditacionComisionesSoap" binding="tns:AcreditacionComisionesSoap">
+      <soap:address location="http://localhost:1390/AcreditacionComisiones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AcreditacionComisionesSoap12" binding="tns:AcreditacionComisionesSoap12">
+      <soap12:address location="http://localhost:1390/AcreditacionComisiones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AcreditacionComisionesHttpGet" binding="tns:AcreditacionComisionesHttpGet">
+      <http:address location="http://localhost:1390/AcreditacionComisiones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AcreditacionComisionesHttpPost" binding="tns:AcreditacionComisionesHttpPost">
+      <http:address location="http://localhost:1390/AcreditacionComisiones.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

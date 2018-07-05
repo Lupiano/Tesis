@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AjustarStock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="serie_factura" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="factura" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AjustarStockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AjustarStockResult" type="tns:DatosStock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosStock">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ajusteExitoso" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosStock" nillable="true" type="tns:DatosStock" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AjustarStockSoapIn">
+    <wsdl:part name="parameters" element="tns:AjustarStock" />
+  </wsdl:message>
+  <wsdl:message name="AjustarStockSoapOut">
+    <wsdl:part name="parameters" element="tns:AjustarStockResponse" />
+  </wsdl:message>
+  <wsdl:message name="AjustarStockHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="serie_factura" type="s:string" />
+    <wsdl:part name="factura" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AjustarStockHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosStock" />
+  </wsdl:message>
+  <wsdl:message name="AjustarStockHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="serie_factura" type="s:string" />
+    <wsdl:part name="factura" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AjustarStockHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosStock" />
+  </wsdl:message>
+  <wsdl:portType name="IngresosAjustesStockSoap">
+    <wsdl:operation name="AjustarStock">
+      <wsdl:input message="tns:AjustarStockSoapIn" />
+      <wsdl:output message="tns:AjustarStockSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IngresosAjustesStockHttpGet">
+    <wsdl:operation name="AjustarStock">
+      <wsdl:input message="tns:AjustarStockHttpGetIn" />
+      <wsdl:output message="tns:AjustarStockHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IngresosAjustesStockHttpPost">
+    <wsdl:operation name="AjustarStock">
+      <wsdl:input message="tns:AjustarStockHttpPostIn" />
+      <wsdl:output message="tns:AjustarStockHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IngresosAjustesStockSoap" type="tns:IngresosAjustesStockSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AjustarStock">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AjustarStock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IngresosAjustesStockSoap12" type="tns:IngresosAjustesStockSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AjustarStock">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AjustarStock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IngresosAjustesStockHttpGet" type="tns:IngresosAjustesStockHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AjustarStock">
+      <http:operation location="/AjustarStock" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="IngresosAjustesStockHttpPost" type="tns:IngresosAjustesStockHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AjustarStock">
+      <http:operation location="/AjustarStock" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IngresosAjustesStock">
+    <wsdl:port name="IngresosAjustesStockSoap" binding="tns:IngresosAjustesStockSoap">
+      <soap:address location="http://localhost:1390/IngresosAjustesStock.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IngresosAjustesStockSoap12" binding="tns:IngresosAjustesStockSoap12">
+      <soap12:address location="http://localhost:1390/IngresosAjustesStock.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IngresosAjustesStockHttpGet" binding="tns:IngresosAjustesStockHttpGet">
+      <http:address location="http://localhost:1390/IngresosAjustesStock.asmx" />
+    </wsdl:port>
+    <wsdl:port name="IngresosAjustesStockHttpPost" binding="tns:IngresosAjustesStockHttpPost">
+      <http:address location="http://localhost:1390/IngresosAjustesStock.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

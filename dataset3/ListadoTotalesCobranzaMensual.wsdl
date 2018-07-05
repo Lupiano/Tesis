@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoTotalesCobranzaMensual">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoTotalesCobranzaMensualResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoTotalesCobranzaMensualResult" type="tns:ArrayOfDatosCobranzaMensual" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCobranzaMensual">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCobranzaMensual" nillable="true" type="tns:DatosCobranzaMensual" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCobranzaMensual">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="total" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCobranzaMensual" nillable="true" type="tns:ArrayOfDatosCobranzaMensual" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoTotalesCobranzaMensualSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTotalesCobranzaMensual" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesCobranzaMensualSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTotalesCobranzaMensualResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesCobranzaMensualHttpGetIn">
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesCobranzaMensualHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCobranzaMensual" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesCobranzaMensualHttpPostIn">
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesCobranzaMensualHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCobranzaMensual" />
+  </wsdl:message>
+  <wsdl:portType name="ListadoTotalesCobranzaMensualSoap">
+    <wsdl:operation name="ObtenerListadoTotalesCobranzaMensual">
+      <wsdl:input message="tns:ObtenerListadoTotalesCobranzaMensualSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoTotalesCobranzaMensualSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoTotalesCobranzaMensualHttpGet">
+    <wsdl:operation name="ObtenerListadoTotalesCobranzaMensual">
+      <wsdl:input message="tns:ObtenerListadoTotalesCobranzaMensualHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoTotalesCobranzaMensualHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoTotalesCobranzaMensualHttpPost">
+    <wsdl:operation name="ObtenerListadoTotalesCobranzaMensual">
+      <wsdl:input message="tns:ObtenerListadoTotalesCobranzaMensualHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoTotalesCobranzaMensualHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadoTotalesCobranzaMensualSoap" type="tns:ListadoTotalesCobranzaMensualSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTotalesCobranzaMensual">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTotalesCobranzaMensual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoTotalesCobranzaMensualSoap12" type="tns:ListadoTotalesCobranzaMensualSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTotalesCobranzaMensual">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTotalesCobranzaMensual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoTotalesCobranzaMensualHttpGet" type="tns:ListadoTotalesCobranzaMensualHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoTotalesCobranzaMensual">
+      <http:operation location="/ObtenerListadoTotalesCobranzaMensual" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoTotalesCobranzaMensualHttpPost" type="tns:ListadoTotalesCobranzaMensualHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoTotalesCobranzaMensual">
+      <http:operation location="/ObtenerListadoTotalesCobranzaMensual" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadoTotalesCobranzaMensual">
+    <wsdl:port name="ListadoTotalesCobranzaMensualSoap" binding="tns:ListadoTotalesCobranzaMensualSoap">
+      <soap:address location="http://localhost:1390/ListadoTotalesCobranzaMensual.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoTotalesCobranzaMensualSoap12" binding="tns:ListadoTotalesCobranzaMensualSoap12">
+      <soap12:address location="http://localhost:1390/ListadoTotalesCobranzaMensual.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoTotalesCobranzaMensualHttpGet" binding="tns:ListadoTotalesCobranzaMensualHttpGet">
+      <http:address location="http://localhost:1390/ListadoTotalesCobranzaMensual.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoTotalesCobranzaMensualHttpPost" binding="tns:ListadoTotalesCobranzaMensualHttpPost">
+      <http:address location="http://localhost:1390/ListadoTotalesCobranzaMensual.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

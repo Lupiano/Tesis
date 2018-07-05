@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoTotalesLibroIva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wempresa" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_mes_anio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoTotalesLibroIvaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoTotalesLibroIvaResult" type="tns:ArrayOfDatosLibroIva" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosLibroIva" nillable="true" type="tns:DatosLibroIva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="capitulo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="sub_capitulo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="rubro" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="sub_rubro" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="denominacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_factura" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="letra_factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_factura" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="imp_bruto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="imp_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="exento_linea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="no_inscripto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_retenido" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="total" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosLibroIva" nillable="true" type="tns:ArrayOfDatosLibroIva" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoTotalesLibroIvaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTotalesLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesLibroIvaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTotalesLibroIvaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesLibroIvaHttpGetIn">
+    <wsdl:part name="wempresa" type="s:short" />
+    <wsdl:part name="acepta_mes_anio" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesLibroIvaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesLibroIvaHttpPostIn">
+    <wsdl:part name="wempresa" type="s:short" />
+    <wsdl:part name="acepta_mes_anio" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTotalesLibroIvaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosLibroIva" />
+  </wsdl:message>
+  <wsdl:portType name="ListadoTotalesLibroIvaComprasSoap">
+    <wsdl:operation name="ObtenerListadoTotalesLibroIva">
+      <wsdl:input message="tns:ObtenerListadoTotalesLibroIvaSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoTotalesLibroIvaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoTotalesLibroIvaComprasHttpGet">
+    <wsdl:operation name="ObtenerListadoTotalesLibroIva">
+      <wsdl:input message="tns:ObtenerListadoTotalesLibroIvaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoTotalesLibroIvaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoTotalesLibroIvaComprasHttpPost">
+    <wsdl:operation name="ObtenerListadoTotalesLibroIva">
+      <wsdl:input message="tns:ObtenerListadoTotalesLibroIvaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoTotalesLibroIvaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadoTotalesLibroIvaComprasSoap" type="tns:ListadoTotalesLibroIvaComprasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTotalesLibroIva">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTotalesLibroIva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoTotalesLibroIvaComprasSoap12" type="tns:ListadoTotalesLibroIvaComprasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTotalesLibroIva">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTotalesLibroIva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoTotalesLibroIvaComprasHttpGet" type="tns:ListadoTotalesLibroIvaComprasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoTotalesLibroIva">
+      <http:operation location="/ObtenerListadoTotalesLibroIva" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoTotalesLibroIvaComprasHttpPost" type="tns:ListadoTotalesLibroIvaComprasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoTotalesLibroIva">
+      <http:operation location="/ObtenerListadoTotalesLibroIva" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadoTotalesLibroIvaCompras">
+    <wsdl:port name="ListadoTotalesLibroIvaComprasSoap" binding="tns:ListadoTotalesLibroIvaComprasSoap">
+      <soap:address location="http://localhost:1390/ListadoTotalesLibroIvaCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoTotalesLibroIvaComprasSoap12" binding="tns:ListadoTotalesLibroIvaComprasSoap12">
+      <soap12:address location="http://localhost:1390/ListadoTotalesLibroIvaCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoTotalesLibroIvaComprasHttpGet" binding="tns:ListadoTotalesLibroIvaComprasHttpGet">
+      <http:address location="http://localhost:1390/ListadoTotalesLibroIvaCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoTotalesLibroIvaComprasHttpPost" binding="tns:ListadoTotalesLibroIvaComprasHttpPost">
+      <http:address location="http://localhost:1390/ListadoTotalesLibroIvaCompras.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

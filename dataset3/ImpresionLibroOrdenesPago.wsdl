@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoLibroOrdenesPago">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoLibroOrdenesPagoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoLibroOrdenesPagoResult" type="tns:ArrayOfDatosOrdenPago" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosOrdenPago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosOrdenPago" nillable="true" type="tns:DatosOrdenPago" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosOrdenPago">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_titular" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_titular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_titular" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_orden" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="retencion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_calculo_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="porciento_exencion_iva" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="fecha_exencion_iva" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosOrdenPago" nillable="true" type="tns:ArrayOfDatosOrdenPago" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoLibroOrdenesPagoSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroOrdenesPago" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroOrdenesPagoSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroOrdenesPagoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroOrdenesPagoHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroOrdenesPagoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosOrdenPago" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroOrdenesPagoHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroOrdenesPagoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosOrdenPago" />
+  </wsdl:message>
+  <wsdl:portType name="ImpresionLibroOrdenesPagoSoap">
+    <wsdl:operation name="ObtenerListadoLibroOrdenesPago">
+      <wsdl:input message="tns:ObtenerListadoLibroOrdenesPagoSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroOrdenesPagoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionLibroOrdenesPagoHttpGet">
+    <wsdl:operation name="ObtenerListadoLibroOrdenesPago">
+      <wsdl:input message="tns:ObtenerListadoLibroOrdenesPagoHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroOrdenesPagoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionLibroOrdenesPagoHttpPost">
+    <wsdl:operation name="ObtenerListadoLibroOrdenesPago">
+      <wsdl:input message="tns:ObtenerListadoLibroOrdenesPagoHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroOrdenesPagoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImpresionLibroOrdenesPagoSoap" type="tns:ImpresionLibroOrdenesPagoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroOrdenesPago">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroOrdenesPago" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionLibroOrdenesPagoSoap12" type="tns:ImpresionLibroOrdenesPagoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroOrdenesPago">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroOrdenesPago" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionLibroOrdenesPagoHttpGet" type="tns:ImpresionLibroOrdenesPagoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoLibroOrdenesPago">
+      <http:operation location="/ObtenerListadoLibroOrdenesPago" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionLibroOrdenesPagoHttpPost" type="tns:ImpresionLibroOrdenesPagoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoLibroOrdenesPago">
+      <http:operation location="/ObtenerListadoLibroOrdenesPago" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ImpresionLibroOrdenesPago">
+    <wsdl:port name="ImpresionLibroOrdenesPagoSoap" binding="tns:ImpresionLibroOrdenesPagoSoap">
+      <soap:address location="http://localhost:1390/ImpresionLibroOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionLibroOrdenesPagoSoap12" binding="tns:ImpresionLibroOrdenesPagoSoap12">
+      <soap12:address location="http://localhost:1390/ImpresionLibroOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionLibroOrdenesPagoHttpGet" binding="tns:ImpresionLibroOrdenesPagoHttpGet">
+      <http:address location="http://localhost:1390/ImpresionLibroOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionLibroOrdenesPagoHttpPost" binding="tns:ImpresionLibroOrdenesPagoHttpPost">
+      <http:address location="http://localhost:1390/ImpresionLibroOrdenesPago.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

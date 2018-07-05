@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoPreciosPromedios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cosecha" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoPreciosPromediosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoPreciosPromediosResult" type="tns:ArrayOfDatosPrecioPromedio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosPrecioPromedio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosPrecioPromedio" nillable="true" type="tns:DatosPrecioPromedio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosPrecioPromedio">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="kilos_comprados" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="precio_promedio" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosPrecioPromedio" nillable="true" type="tns:ArrayOfDatosPrecioPromedio" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoPreciosPromediosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoPreciosPromedios" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPreciosPromediosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoPreciosPromediosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPreciosPromediosHttpGetIn">
+    <wsdl:part name="cosecha" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPreciosPromediosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosPrecioPromedio" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPreciosPromediosHttpPostIn">
+    <wsdl:part name="cosecha" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPreciosPromediosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosPrecioPromedio" />
+  </wsdl:message>
+  <wsdl:portType name="ImpresorPreciosPromediosTrigoSoap">
+    <wsdl:operation name="ObtenerListadoPreciosPromedios">
+      <wsdl:input message="tns:ObtenerListadoPreciosPromediosSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoPreciosPromediosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresorPreciosPromediosTrigoHttpGet">
+    <wsdl:operation name="ObtenerListadoPreciosPromedios">
+      <wsdl:input message="tns:ObtenerListadoPreciosPromediosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoPreciosPromediosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresorPreciosPromediosTrigoHttpPost">
+    <wsdl:operation name="ObtenerListadoPreciosPromedios">
+      <wsdl:input message="tns:ObtenerListadoPreciosPromediosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoPreciosPromediosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImpresorPreciosPromediosTrigoSoap" type="tns:ImpresorPreciosPromediosTrigoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoPreciosPromedios">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoPreciosPromedios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresorPreciosPromediosTrigoSoap12" type="tns:ImpresorPreciosPromediosTrigoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoPreciosPromedios">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoPreciosPromedios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresorPreciosPromediosTrigoHttpGet" type="tns:ImpresorPreciosPromediosTrigoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoPreciosPromedios">
+      <http:operation location="/ObtenerListadoPreciosPromedios" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresorPreciosPromediosTrigoHttpPost" type="tns:ImpresorPreciosPromediosTrigoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoPreciosPromedios">
+      <http:operation location="/ObtenerListadoPreciosPromedios" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ImpresorPreciosPromediosTrigo">
+    <wsdl:port name="ImpresorPreciosPromediosTrigoSoap" binding="tns:ImpresorPreciosPromediosTrigoSoap">
+      <soap:address location="http://localhost:1390/ImpresorPreciosPromediosTrigo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresorPreciosPromediosTrigoSoap12" binding="tns:ImpresorPreciosPromediosTrigoSoap12">
+      <soap12:address location="http://localhost:1390/ImpresorPreciosPromediosTrigo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresorPreciosPromediosTrigoHttpGet" binding="tns:ImpresorPreciosPromediosTrigoHttpGet">
+      <http:address location="http://localhost:1390/ImpresorPreciosPromediosTrigo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresorPreciosPromediosTrigoHttpPost" binding="tns:ImpresorPreciosPromediosTrigoHttpPost">
+      <http:address location="http://localhost:1390/ImpresorPreciosPromediosTrigo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

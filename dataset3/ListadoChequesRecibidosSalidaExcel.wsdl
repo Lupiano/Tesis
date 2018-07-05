@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoChequesRecibidosSalidaExcel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_desde" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_hasta" type="s:integer" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cliente_desde" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="cliente_hasta" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoChequesRecibidosSalidaExcelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoChequesRecibidosSalidaExcelResult" type="tns:ArrayOfDatosChequesRecibidos" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosChequesRecibidos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosChequesRecibidos" nillable="true" type="tns:DatosChequesRecibidos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosChequesRecibidos">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="lugar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="denominacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_firmante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tenedor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosChequesRecibidos" nillable="true" type="tns:ArrayOfDatosChequesRecibidos" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoChequesRecibidosSalidaExcelSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoChequesRecibidosSalidaExcel" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoChequesRecibidosSalidaExcelSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoChequesRecibidosSalidaExcelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoChequesRecibidosSalidaExcelHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero_desde" type="s:integer" />
+    <wsdl:part name="numero_hasta" type="s:integer" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="cliente_desde" type="s:integer" />
+    <wsdl:part name="cliente_hasta" type="s:integer" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoChequesRecibidosSalidaExcelHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosChequesRecibidos" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoChequesRecibidosSalidaExcelHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="numero_desde" type="s:integer" />
+    <wsdl:part name="numero_hasta" type="s:integer" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="cliente_desde" type="s:integer" />
+    <wsdl:part name="cliente_hasta" type="s:integer" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoChequesRecibidosSalidaExcelHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosChequesRecibidos" />
+  </wsdl:message>
+  <wsdl:portType name="ListadoChequesRecibidosSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoChequesRecibidosSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoChequesRecibidosSalidaExcelSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoChequesRecibidosSalidaExcelSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoChequesRecibidosSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoChequesRecibidosSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoChequesRecibidosSalidaExcelHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoChequesRecibidosSalidaExcelHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadoChequesRecibidosSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoChequesRecibidosSalidaExcel">
+      <wsdl:input message="tns:ObtenerListadoChequesRecibidosSalidaExcelHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoChequesRecibidosSalidaExcelHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadoChequesRecibidosSalidaExcelSoap" type="tns:ListadoChequesRecibidosSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoChequesRecibidosSalidaExcel">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoChequesRecibidosSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoChequesRecibidosSalidaExcelSoap12" type="tns:ListadoChequesRecibidosSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoChequesRecibidosSalidaExcel">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoChequesRecibidosSalidaExcel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoChequesRecibidosSalidaExcelHttpGet" type="tns:ListadoChequesRecibidosSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoChequesRecibidosSalidaExcel">
+      <http:operation location="/ObtenerListadoChequesRecibidosSalidaExcel" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadoChequesRecibidosSalidaExcelHttpPost" type="tns:ListadoChequesRecibidosSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoChequesRecibidosSalidaExcel">
+      <http:operation location="/ObtenerListadoChequesRecibidosSalidaExcel" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadoChequesRecibidosSalidaExcel">
+    <wsdl:port name="ListadoChequesRecibidosSalidaExcelSoap" binding="tns:ListadoChequesRecibidosSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListadoChequesRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoChequesRecibidosSalidaExcelSoap12" binding="tns:ListadoChequesRecibidosSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListadoChequesRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoChequesRecibidosSalidaExcelHttpGet" binding="tns:ListadoChequesRecibidosSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListadoChequesRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadoChequesRecibidosSalidaExcelHttpPost" binding="tns:ListadoChequesRecibidosSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListadoChequesRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="EmitirOrdenPagoYComprobanteRetencion">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="1" maxOccurs="1" name="tipo" type="s:short" />
+          	<s:element minOccurs="1" maxOccurs="1" name="codigo" type="s:short" />
+          	<s:element minOccurs="1" maxOccurs="1" name="tipo_calculo" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_declaracion" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_declaracion" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="sin_personal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe_retenido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="retencion_ganancias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="neto_ganancias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="retencion_iva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="retencion_suss" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago_anterior" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago_efectivo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pago_cheques_terceros" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EmitirOrdenPagoYComprobanteRetencionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmitirOrdenPagoYComprobanteRetencionResult" type="tns:DatosEmision" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosEmision">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_beneficiario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="concepto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_neto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="importe_iva" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="comentario_iva" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="importe_bruto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="importe_ganancias" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="comentario_ganancias" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="importe_total_retenciones" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="importe_anterior" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="detalles_propios" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="importe_propios" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="total_pagado" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pagos_acumulados" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="retenciones" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_retencion" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="porcentaje_exento" type="s:float" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosEmision" nillable="true" type="tns:DatosEmision" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="EmitirOrdenPagoYComprobanteRetencionSoapIn">
+    <wsdl:part name="parameters" element="tns:EmitirOrdenPagoYComprobanteRetencion" />
+  </wsdl:message>
+  <wsdl:message name="EmitirOrdenPagoYComprobanteRetencionSoapOut">
+    <wsdl:part name="parameters" element="tns:EmitirOrdenPagoYComprobanteRetencionResponse" />
+  </wsdl:message>
+  <wsdl:message name="EmitirOrdenPagoYComprobanteRetencionHttpGetIn">
+    <wsdl:part name="tipo" type="s:short" />
+    <wsdl:part name="codigo" type="s:short" />
+    <wsdl:part name="tipo_calculo" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="mes_declaracion" type="s:short" />
+    <wsdl:part name="anio_declaracion" type="s:short" />
+    <wsdl:part name="sin_personal" type="s:short" />
+    <wsdl:part name="importe_retenido" type="s:string" />
+    <wsdl:part name="retencion_ganancias" type="s:string" />
+    <wsdl:part name="neto_ganancias" type="s:string" />
+    <wsdl:part name="retencion_iva" type="s:string" />
+    <wsdl:part name="retencion_suss" type="s:string" />
+    <wsdl:part name="pago_anterior" type="s:string" />
+    <wsdl:part name="pago_efectivo" type="s:string" />
+    <wsdl:part name="pago_cheques_terceros" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EmitirOrdenPagoYComprobanteRetencionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosEmision" />
+  </wsdl:message>
+  <wsdl:message name="EmitirOrdenPagoYComprobanteRetencionHttpPostIn">
+    <wsdl:part name="tipo" type="s:short" />
+    <wsdl:part name="codigo" type="s:short" />
+    <wsdl:part name="tipo_calculo" type="s:short" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="mes_declaracion" type="s:short" />
+    <wsdl:part name="anio_declaracion" type="s:short" />
+    <wsdl:part name="sin_personal" type="s:short" />
+    <wsdl:part name="importe_retenido" type="s:string" />
+    <wsdl:part name="retencion_ganancias" type="s:string" />
+    <wsdl:part name="neto_ganancias" type="s:string" />
+    <wsdl:part name="retencion_iva" type="s:string" />
+    <wsdl:part name="retencion_suss" type="s:string" />
+    <wsdl:part name="pago_anterior" type="s:string" />
+    <wsdl:part name="pago_efectivo" type="s:string" />
+    <wsdl:part name="pago_cheques_terceros" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EmitirOrdenPagoYComprobanteRetencionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosEmision" />
+  </wsdl:message>
+  <wsdl:portType name="EmisionOrdenesPagoYComprobantesRetencionesSoap">
+    <wsdl:operation name="EmitirOrdenPagoYComprobanteRetencion">
+      <wsdl:input message="tns:EmitirOrdenPagoYComprobanteRetencionSoapIn" />
+      <wsdl:output message="tns:EmitirOrdenPagoYComprobanteRetencionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="EmisionOrdenesPagoYComprobantesRetencionesHttpGet">
+    <wsdl:operation name="EmitirOrdenPagoYComprobanteRetencion">
+      <wsdl:input message="tns:EmitirOrdenPagoYComprobanteRetencionHttpGetIn" />
+      <wsdl:output message="tns:EmitirOrdenPagoYComprobanteRetencionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="EmisionOrdenesPagoYComprobantesRetencionesHttpPost">
+    <wsdl:operation name="EmitirOrdenPagoYComprobanteRetencion">
+      <wsdl:input message="tns:EmitirOrdenPagoYComprobanteRetencionHttpPostIn" />
+      <wsdl:output message="tns:EmitirOrdenPagoYComprobanteRetencionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmisionOrdenesPagoYComprobantesRetencionesSoap" type="tns:EmisionOrdenesPagoYComprobantesRetencionesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EmitirOrdenPagoYComprobanteRetencion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/EmitirOrdenPagoYComprobanteRetencion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmisionOrdenesPagoYComprobantesRetencionesSoap12" type="tns:EmisionOrdenesPagoYComprobantesRetencionesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EmitirOrdenPagoYComprobanteRetencion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/EmitirOrdenPagoYComprobanteRetencion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmisionOrdenesPagoYComprobantesRetencionesHttpGet" type="tns:EmisionOrdenesPagoYComprobantesRetencionesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="EmitirOrdenPagoYComprobanteRetencion">
+      <http:operation location="/EmitirOrdenPagoYComprobanteRetencion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EmisionOrdenesPagoYComprobantesRetencionesHttpPost" type="tns:EmisionOrdenesPagoYComprobantesRetencionesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="EmitirOrdenPagoYComprobanteRetencion">
+      <http:operation location="/EmitirOrdenPagoYComprobanteRetencion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmisionOrdenesPagoYComprobantesRetenciones">
+    <wsdl:port name="EmisionOrdenesPagoYComprobantesRetencionesSoap" binding="tns:EmisionOrdenesPagoYComprobantesRetencionesSoap">
+      <soap:address location="http://localhost:1390/EmisionOrdenesPagoYComprobantesRetenciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmisionOrdenesPagoYComprobantesRetencionesSoap12" binding="tns:EmisionOrdenesPagoYComprobantesRetencionesSoap12">
+      <soap12:address location="http://localhost:1390/EmisionOrdenesPagoYComprobantesRetenciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmisionOrdenesPagoYComprobantesRetencionesHttpGet" binding="tns:EmisionOrdenesPagoYComprobantesRetencionesHttpGet">
+      <http:address location="http://localhost:1390/EmisionOrdenesPagoYComprobantesRetenciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="EmisionOrdenesPagoYComprobantesRetencionesHttpPost" binding="tns:EmisionOrdenesPagoYComprobantesRetencionesHttpPost">
+      <http:address location="http://localhost:1390/EmisionOrdenesPagoYComprobantesRetenciones.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

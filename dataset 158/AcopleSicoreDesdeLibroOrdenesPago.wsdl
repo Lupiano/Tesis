@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AcoplarASicore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AcoplarASicoreResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AcoplarASicoreResult" type="tns:DatosAcopleASicore" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAcopleASicore">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="sucursal_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_comprobante" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_regimen" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_impuesto" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_regimen" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_operacion" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="base_calculo" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_retencion" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_retencion" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_retencion" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_condicion" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="retencion_practicada" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="retenciones" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="porcentaje_exclusion" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_documento_retenido" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAcopleASicore" nillable="true" type="tns:DatosAcopleASicore" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AcoplarASicoreSoapIn">
+    <wsdl:part name="parameters" element="tns:AcoplarASicore" />
+  </wsdl:message>
+  <wsdl:message name="AcoplarASicoreSoapOut">
+    <wsdl:part name="parameters" element="tns:AcoplarASicoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="AcoplarASicoreHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AcoplarASicoreHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAcopleASicore" />
+  </wsdl:message>
+  <wsdl:message name="AcoplarASicoreHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AcoplarASicoreHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAcopleASicore" />
+  </wsdl:message>
+  <wsdl:portType name="AcopleSicoreDesdeLibroOrdenesPagoSoap">
+    <wsdl:operation name="AcoplarASicore">
+      <wsdl:input message="tns:AcoplarASicoreSoapIn" />
+      <wsdl:output message="tns:AcoplarASicoreSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AcopleSicoreDesdeLibroOrdenesPagoHttpGet">
+    <wsdl:operation name="AcoplarASicore">
+      <wsdl:input message="tns:AcoplarASicoreHttpGetIn" />
+      <wsdl:output message="tns:AcoplarASicoreHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AcopleSicoreDesdeLibroOrdenesPagoHttpPost">
+    <wsdl:operation name="AcoplarASicore">
+      <wsdl:input message="tns:AcoplarASicoreHttpPostIn" />
+      <wsdl:output message="tns:AcoplarASicoreHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AcopleSicoreDesdeLibroOrdenesPagoSoap" type="tns:AcopleSicoreDesdeLibroOrdenesPagoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AcoplarASicore">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AcoplarASicore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AcopleSicoreDesdeLibroOrdenesPagoSoap12" type="tns:AcopleSicoreDesdeLibroOrdenesPagoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AcoplarASicore">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AcoplarASicore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AcopleSicoreDesdeLibroOrdenesPagoHttpGet" type="tns:AcopleSicoreDesdeLibroOrdenesPagoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AcoplarASicore">
+      <http:operation location="/AcoplarASicore" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AcopleSicoreDesdeLibroOrdenesPagoHttpPost" type="tns:AcopleSicoreDesdeLibroOrdenesPagoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AcoplarASicore">
+      <http:operation location="/AcoplarASicore" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AcopleSicoreDesdeLibroOrdenesPago">
+    <wsdl:port name="AcopleSicoreDesdeLibroOrdenesPagoSoap" binding="tns:AcopleSicoreDesdeLibroOrdenesPagoSoap">
+      <soap:address location="http://localhost:1390/AcopleSicoreDesdeLibroOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AcopleSicoreDesdeLibroOrdenesPagoSoap12" binding="tns:AcopleSicoreDesdeLibroOrdenesPagoSoap12">
+      <soap12:address location="http://localhost:1390/AcopleSicoreDesdeLibroOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AcopleSicoreDesdeLibroOrdenesPagoHttpGet" binding="tns:AcopleSicoreDesdeLibroOrdenesPagoHttpGet">
+      <http:address location="http://localhost:1390/AcopleSicoreDesdeLibroOrdenesPago.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AcopleSicoreDesdeLibroOrdenesPagoHttpPost" binding="tns:AcopleSicoreDesdeLibroOrdenesPagoHttpPost">
+      <http:address location="http://localhost:1390/AcopleSicoreDesdeLibroOrdenesPago.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

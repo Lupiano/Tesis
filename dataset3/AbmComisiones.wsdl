@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaComision">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="indice_comisiones" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="acepta_comision" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaComisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaComisionResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaComisionSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaComision" />
+  </wsdl:message>
+  <wsdl:message name="AltaComisionSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaComisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaComisionHttpGetIn">
+    <wsdl:part name="indice_comisiones" type="s:short" />
+    <wsdl:part name="acepta_comision" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="AltaComisionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaComisionHttpPostIn">
+    <wsdl:part name="indice_comisiones" type="s:short" />
+    <wsdl:part name="acepta_comision" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="AltaComisionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:portType name="AbmComisionesSoap">
+    <wsdl:operation name="AltaComision">
+      <wsdl:input message="tns:AltaComisionSoapIn" />
+      <wsdl:output message="tns:AltaComisionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmComisionesHttpGet">
+    <wsdl:operation name="AltaComision">
+      <wsdl:input message="tns:AltaComisionHttpGetIn" />
+      <wsdl:output message="tns:AltaComisionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmComisionesHttpPost">
+    <wsdl:operation name="AltaComision">
+      <wsdl:input message="tns:AltaComisionHttpPostIn" />
+      <wsdl:output message="tns:AltaComisionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmComisionesSoap" type="tns:AbmComisionesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaComision">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaComision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmComisionesSoap12" type="tns:AbmComisionesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaComision">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaComision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmComisionesHttpGet" type="tns:AbmComisionesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaComision">
+      <http:operation location="/AltaComision" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmComisionesHttpPost" type="tns:AbmComisionesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaComision">
+      <http:operation location="/AltaComision" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmComisiones">
+    <wsdl:port name="AbmComisionesSoap" binding="tns:AbmComisionesSoap">
+      <soap:address location="http://localhost:1390/AbmComisiones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmComisionesSoap12" binding="tns:AbmComisionesSoap12">
+      <soap12:address location="http://localhost:1390/AbmComisiones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmComisionesHttpGet" binding="tns:AbmComisionesHttpGet">
+      <http:address location="http://localhost:1390/AbmComisiones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmComisionesHttpPost" binding="tns:AbmComisionesHttpPost">
+      <http:address location="http://localhost:1390/AbmComisiones.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

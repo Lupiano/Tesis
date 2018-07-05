@@ -1,9 +1,13 @@
 package org.clusterer.strategy;
 
-import org.clusterer.app.XMeans;
+import org.clusterer.distance.JaccardDistance;
 
 import weka.clusterers.EM;
 import weka.clusterers.SimpleKMeans;
+import weka.clusterers.XMeans;
+//import org.clusterer.app.XMeans;
+import weka.core.DistanceFunction;
+import weka.clusterers.Cobweb;
 
 
 public class StrategyConstructor
@@ -28,10 +32,17 @@ public class StrategyConstructor
 			case "xmeans":
 			{
 				final XMeans xmeans = new XMeans();
-				xmeans.setMaxNumClusters(32);
-				xmeans.setMinNumClusters(32);
-				strategy = new KmeansStrategy();
+				xmeans.setMinNumClusters(1);
+				xmeans.setMaxNumClusters(150);
+				xmeans.setMaxIterations(10000);
+				
+				DistanceFunction jaccard = new JaccardDistance();
+				xmeans.setDistanceF(jaccard);
+				
+				strategy = new XmeansStrategy();
 				strategy.setClusterer(xmeans);
+				
+				
 				return strategy;
 			}
 			case "em":
@@ -40,6 +51,13 @@ public class StrategyConstructor
 				em.setNumClusters(numberCluster);
 				strategy = new EMStrategy();
 				strategy.setClusterer(em);
+				return strategy;
+			}
+			case "cobweb":
+			{
+				final Cobweb cobweb = new Cobweb();
+				strategy = new XmeansStrategy();
+				strategy.setClusterer(cobweb);
 				return strategy;
 			}
 			default:

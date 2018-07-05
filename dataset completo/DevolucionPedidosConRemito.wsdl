@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="DevolverPedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_pedido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="factura_envases" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta_bolsas" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_serie_factura" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_factura" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_remito" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="autorizo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="patente_camion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="patente_acoplado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="empresa_transportista" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="conductor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="registro_conductor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DevolverPedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DevolverPedidoResult" type="tns:DatosDevolucion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosDevolucion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_entrega" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_entrega" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_entrega" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="pendiente_factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pendiente_entrega" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ejemplar" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_remito" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_remito" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_pedido" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_direccion_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="direccion_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_postal_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_cantidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="precio" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="texto_condiciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="descuento" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="patente_camion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="patente_acoplado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="empresa_transportista" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="conductor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="registro_conductor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_cantidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kilos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_kilos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosDevolucion" nillable="true" type="tns:DatosDevolucion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DevolverPedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:DevolverPedido" />
+  </wsdl:message>
+  <wsdl:message name="DevolverPedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:DevolverPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DevolverPedidoHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="acepta_pedido" type="s:string" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="factura_envases" type="s:short" />
+    <wsdl:part name="cuenta_bolsas" type="s:short" />
+    <wsdl:part name="acepta_serie_factura" type="s:string" />
+    <wsdl:part name="acepta_factura" type="s:integer" />
+    <wsdl:part name="acepta_remito" type="s:short" />
+    <wsdl:part name="autorizo" type="s:short" />
+    <wsdl:part name="patente_camion" type="s:string" />
+    <wsdl:part name="patente_acoplado" type="s:string" />
+    <wsdl:part name="empresa_transportista" type="s:string" />
+    <wsdl:part name="conductor" type="s:string" />
+    <wsdl:part name="registro_conductor" type="s:string" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="DevolverPedidoHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosDevolucion" />
+  </wsdl:message>
+  <wsdl:message name="DevolverPedidoHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="acepta_pedido" type="s:string" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="factura_envases" type="s:short" />
+    <wsdl:part name="cuenta_bolsas" type="s:short" />
+    <wsdl:part name="acepta_serie_factura" type="s:string" />
+    <wsdl:part name="acepta_factura" type="s:integer" />
+    <wsdl:part name="acepta_remito" type="s:short" />
+    <wsdl:part name="autorizo" type="s:short" />
+    <wsdl:part name="patente_camion" type="s:string" />
+    <wsdl:part name="patente_acoplado" type="s:string" />
+    <wsdl:part name="empresa_transportista" type="s:string" />
+    <wsdl:part name="conductor" type="s:string" />
+    <wsdl:part name="registro_conductor" type="s:string" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="DevolverPedidoHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosDevolucion" />
+  </wsdl:message>
+  <wsdl:portType name="DevolucionPedidosConRemitoSoap">
+    <wsdl:operation name="DevolverPedido">
+      <wsdl:input message="tns:DevolverPedidoSoapIn" />
+      <wsdl:output message="tns:DevolverPedidoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DevolucionPedidosConRemitoHttpGet">
+    <wsdl:operation name="DevolverPedido">
+      <wsdl:input message="tns:DevolverPedidoHttpGetIn" />
+      <wsdl:output message="tns:DevolverPedidoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DevolucionPedidosConRemitoHttpPost">
+    <wsdl:operation name="DevolverPedido">
+      <wsdl:input message="tns:DevolverPedidoHttpPostIn" />
+      <wsdl:output message="tns:DevolverPedidoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DevolucionPedidosConRemitoSoap" type="tns:DevolucionPedidosConRemitoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DevolverPedido">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/DevolverPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DevolucionPedidosConRemitoSoap12" type="tns:DevolucionPedidosConRemitoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DevolverPedido">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/DevolverPedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DevolucionPedidosConRemitoHttpGet" type="tns:DevolucionPedidosConRemitoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="DevolverPedido">
+      <http:operation location="/DevolverPedido" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DevolucionPedidosConRemitoHttpPost" type="tns:DevolucionPedidosConRemitoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="DevolverPedido">
+      <http:operation location="/DevolverPedido" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DevolucionPedidosConRemito">
+    <wsdl:port name="DevolucionPedidosConRemitoSoap" binding="tns:DevolucionPedidosConRemitoSoap">
+      <soap:address location="http://localhost:1390/DevolucionPedidosConRemito.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DevolucionPedidosConRemitoSoap12" binding="tns:DevolucionPedidosConRemitoSoap12">
+      <soap12:address location="http://localhost:1390/DevolucionPedidosConRemito.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DevolucionPedidosConRemitoHttpGet" binding="tns:DevolucionPedidosConRemitoHttpGet">
+      <http:address location="http://localhost:1390/DevolucionPedidosConRemito.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DevolucionPedidosConRemitoHttpPost" binding="tns:DevolucionPedidosConRemitoHttpPost">
+      <http:address location="http://localhost:1390/DevolucionPedidosConRemito.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

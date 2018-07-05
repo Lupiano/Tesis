@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoLibroComprasPorImputacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wempresa" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_mes_anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoLibroComprasPorImputacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoLibroComprasPorImputacionResult" type="tns:ArrayOfDatosCompraPorImputacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCompraPorImputacion">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCompraPorImputacion" nillable="true" type="tns:DatosCompraPorImputacion" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCompraPorImputacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="capitulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sub_capitulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="rubro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="sub_rubro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="denominacion_cuenta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_factura" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="letra_factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_factura" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="total" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCompraPorImputacion" nillable="true" type="tns:ArrayOfDatosCompraPorImputacion" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoLibroComprasPorImputacionSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroComprasPorImputacion" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroComprasPorImputacionSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroComprasPorImputacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroComprasPorImputacionHttpGetIn">
+    <wsdl:part name="wempresa" type="s:short" />
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="acepta_mes_anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroComprasPorImputacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCompraPorImputacion" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroComprasPorImputacionHttpPostIn">
+    <wsdl:part name="wempresa" type="s:short" />
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="acepta_mes_anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroComprasPorImputacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCompraPorImputacion" />
+  </wsdl:message>
+  <wsdl:portType name="LibroComprasImputacionAPedidoPorPantallaSoap">
+    <wsdl:operation name="ObtenerListadoLibroComprasPorImputacion">
+      <wsdl:input message="tns:ObtenerListadoLibroComprasPorImputacionSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroComprasPorImputacionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LibroComprasImputacionAPedidoPorPantallaHttpGet">
+    <wsdl:operation name="ObtenerListadoLibroComprasPorImputacion">
+      <wsdl:input message="tns:ObtenerListadoLibroComprasPorImputacionHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroComprasPorImputacionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LibroComprasImputacionAPedidoPorPantallaHttpPost">
+    <wsdl:operation name="ObtenerListadoLibroComprasPorImputacion">
+      <wsdl:input message="tns:ObtenerListadoLibroComprasPorImputacionHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroComprasPorImputacionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LibroComprasImputacionAPedidoPorPantallaSoap" type="tns:LibroComprasImputacionAPedidoPorPantallaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroComprasPorImputacion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroComprasPorImputacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LibroComprasImputacionAPedidoPorPantallaSoap12" type="tns:LibroComprasImputacionAPedidoPorPantallaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroComprasPorImputacion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroComprasPorImputacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LibroComprasImputacionAPedidoPorPantallaHttpGet" type="tns:LibroComprasImputacionAPedidoPorPantallaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoLibroComprasPorImputacion">
+      <http:operation location="/ObtenerListadoLibroComprasPorImputacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LibroComprasImputacionAPedidoPorPantallaHttpPost" type="tns:LibroComprasImputacionAPedidoPorPantallaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoLibroComprasPorImputacion">
+      <http:operation location="/ObtenerListadoLibroComprasPorImputacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LibroComprasImputacionAPedidoPorPantalla">
+    <wsdl:port name="LibroComprasImputacionAPedidoPorPantallaSoap" binding="tns:LibroComprasImputacionAPedidoPorPantallaSoap">
+      <soap:address location="http://localhost:1390/LibroComprasImputacionAPedidoPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LibroComprasImputacionAPedidoPorPantallaSoap12" binding="tns:LibroComprasImputacionAPedidoPorPantallaSoap12">
+      <soap12:address location="http://localhost:1390/LibroComprasImputacionAPedidoPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LibroComprasImputacionAPedidoPorPantallaHttpGet" binding="tns:LibroComprasImputacionAPedidoPorPantallaHttpGet">
+      <http:address location="http://localhost:1390/LibroComprasImputacionAPedidoPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LibroComprasImputacionAPedidoPorPantallaHttpPost" binding="tns:LibroComprasImputacionAPedidoPorPantallaHttpPost">
+      <http:address location="http://localhost:1390/LibroComprasImputacionAPedidoPorPantalla.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

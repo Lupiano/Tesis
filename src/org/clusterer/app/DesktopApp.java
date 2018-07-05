@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -42,8 +43,8 @@ public class DesktopApp {
 	private List<String> listFileNames;
 	private static int BOTTHRESHOLD = 30;
 	private static int TOPTHRESHOLD = 80;
-	private static String CLUSTERING_STRATEGY = "kmeans";
-	private static Integer CLUSTER_COUNT = 32;
+	private static String CLUSTERING_STRATEGY = "cobweb";
+	private static Integer CLUSTER_COUNT = 38;
 	
 	public ArrayList<ArrayList<String>> operations = new ArrayList<ArrayList<String>>();
 
@@ -202,6 +203,16 @@ public class DesktopApp {
 	                     name, contentType, content);
             files.add(result);
 	    }
+	    files.sort(new Comparator<MultipartFile>() {
+
+			@Override
+			public int compare(MultipartFile o1, MultipartFile o2) {
+				// TODO Auto-generated method stub
+				return o1.getName().compareTo(o2.getName());
+			}
+
+	    	
+	    });
 	    return files;
 	}
 	

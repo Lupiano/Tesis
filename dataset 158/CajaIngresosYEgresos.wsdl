@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaCaja">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ingresos_egresos_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_reserva" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="secuencia_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="complemento_deudor_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="leyenda_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe_reserva" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="con_banco_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="leyenda_alfa_banco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_banco" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_banco" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_banco" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_especial_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_acreedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_proveedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_otro" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_judicial" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="descuento" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_importe" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaCajaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaCajaResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionCaja">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="0" maxOccurs="1" name="acepta_numero" type="s:integer" />
+            <s:element minOccurs="1" maxOccurs="1" name="ingresos_egresos_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_reserva" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="secuencia_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="complemento_deudor_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="leyenda_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe_reserva" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="con_banco_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="leyenda_alfa_banco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_banco" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_banco" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_banco" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_especial_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_acreedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_proveedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_otro" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_judicial" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="descuento" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_importe" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionCajaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionCajaResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaCaja">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="acepta_numero" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="secuencia_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes1_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio1_reserva" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaCajaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaCajaResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaCajaSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaCaja" />
+  </wsdl:message>
+  <wsdl:message name="AltaCajaSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaCajaResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaCajaHttpGetIn">
+    <wsdl:part name="ingresos_egresos_reserva" type="s:short" />
+    <wsdl:part name="numero_reserva" type="s:integer" />
+    <wsdl:part name="secuencia_reserva" type="s:string" />
+    <wsdl:part name="dia1_reserva" type="s:short" />
+    <wsdl:part name="mes1_reserva" type="s:short" />
+    <wsdl:part name="anio1_reserva" type="s:short" />
+    <wsdl:part name="cuenta" type="s:integer" />
+    <wsdl:part name="complemento_deudor_reserva" type="s:string" />
+    <wsdl:part name="leyenda_reserva" type="s:string" />
+    <wsdl:part name="importe_reserva" type="s:double" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="leyenda_alfa_banco" type="s:string" />
+    <wsdl:part name="dia_banco" type="s:short" />
+    <wsdl:part name="mes_banco" type="s:short" />
+    <wsdl:part name="anio_banco" type="s:short" />
+    <wsdl:part name="tipo_especial_reserva" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="codigo_proveedor" type="s:short" />
+    <wsdl:part name="codigo_otro" type="s:short" />
+    <wsdl:part name="codigo_judicial" type="s:short" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="numero_documento" type="s:long" />
+    <wsdl:part name="acepta_importe" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AltaCajaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaCajaHttpPostIn">
+    <wsdl:part name="ingresos_egresos_reserva" type="s:short" />
+    <wsdl:part name="numero_reserva" type="s:integer" />
+    <wsdl:part name="secuencia_reserva" type="s:string" />
+    <wsdl:part name="dia1_reserva" type="s:short" />
+    <wsdl:part name="mes1_reserva" type="s:short" />
+    <wsdl:part name="anio1_reserva" type="s:short" />
+    <wsdl:part name="cuenta" type="s:integer" />
+    <wsdl:part name="complemento_deudor_reserva" type="s:string" />
+    <wsdl:part name="leyenda_reserva" type="s:string" />
+    <wsdl:part name="importe_reserva" type="s:double" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="leyenda_alfa_banco" type="s:string" />
+    <wsdl:part name="dia_banco" type="s:short" />
+    <wsdl:part name="mes_banco" type="s:short" />
+    <wsdl:part name="anio_banco" type="s:short" />
+    <wsdl:part name="tipo_especial_reserva" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="codigo_proveedor" type="s:short" />
+    <wsdl:part name="codigo_otro" type="s:short" />
+    <wsdl:part name="codigo_judicial" type="s:short" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="numero_documento" type="s:long" />
+    <wsdl:part name="acepta_importe" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AltaCajaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCajaSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionCaja" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCajaSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionCajaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCajaHttpGetIn">
+  	<wsdl:part name="acepta_numero" type="s:integer" />
+    <wsdl:part name="ingresos_egresos_reserva" type="s:short" />
+    <wsdl:part name="numero_reserva" type="s:integer" />
+    <wsdl:part name="secuencia_reserva" type="s:string" />
+    <wsdl:part name="dia1_reserva" type="s:short" />
+    <wsdl:part name="mes1_reserva" type="s:short" />
+    <wsdl:part name="anio1_reserva" type="s:short" />
+    <wsdl:part name="cuenta" type="s:integer" />
+    <wsdl:part name="complemento_deudor_reserva" type="s:string" />
+    <wsdl:part name="leyenda_reserva" type="s:string" />
+    <wsdl:part name="importe_reserva" type="s:double" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="leyenda_alfa_banco" type="s:string" />
+    <wsdl:part name="dia_banco" type="s:short" />
+    <wsdl:part name="mes_banco" type="s:short" />
+    <wsdl:part name="anio_banco" type="s:short" />
+    <wsdl:part name="tipo_especial_reserva" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="codigo_proveedor" type="s:short" />
+    <wsdl:part name="codigo_otro" type="s:short" />
+    <wsdl:part name="codigo_judicial" type="s:short" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="numero_documento" type="s:long" />
+    <wsdl:part name="acepta_importe" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCajaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCajaHttpPostIn">
+  	<wsdl:part name="acepta_numero" type="s:integer" />
+    <wsdl:part name="ingresos_egresos_reserva" type="s:short" />
+    <wsdl:part name="numero_reserva" type="s:integer" />
+    <wsdl:part name="secuencia_reserva" type="s:string" />
+    <wsdl:part name="dia1_reserva" type="s:short" />
+    <wsdl:part name="mes1_reserva" type="s:short" />
+    <wsdl:part name="anio1_reserva" type="s:short" />
+    <wsdl:part name="cuenta" type="s:integer" />
+    <wsdl:part name="complemento_deudor_reserva" type="s:string" />
+    <wsdl:part name="leyenda_reserva" type="s:string" />
+    <wsdl:part name="importe_reserva" type="s:double" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="leyenda_alfa_banco" type="s:string" />
+    <wsdl:part name="dia_banco" type="s:short" />
+    <wsdl:part name="mes_banco" type="s:short" />
+    <wsdl:part name="anio_banco" type="s:short" />
+    <wsdl:part name="tipo_especial_reserva" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="codigo_acreedor" type="s:short" />
+    <wsdl:part name="codigo_proveedor" type="s:short" />
+    <wsdl:part name="codigo_otro" type="s:short" />
+    <wsdl:part name="codigo_judicial" type="s:short" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="numero_documento" type="s:long" />
+    <wsdl:part name="acepta_importe" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCajaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaCajaSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaCaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaCajaSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaCajaResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaCajaHttpGetIn">
+    <wsdl:part name="acepta_numero" type="s:integer" />
+    <wsdl:part name="secuencia_reserva" type="s:string" />
+    <wsdl:part name="dia1_reserva" type="s:short" />
+    <wsdl:part name="mes1_reserva" type="s:short" />
+    <wsdl:part name="anio1_reserva" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaCajaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaCajaHttpPostIn">
+    <wsdl:part name="acepta_numero" type="s:integer" />
+    <wsdl:part name="secuencia_reserva" type="s:string" />
+    <wsdl:part name="dia1_reserva" type="s:short" />
+    <wsdl:part name="mes1_reserva" type="s:short" />
+    <wsdl:part name="anio1_reserva" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaCajaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="CajaIngresosYEgresosSoap">
+    <wsdl:operation name="AltaCaja">
+      <wsdl:input message="tns:AltaCajaSoapIn" />
+      <wsdl:output message="tns:AltaCajaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCaja">
+      <wsdl:input message="tns:ModificacionCajaSoapIn" />
+      <wsdl:output message="tns:ModificacionCajaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCaja">
+      <wsdl:input message="tns:BajaCajaSoapIn" />
+      <wsdl:output message="tns:BajaCajaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CajaIngresosYEgresosHttpGet">
+    <wsdl:operation name="AltaCaja">
+      <wsdl:input message="tns:AltaCajaHttpGetIn" />
+      <wsdl:output message="tns:AltaCajaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCaja">
+      <wsdl:input message="tns:ModificacionCajaHttpGetIn" />
+      <wsdl:output message="tns:ModificacionCajaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCaja">
+      <wsdl:input message="tns:BajaCajaHttpGetIn" />
+      <wsdl:output message="tns:BajaCajaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CajaIngresosYEgresosHttpPost">
+    <wsdl:operation name="AltaCaja">
+      <wsdl:input message="tns:AltaCajaHttpPostIn" />
+      <wsdl:output message="tns:AltaCajaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCaja">
+      <wsdl:input message="tns:ModificacionCajaHttpPostIn" />
+      <wsdl:output message="tns:ModificacionCajaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCaja">
+      <wsdl:input message="tns:BajaCajaHttpPostIn" />
+      <wsdl:output message="tns:BajaCajaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CajaIngresosYEgresosSoap" type="tns:CajaIngresosYEgresosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCaja">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaCaja" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCaja">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCaja" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCaja">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaCaja" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CajaIngresosYEgresosSoap12" type="tns:CajaIngresosYEgresosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCaja">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaCaja" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCaja">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCaja" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCaja">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaCaja" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CajaIngresosYEgresosHttpGet" type="tns:CajaIngresosYEgresosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaCaja">
+      <http:operation location="/AltaCaja" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCaja">
+      <http:operation location="/ModificacionCaja" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCaja">
+      <http:operation location="/BajaCaja" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CajaIngresosYEgresosHttpPost" type="tns:CajaIngresosYEgresosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaCaja">
+      <http:operation location="/AltaCaja" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCaja">
+      <http:operation location="/ModificacionCaja" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCaja">
+      <http:operation location="/BajaCaja" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CajaIngresosYEgresos">
+    <wsdl:port name="CajaIngresosYEgresosSoap" binding="tns:CajaIngresosYEgresosSoap">
+      <soap:address location="http://localhost:1390/CajaIngresosYEgresos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CajaIngresosYEgresosSoap12" binding="tns:CajaIngresosYEgresosSoap12">
+      <soap12:address location="http://localhost:1390/CajaIngresosYEgresos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CajaIngresosYEgresosHttpGet" binding="tns:CajaIngresosYEgresosHttpGet">
+      <http:address location="http://localhost:1390/CajaIngresosYEgresos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CajaIngresosYEgresosHttpPost" binding="tns:CajaIngresosYEgresosHttpPost">
+      <http:address location="http://localhost:1390/CajaIngresosYEgresos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

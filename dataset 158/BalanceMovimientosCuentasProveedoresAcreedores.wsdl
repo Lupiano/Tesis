@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="1" maxOccurs="1" name="tipo_trabajo" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresResult" type="tns:ArrayOfDatosBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosBalance" nillable="true" type="tns:DatosBalance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosBalance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_anterior" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_recibos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_asientos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_facturas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debitos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_creditos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_recibos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="neto_libro" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosBalance" nillable="true" type="tns:ArrayOfDatosBalance" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedores" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpGetIn">
+  	<wsdl:part name="tipo_trabajo" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpPostIn">
+  	<wsdl:part name="tipo_trabajo" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:portType name="BalanceMovimientosCuentasAcreedoresProveedoresSoap">
+    <wsdl:operation name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+      <wsdl:input message="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedoresSoapIn" />
+      <wsdl:output message="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedoresSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceMovimientosCuentasAcreedoresProveedoresHttpGet">
+    <wsdl:operation name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+      <wsdl:input message="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpGetIn" />
+      <wsdl:output message="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceMovimientosCuentasAcreedoresProveedoresHttpPost">
+    <wsdl:operation name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+      <wsdl:input message="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpPostIn" />
+      <wsdl:output message="tns:ObtenerBalanceMovimientosCuentasAcreedoresProveedoresHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BalanceMovimientosCuentasAcreedoresProveedoresSoap" type="tns:BalanceMovimientosCuentasAcreedoresProveedoresSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceMovimientosCuentasAcreedoresProveedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceMovimientosCuentasAcreedoresProveedoresSoap12" type="tns:BalanceMovimientosCuentasAcreedoresProveedoresSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceMovimientosCuentasAcreedoresProveedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceMovimientosCuentasAcreedoresProveedoresHttpGet" type="tns:BalanceMovimientosCuentasAcreedoresProveedoresHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+      <http:operation location="/ObtenerBalanceMovimientosCuentasAcreedoresProveedores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceMovimientosCuentasAcreedoresProveedoresHttpPost" type="tns:BalanceMovimientosCuentasAcreedoresProveedoresHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerBalanceMovimientosCuentasAcreedoresProveedores">
+      <http:operation location="/ObtenerBalanceMovimientosCuentasAcreedoresProveedores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BalanceMovimientosCuentasAcreedoresProveedores">
+    <wsdl:port name="BalanceMovimientosCuentasAcreedoresProveedoresSoap" binding="tns:BalanceMovimientosCuentasAcreedoresProveedoresSoap">
+      <soap:address location="http://localhost:1390/BalanceMovimientosCuentasAcreedoresProveedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceMovimientosCuentasAcreedoresProveedoresSoap12" binding="tns:BalanceMovimientosCuentasAcreedoresProveedoresSoap12">
+      <soap12:address location="http://localhost:1390/BalanceMovimientosCuentasAcreedoresProveedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceMovimientosCuentasAcreedoresProveedoresHttpGet" binding="tns:BalanceMovimientosCuentasAcreedoresProveedoresHttpGet">
+      <http:address location="http://localhost:1390/BalanceMovimientosCuentasAcreedoresProveedores.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceMovimientosCuentasAcreedoresProveedoresHttpPost" binding="tns:BalanceMovimientosCuentasAcreedoresProveedoresHttpPost">
+      <http:address location="http://localhost:1390/BalanceMovimientosCuentasAcreedoresProveedores.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

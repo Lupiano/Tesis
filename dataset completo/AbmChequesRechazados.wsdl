@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaCheque">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numero_cheque" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="denominacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_firmante" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaChequeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaChequeResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionCheque">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="1" maxOccurs="1" name="numero_cheque" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="denominacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_firmante" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionChequeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionChequeResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaCheque">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="numero_cheque" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaChequeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaChequeResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaChequeSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaCheque" />
+  </wsdl:message>
+  <wsdl:message name="AltaChequeSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaChequeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaChequeHttpGetIn">
+  	<wsdl:part name="numero_cheque" type="s:integer" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="denominacion" type="s:string" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="descripcion" type="s:string" />
+    <wsdl:part name="importe" type="s:string" />
+    <wsdl:part name="nombre_firmante" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AltaChequeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaChequeHttpPostIn">
+    <wsdl:part name="numero_cheque" type="s:integer" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="denominacion" type="s:string" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="descripcion" type="s:string" />
+    <wsdl:part name="importe" type="s:string" />
+    <wsdl:part name="nombre_firmante" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AltaChequeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionChequeSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionCheque" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionChequeSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionChequeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionChequeHttpGetIn">
+    <wsdl:part name="numero_cheque" type="s:integer" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="denominacion" type="s:string" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="descripcion" type="s:string" />
+    <wsdl:part name="importe" type="s:string" />
+    <wsdl:part name="nombre_firmante" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionChequeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionChequeHttpPostIn">
+    <wsdl:part name="numero_cheque" type="s:integer" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="denominacion" type="s:string" />
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="descripcion" type="s:string" />
+    <wsdl:part name="importe" type="s:string" />
+    <wsdl:part name="nombre_firmante" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionChequeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaChequeSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaCheque" />
+  </wsdl:message>
+  <wsdl:message name="BajaChequeSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaChequeResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaChequeHttpGetIn">
+    <wsdl:part name="numero_cheque" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="BajaChequeHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaChequeHttpPostIn">
+    <wsdl:part name="numero_cheque" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="BajaChequeHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmChequesRechazadosSoap">
+    <wsdl:operation name="AltaCheque">
+      <wsdl:input message="tns:AltaChequeSoapIn" />
+      <wsdl:output message="tns:AltaChequeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCheque">
+      <wsdl:input message="tns:ModificacionChequeSoapIn" />
+      <wsdl:output message="tns:ModificacionChequeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCheque">
+      <wsdl:input message="tns:BajaChequeSoapIn" />
+      <wsdl:output message="tns:BajaChequeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmChequesRechazadosHttpGet">
+    <wsdl:operation name="AltaCheque">
+      <wsdl:input message="tns:AltaChequeHttpGetIn" />
+      <wsdl:output message="tns:AltaChequeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCheque">
+      <wsdl:input message="tns:ModificacionChequeHttpGetIn" />
+      <wsdl:output message="tns:ModificacionChequeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCheque">
+      <wsdl:input message="tns:BajaChequeHttpGetIn" />
+      <wsdl:output message="tns:BajaChequeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmChequesRechazadosHttpPost">
+    <wsdl:operation name="AltaCheque">
+      <wsdl:input message="tns:AltaChequeHttpPostIn" />
+      <wsdl:output message="tns:AltaChequeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCheque">
+      <wsdl:input message="tns:ModificacionChequeHttpPostIn" />
+      <wsdl:output message="tns:ModificacionChequeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCheque">
+      <wsdl:input message="tns:BajaChequeHttpPostIn" />
+      <wsdl:output message="tns:BajaChequeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmChequesRechazadosSoap" type="tns:AbmChequesRechazadosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCheque">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaCheque" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCheque">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCheque" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCheque">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaCheque" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmChequesRechazadosSoap12" type="tns:AbmChequesRechazadosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCheque">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaCheque" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCheque">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCheque" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCheque">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaCheque" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmChequesRechazadosHttpGet" type="tns:AbmChequesRechazadosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaCheque">
+      <http:operation location="/AltaCheque" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCheque">
+      <http:operation location="/ModificacionCheque" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCheque">
+      <http:operation location="/BajaCheque" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmChequesRechazadosHttpPost" type="tns:AbmChequesRechazadosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaCheque">
+      <http:operation location="/AltaCheque" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCheque">
+      <http:operation location="/ModificacionCheque" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCheque">
+      <http:operation location="/BajaCheque" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmChequesRechazados">
+    <wsdl:port name="AbmChequesRechazadosSoap" binding="tns:AbmChequesRechazadosSoap">
+      <soap:address location="http://localhost:1390/AbmChequesRechazados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmChequesRechazadosSoap12" binding="tns:AbmChequesRechazadosSoap12">
+      <soap12:address location="http://localhost:1390/AbmChequesRechazados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmChequesRechazadosHttpGet" binding="tns:AbmChequesRechazadosHttpGet">
+      <http:address location="http://localhost:1390/AbmChequesRechazados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmChequesRechazadosHttpPost" binding="tns:AbmChequesRechazadosHttpPost">
+      <http:address location="http://localhost:1390/AbmChequesRechazados.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

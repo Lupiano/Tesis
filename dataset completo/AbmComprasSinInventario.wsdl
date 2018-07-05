@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaCompraSinInventario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia_librocom" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_librocom" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_librocom" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serie_comprobante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_comprobante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="iva_basico" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="iva_retenido" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="forma_pago" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="con_banco_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="leyenda_banco_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="controlador_fiscal_si_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cai_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_vencimiento_reserva" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad_hojas_reserva" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="tasa_iva_reserva" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="importacion_si" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_despacho_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_aduana_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_destino_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_despacho_reserva" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="dc_despacho_reserva" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="iva_basico" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_despacho" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_despacho" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_despacho" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_vencimiento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_vencimiento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_vencimiento" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaCompraSinInventarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaCompraSinInventarioResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="BajaCompraSinInventario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia_librocom" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_librocom" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_librocom" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serie_comprobante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_comprobante" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_cliente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaCompraSinInventarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaCompraSinInventarioResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaCompraSinInventarioSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaCompraSinInventario" />
+  </wsdl:message>
+  <wsdl:message name="AltaCompraSinInventarioSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaCompraSinInventarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaCompraSinInventarioHttpGetIn">
+    <wsdl:part name="dia_librocom" type="s:short" />
+    <wsdl:part name="mes_librocom" type="s:short" />
+    <wsdl:part name="anio_librocom" type="s:short" />
+    <wsdl:part name="tipo_comprobante" type="s:string" />
+    <wsdl:part name="serie_comprobante" type="s:string" />
+    <wsdl:part name="letra_comprobante" type="s:string" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="tipo_cliente" type="s:string" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="iva_basico" type="s:double" />
+    <wsdl:part name="iva_retenido" type="s:double" />
+    <wsdl:part name="forma_pago" type="s:short" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="leyenda_banco_reserva" type="s:string" />
+    <wsdl:part name="controlador_fiscal_si_reserva" type="s:string" />
+    <wsdl:part name="cai_reserva" type="s:string" />
+    <wsdl:part name="fecha_vencimiento_reserva" type="s:string" />
+    <wsdl:part name="cantidad_hojas_reserva" type="s:integer" />
+    <wsdl:part name="tasa_iva_reserva" type="s:double" />
+    <wsdl:part name="importacion_si" type="s:short" />
+    <wsdl:part name="anio_despacho_reserva" type="s:short" />
+    <wsdl:part name="codigo_aduana_reserva" type="s:short" />
+    <wsdl:part name="codigo_destino_reserva" type="s:short" />
+    <wsdl:part name="numero_despacho_reserva" type="s:integer" />
+    <wsdl:part name="dc_despacho_reserva" type="s:short" />
+    <wsdl:part name="dia_despacho" type="s:short" />
+    <wsdl:part name="mes_despacho" type="s:short" />
+    <wsdl:part name="anio_despacho" type="s:short" />
+    <wsdl:part name="dia_vencimiento" type="s:short" />
+    <wsdl:part name="mes_vencimiento" type="s:short" />
+    <wsdl:part name="anio_vencimiento" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AltaCompraSinInventarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaCompraSinInventarioHttpPostIn">
+    <wsdl:part name="dia_librocom" type="s:short" />
+    <wsdl:part name="mes_librocom" type="s:short" />
+    <wsdl:part name="anio_librocom" type="s:short" />
+    <wsdl:part name="tipo_comprobante" type="s:string" />
+    <wsdl:part name="serie_comprobante" type="s:string" />
+    <wsdl:part name="letra_comprobante" type="s:string" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="tipo_cliente" type="s:string" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="cuenta" type="s:short" />
+    <wsdl:part name="iva_basico" type="s:double" />
+    <wsdl:part name="iva_retenido" type="s:double" />
+    <wsdl:part name="forma_pago" type="s:short" />
+    <wsdl:part name="con_banco_reserva" type="s:short" />
+    <wsdl:part name="leyenda_banco_reserva" type="s:string" />
+    <wsdl:part name="controlador_fiscal_si_reserva" type="s:string" />
+    <wsdl:part name="cai_reserva" type="s:string" />
+    <wsdl:part name="fecha_vencimiento_reserva" type="s:string" />
+    <wsdl:part name="cantidad_hojas_reserva" type="s:integer" />
+    <wsdl:part name="tasa_iva_reserva" type="s:double" />
+    <wsdl:part name="importacion_si" type="s:short" />
+    <wsdl:part name="anio_despacho_reserva" type="s:short" />
+    <wsdl:part name="codigo_aduana_reserva" type="s:short" />
+    <wsdl:part name="codigo_destino_reserva" type="s:short" />
+    <wsdl:part name="numero_despacho_reserva" type="s:integer" />
+    <wsdl:part name="dc_despacho_reserva" type="s:short" />
+    <wsdl:part name="dia_despacho" type="s:short" />
+    <wsdl:part name="mes_despacho" type="s:short" />
+    <wsdl:part name="anio_despacho" type="s:short" />
+    <wsdl:part name="dia_vencimiento" type="s:short" />
+    <wsdl:part name="mes_vencimiento" type="s:short" />
+    <wsdl:part name="anio_vencimiento" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AltaCompraSinInventarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="BajaCompraSinInventarioSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaCompraSinInventario" />
+  </wsdl:message>
+  <wsdl:message name="BajaCompraSinInventarioSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaCompraSinInventarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaCompraSinInventarioHttpGetIn">
+    <wsdl:part name="dia_librocom" type="s:short" />
+    <wsdl:part name="mes_librocom" type="s:short" />
+    <wsdl:part name="anio_librocom" type="s:short" />
+    <wsdl:part name="tipo_comprobante" type="s:string" />
+    <wsdl:part name="serie_comprobante" type="s:string" />
+    <wsdl:part name="letra_comprobante" type="s:string" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="tipo_cliente" type="s:string" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaCompraSinInventarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaCompraSinInventarioHttpPostIn">
+    <wsdl:part name="dia_librocom" type="s:short" />
+    <wsdl:part name="mes_librocom" type="s:short" />
+    <wsdl:part name="anio_librocom" type="s:short" />
+    <wsdl:part name="tipo_comprobante" type="s:string" />
+    <wsdl:part name="serie_comprobante" type="s:string" />
+    <wsdl:part name="letra_comprobante" type="s:string" />
+    <wsdl:part name="numero_comprobante" type="s:integer" />
+    <wsdl:part name="tipo_cliente" type="s:string" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaCompraSinInventarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmComprasSinInventarioSoap">
+    <wsdl:operation name="AltaCompraSinInventario">
+      <wsdl:input message="tns:AltaCompraSinInventarioSoapIn" />
+      <wsdl:output message="tns:AltaCompraSinInventarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCompraSinInventario">
+      <wsdl:input message="tns:BajaCompraSinInventarioSoapIn" />
+      <wsdl:output message="tns:BajaCompraSinInventarioSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmComprasSinInventarioHttpGet">
+    <wsdl:operation name="AltaCompraSinInventario">
+      <wsdl:input message="tns:AltaCompraSinInventarioHttpGetIn" />
+      <wsdl:output message="tns:AltaCompraSinInventarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCompraSinInventario">
+      <wsdl:input message="tns:BajaCompraSinInventarioHttpGetIn" />
+      <wsdl:output message="tns:BajaCompraSinInventarioHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmComprasSinInventarioHttpPost">
+    <wsdl:operation name="AltaCompraSinInventario">
+      <wsdl:input message="tns:AltaCompraSinInventarioHttpPostIn" />
+      <wsdl:output message="tns:AltaCompraSinInventarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCompraSinInventario">
+      <wsdl:input message="tns:BajaCompraSinInventarioHttpPostIn" />
+      <wsdl:output message="tns:BajaCompraSinInventarioHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmComprasSinInventarioSoap" type="tns:AbmComprasSinInventarioSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCompraSinInventario">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaCompraSinInventario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCompraSinInventario">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaCompraSinInventario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmComprasSinInventarioSoap12" type="tns:AbmComprasSinInventarioSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCompraSinInventario">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaCompraSinInventario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCompraSinInventario">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaCompraSinInventario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmComprasSinInventarioHttpGet" type="tns:AbmComprasSinInventarioHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaCompraSinInventario">
+      <http:operation location="/AltaCompraSinInventario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCompraSinInventario">
+      <http:operation location="/BajaCompraSinInventario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmComprasSinInventarioHttpPost" type="tns:AbmComprasSinInventarioHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaCompraSinInventario">
+      <http:operation location="/AltaCompraSinInventario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCompraSinInventario">
+      <http:operation location="/BajaCompraSinInventario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmComprasSinInventario">
+    <wsdl:port name="AbmComprasSinInventarioSoap" binding="tns:AbmComprasSinInventarioSoap">
+      <soap:address location="http://localhost:1390/AbmComprasSinInventario.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmComprasSinInventarioSoap12" binding="tns:AbmComprasSinInventarioSoap12">
+      <soap12:address location="http://localhost:1390/AbmComprasSinInventario.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmComprasSinInventarioHttpGet" binding="tns:AbmComprasSinInventarioHttpGet">
+      <http:address location="http://localhost:1390/AbmComprasSinInventario.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmComprasSinInventarioHttpPost" binding="tns:AbmComprasSinInventarioHttpPost">
+      <http:address location="http://localhost:1390/AbmComprasSinInventario.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoMercaderiaAEntregar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cliente_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cliente_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoMercaderiaAEntregarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoMercaderiaAEntregarResult" type="tns:ArrayOfDatosMercaderiaAEntregar" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosMercaderiaAEntregar">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosMercaderiaAEntregar" nillable="true" type="tns:DatosMercaderiaAEntregar" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosMercaderiaAEntregar">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kilos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosMercaderiaAEntregar" nillable="true" type="tns:ArrayOfDatosMercaderiaAEntregar" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoMercaderiaAEntregarSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMercaderiaAEntregar" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMercaderiaAEntregarSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoMercaderiaAEntregarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMercaderiaAEntregarHttpGetIn">
+    <wsdl:part name="cliente_desde" type="s:short" />
+    <wsdl:part name="cliente_hasta" type="s:short" />
+    <wsdl:part name="articulo_desde" type="s:short" />
+    <wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMercaderiaAEntregarHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMercaderiaAEntregar" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMercaderiaAEntregarHttpPostIn">
+    <wsdl:part name="cliente_desde" type="s:short" />
+    <wsdl:part name="cliente_hasta" type="s:short" />
+    <wsdl:part name="articulo_desde" type="s:short" />
+    <wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoMercaderiaAEntregarHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosMercaderiaAEntregar" />
+  </wsdl:message>
+  <wsdl:portType name="ConsultaListaMercaderiaAEntregarSoap">
+    <wsdl:operation name="ObtenerListadoMercaderiaAEntregar">
+      <wsdl:input message="tns:ObtenerListadoMercaderiaAEntregarSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoMercaderiaAEntregarSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaListaMercaderiaAEntregarHttpGet">
+    <wsdl:operation name="ObtenerListadoMercaderiaAEntregar">
+      <wsdl:input message="tns:ObtenerListadoMercaderiaAEntregarHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoMercaderiaAEntregarHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaListaMercaderiaAEntregarHttpPost">
+    <wsdl:operation name="ObtenerListadoMercaderiaAEntregar">
+      <wsdl:input message="tns:ObtenerListadoMercaderiaAEntregarHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoMercaderiaAEntregarHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaListaMercaderiaAEntregarSoap" type="tns:ConsultaListaMercaderiaAEntregarSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMercaderiaAEntregar">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMercaderiaAEntregar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaListaMercaderiaAEntregarSoap12" type="tns:ConsultaListaMercaderiaAEntregarSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoMercaderiaAEntregar">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoMercaderiaAEntregar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaListaMercaderiaAEntregarHttpGet" type="tns:ConsultaListaMercaderiaAEntregarHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoMercaderiaAEntregar">
+      <http:operation location="/ObtenerListadoMercaderiaAEntregar" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaListaMercaderiaAEntregarHttpPost" type="tns:ConsultaListaMercaderiaAEntregarHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoMercaderiaAEntregar">
+      <http:operation location="/ObtenerListadoMercaderiaAEntregar" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaListaMercaderiaAEntregar">
+    <wsdl:port name="ConsultaListaMercaderiaAEntregarSoap" binding="tns:ConsultaListaMercaderiaAEntregarSoap">
+      <soap:address location="http://localhost:1390/ConsultaListaMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaListaMercaderiaAEntregarSoap12" binding="tns:ConsultaListaMercaderiaAEntregarSoap12">
+      <soap12:address location="http://localhost:1390/ConsultaListaMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaListaMercaderiaAEntregarHttpGet" binding="tns:ConsultaListaMercaderiaAEntregarHttpGet">
+      <http:address location="http://localhost:1390/ConsultaListaMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaListaMercaderiaAEntregarHttpPost" binding="tns:ConsultaListaMercaderiaAEntregarHttpPost">
+      <http:address location="http://localhost:1390/ConsultaListaMercaderiaAEntregar.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

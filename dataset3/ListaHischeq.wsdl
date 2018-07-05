@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoHischeq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="imprime" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoHischeqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoHischeqResult" type="tns:ArrayOfDatosHischeq" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosHischeq">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosHischeq" nillable="true" type="tns:DatosHischeq" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosHischeq">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_haber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosHischeq" nillable="true" type="tns:ArrayOfDatosHischeq" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoHischeqSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoHischeq" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHischeqSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoHischeqResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHischeqHttpGetIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="imprime" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHischeqHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosHischeq" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHischeqHttpPostIn">
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="imprime" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoHischeqHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosHischeq" />
+  </wsdl:message>
+  <wsdl:portType name="ListaHischeqSoap">
+    <wsdl:operation name="ObtenerListadoHischeq">
+      <wsdl:input message="tns:ObtenerListadoHischeqSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoHischeqSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaHischeqHttpGet">
+    <wsdl:operation name="ObtenerListadoHischeq">
+      <wsdl:input message="tns:ObtenerListadoHischeqHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoHischeqHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaHischeqHttpPost">
+    <wsdl:operation name="ObtenerListadoHischeq">
+      <wsdl:input message="tns:ObtenerListadoHischeqHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoHischeqHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListaHischeqSoap" type="tns:ListaHischeqSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoHischeq">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoHischeq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaHischeqSoap12" type="tns:ListaHischeqSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoHischeq">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoHischeq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaHischeqHttpGet" type="tns:ListaHischeqHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoHischeq">
+      <http:operation location="/ObtenerListadoHischeq" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaHischeqHttpPost" type="tns:ListaHischeqHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoHischeq">
+      <http:operation location="/ObtenerListadoHischeq" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListaHischeq">
+    <wsdl:port name="ListaHischeqSoap" binding="tns:ListaHischeqSoap">
+      <soap:address location="http://localhost:1390/ListaHischeq.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaHischeqSoap12" binding="tns:ListaHischeqSoap12">
+      <soap12:address location="http://localhost:1390/ListaHischeq.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaHischeqHttpGet" binding="tns:ListaHischeqHttpGet">
+      <http:address location="http://localhost:1390/ListaHischeq.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaHischeqHttpPost" binding="tns:ListaHischeqHttpPost">
+      <http:address location="http://localhost:1390/ListaHischeq.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

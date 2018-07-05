@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoUnidadesEntregadasPorZona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="desde_articulo" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="hasta_articulo" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="dia_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="deposito" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoUnidadesEntregadasPorZonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoUnidadesEntregadasPorZonaResult" type="tns:ArrayOfDatosUnidadesEntregadasPorZona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosUnidadesEntregadasPorZona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosUnidadesEntregadasPorZona" nillable="true" type="tns:DatosUnidadesEntregadasPorZona" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosUnidadesEntregadasPorZona">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="item" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosUnidadesEntregadasPorZona" nillable="true" type="tns:ArrayOfDatosUnidadesEntregadasPorZona" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoUnidadesEntregadasPorZonaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoUnidadesEntregadasPorZona" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoUnidadesEntregadasPorZonaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoUnidadesEntregadasPorZonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoUnidadesEntregadasPorZonaHttpGetIn">
+  	<wsdl:part name="articulo_desde" type="s:short" />
+  	<wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="deposito" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoUnidadesEntregadasPorZonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosUnidadesEntregadasPorZona" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoUnidadesEntregadasPorZonaHttpPostIn">
+    <wsdl:part name="articulo_desde" type="s:short" />
+  	<wsdl:part name="articulo_hasta" type="s:short" />
+    <wsdl:part name="dia_desde" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="dia_hasta" type="s:short" />
+    <wsdl:part name="mes_hasta" type="s:short" />
+    <wsdl:part name="anio_hasta" type="s:short" />
+    <wsdl:part name="deposito" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoUnidadesEntregadasPorZonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosUnidadesEntregadasPorZona" />
+  </wsdl:message>
+  <wsdl:portType name="UnidadesEntregadasPorZonaSoap">
+    <wsdl:operation name="ObtenerListadoUnidadesEntregadasPorZona">
+      <wsdl:input message="tns:ObtenerListadoUnidadesEntregadasPorZonaSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoUnidadesEntregadasPorZonaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="UnidadesEntregadasPorZonaHttpGet">
+    <wsdl:operation name="ObtenerListadoUnidadesEntregadasPorZona">
+      <wsdl:input message="tns:ObtenerListadoUnidadesEntregadasPorZonaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoUnidadesEntregadasPorZonaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="UnidadesEntregadasPorZonaHttpPost">
+    <wsdl:operation name="ObtenerListadoUnidadesEntregadasPorZona">
+      <wsdl:input message="tns:ObtenerListadoUnidadesEntregadasPorZonaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoUnidadesEntregadasPorZonaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UnidadesEntregadasPorZonaSoap" type="tns:UnidadesEntregadasPorZonaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoUnidadesEntregadasPorZona">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoUnidadesEntregadasPorZona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UnidadesEntregadasPorZonaSoap12" type="tns:UnidadesEntregadasPorZonaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoUnidadesEntregadasPorZona">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoUnidadesEntregadasPorZona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UnidadesEntregadasPorZonaHttpGet" type="tns:UnidadesEntregadasPorZonaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoUnidadesEntregadasPorZona">
+      <http:operation location="/ObtenerListadoUnidadesEntregadasPorZona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UnidadesEntregadasPorZonaHttpPost" type="tns:UnidadesEntregadasPorZonaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoUnidadesEntregadasPorZona">
+      <http:operation location="/ObtenerListadoUnidadesEntregadasPorZona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UnidadesEntregadasPorZona">
+    <wsdl:port name="UnidadesEntregadasPorZonaSoap" binding="tns:UnidadesEntregadasPorZonaSoap">
+      <soap:address location="http://localhost:1390/UnidadesEntregadasPorZona.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UnidadesEntregadasPorZonaSoap12" binding="tns:UnidadesEntregadasPorZonaSoap12">
+      <soap12:address location="http://localhost:1390/UnidadesEntregadasPorZona.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UnidadesEntregadasPorZonaHttpGet" binding="tns:UnidadesEntregadasPorZonaHttpGet">
+      <http:address location="http://localhost:1390/UnidadesEntregadasPorZona.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UnidadesEntregadasPorZonaHttpPost" binding="tns:UnidadesEntregadasPorZonaHttpPost">
+      <http:address location="http://localhost:1390/UnidadesEntregadasPorZona.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

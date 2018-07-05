@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoNotasDebitoCredito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="quincena" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoNotasDebitoCreditoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoNotasDebitoCreditoResult" type="tns:ArrayOfDatosNotaDebitoCredito" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosNotaDebitoCredito">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosNotaDebitoCredito" nillable="true" type="tns:DatosNotaDebitoCredito" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosNotaDebitoCredito">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="serie_comprobante" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="letra" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_basico" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_adicional" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="percepciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_gravado" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_total" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="articulo_articulos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad_articulos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_articulos" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosNotaDebitoCredito" nillable="true" type="tns:ArrayOfDatosNotaDebitoCredito" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoNotasDebitoCreditoSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoNotasDebitoCredito" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNotasDebitoCreditoSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoNotasDebitoCreditoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNotasDebitoCreditoHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="quincena" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNotasDebitoCreditoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosNotaDebitoCredito" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNotasDebitoCreditoHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="quincena" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoNotasDebitoCreditoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosNotaDebitoCredito" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorNotasDebitoCreditoCerealSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoNotasDebitoCredito">
+      <wsdl:input message="tns:ObtenerListadoNotasDebitoCreditoSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoNotasDebitoCreditoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorNotasDebitoCreditoCerealSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoNotasDebitoCredito">
+      <wsdl:input message="tns:ObtenerListadoNotasDebitoCreditoHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoNotasDebitoCreditoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorNotasDebitoCreditoCerealSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoNotasDebitoCredito">
+      <wsdl:input message="tns:ObtenerListadoNotasDebitoCreditoHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoNotasDebitoCreditoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorNotasDebitoCreditoCerealSalidaExcelSoap" type="tns:ListadorNotasDebitoCreditoCerealSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoNotasDebitoCredito">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoNotasDebitoCredito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNotasDebitoCreditoCerealSalidaExcelSoap12" type="tns:ListadorNotasDebitoCreditoCerealSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoNotasDebitoCredito">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoNotasDebitoCredito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNotasDebitoCreditoCerealSalidaExcelHttpGet" type="tns:ListadorNotasDebitoCreditoCerealSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoNotasDebitoCredito">
+      <http:operation location="/ObtenerListadoNotasDebitoCredito" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorNotasDebitoCreditoCerealSalidaExcelHttpPost" type="tns:ListadorNotasDebitoCreditoCerealSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoNotasDebitoCredito">
+      <http:operation location="/ObtenerListadoNotasDebitoCredito" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorNotasDebitoCreditoCerealSalidaExcel">
+    <wsdl:port name="ListadorNotasDebitoCreditoCerealSalidaExcelSoap" binding="tns:ListadorNotasDebitoCreditoCerealSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ListadorNotasDebitoCreditoCerealSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNotasDebitoCreditoCerealSalidaExcelSoap12" binding="tns:ListadorNotasDebitoCreditoCerealSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ListadorNotasDebitoCreditoCerealSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNotasDebitoCreditoCerealSalidaExcelHttpGet" binding="tns:ListadorNotasDebitoCreditoCerealSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ListadorNotasDebitoCreditoCerealSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorNotasDebitoCreditoCerealSalidaExcelHttpPost" binding="tns:ListadorNotasDebitoCreditoCerealSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ListadorNotasDebitoCreditoCerealSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

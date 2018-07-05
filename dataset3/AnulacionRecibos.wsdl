@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AnularRecibo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="acepta_numero" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnularReciboResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AnularReciboResult" type="tns:DatosRecibo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosRecibo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="anulacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosRecibo" nillable="true" type="tns:DatosRecibo" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AnularReciboSoapIn">
+    <wsdl:part name="parameters" element="tns:AnularRecibo" />
+  </wsdl:message>
+  <wsdl:message name="AnularReciboSoapOut">
+    <wsdl:part name="parameters" element="tns:AnularReciboResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnularReciboHttpGetIn">
+    <wsdl:part name="acepta_numero" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AnularReciboHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosRecibo" />
+  </wsdl:message>
+  <wsdl:message name="AnularReciboHttpPostIn">
+    <wsdl:part name="acepta_numero" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AnularReciboHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosRecibo" />
+  </wsdl:message>
+  <wsdl:portType name="AnulacionRecibosSoap">
+    <wsdl:operation name="AnularRecibo">
+      <wsdl:input message="tns:AnularReciboSoapIn" />
+      <wsdl:output message="tns:AnularReciboSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnulacionRecibosHttpGet">
+    <wsdl:operation name="AnularRecibo">
+      <wsdl:input message="tns:AnularReciboHttpGetIn" />
+      <wsdl:output message="tns:AnularReciboHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AnulacionRecibosHttpPost">
+    <wsdl:operation name="AnularRecibo">
+      <wsdl:input message="tns:AnularReciboHttpPostIn" />
+      <wsdl:output message="tns:AnularReciboHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AnulacionRecibosSoap" type="tns:AnulacionRecibosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnularRecibo">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AnularRecibo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnulacionRecibosSoap12" type="tns:AnulacionRecibosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnularRecibo">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AnularRecibo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnulacionRecibosHttpGet" type="tns:AnulacionRecibosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AnularRecibo">
+      <http:operation location="/AnularRecibo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AnulacionRecibosHttpPost" type="tns:AnulacionRecibosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AnularRecibo">
+      <http:operation location="/AnularRecibo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnulacionRecibos">
+    <wsdl:port name="AnulacionRecibosSoap" binding="tns:AnulacionRecibosSoap">
+      <soap:address location="http://localhost:1390/AnulacionRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnulacionRecibosSoap12" binding="tns:AnulacionRecibosSoap12">
+      <soap12:address location="http://localhost:1390/AnulacionRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnulacionRecibosHttpGet" binding="tns:AnulacionRecibosHttpGet">
+      <http:address location="http://localhost:1390/AnulacionRecibos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AnulacionRecibosHttpPost" binding="tns:AnulacionRecibosHttpPost">
+      <http:address location="http://localhost:1390/AnulacionRecibos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

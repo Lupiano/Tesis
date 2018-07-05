@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"	
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ControlarSecuenciaLibroIva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ControlarSecuenciaLibroIvaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ControlarSecuenciaLibroIvaResult" type="tns:ArrayOfDatosSecuenciaLibroIva" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosSecuenciaLibroIva">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosSecuenciaLibroIva" nillable="true" type="tns:DatosSecuenciaLibroIva" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosSecuenciaLibroIva">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="comentario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosSecuenciaLibroIva" nillable="true" type="tns:ArrayOfDatosSecuenciaLibroIva" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ControlarSecuenciaLibroIvaSoapIn">
+    <wsdl:part name="parameters" element="tns:ControlarSecuenciaLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ControlarSecuenciaLibroIvaSoapOut">
+    <wsdl:part name="parameters" element="tns:ControlarSecuenciaLibroIvaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ControlarSecuenciaLibroIvaHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ControlarSecuenciaLibroIvaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSecuenciaLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="ControlarSecuenciaLibroIvaHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ControlarSecuenciaLibroIvaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSecuenciaLibroIva" />
+  </wsdl:message>
+  <wsdl:portType name="ControlSecuenciaLibroIvaSoap">
+    <wsdl:operation name="ControlarSecuenciaLibroIva">
+      <wsdl:input message="tns:ControlarSecuenciaLibroIvaSoapIn" />
+      <wsdl:output message="tns:ControlarSecuenciaLibroIvaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlSecuenciaLibroIvaHttpGet">
+    <wsdl:operation name="ControlarSecuenciaLibroIva">
+      <wsdl:input message="tns:ControlarSecuenciaLibroIvaHttpGetIn" />
+      <wsdl:output message="tns:ControlarSecuenciaLibroIvaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlSecuenciaLibroIvaHttpPost">
+    <wsdl:operation name="ControlarSecuenciaLibroIva">
+      <wsdl:input message="tns:ControlarSecuenciaLibroIvaHttpPostIn" />
+      <wsdl:output message="tns:ControlarSecuenciaLibroIvaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ControlSecuenciaLibroIvaSoap" type="tns:ControlSecuenciaLibroIvaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ControlarSecuenciaLibroIva">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ControlarSecuenciaLibroIva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlSecuenciaLibroIvaSoap12" type="tns:ControlSecuenciaLibroIvaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ControlarSecuenciaLibroIva">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ControlarSecuenciaLibroIva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlSecuenciaLibroIvaHttpGet" type="tns:ControlSecuenciaLibroIvaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ControlarSecuenciaLibroIva">
+      <http:operation location="/ControlarSecuenciaLibroIva" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlSecuenciaLibroIvaHttpPost" type="tns:ControlSecuenciaLibroIvaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ControlarSecuenciaLibroIva">
+      <http:operation location="/ControlarSecuenciaLibroIva" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ControlSecuenciaLibroIva">
+    <wsdl:port name="ControlSecuenciaLibroIvaSoap" binding="tns:ControlSecuenciaLibroIvaSoap">
+      <soap:address location="http://localhost:1390/ControlSecuenciaLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlSecuenciaLibroIvaSoap12" binding="tns:ControlSecuenciaLibroIvaSoap12">
+      <soap12:address location="http://localhost:1390/ControlSecuenciaLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlSecuenciaLibroIvaHttpGet" binding="tns:ControlSecuenciaLibroIvaHttpGet">
+      <http:address location="http://localhost:1390/ControlSecuenciaLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlSecuenciaLibroIvaHttpPost" binding="tns:ControlSecuenciaLibroIvaHttpPost">
+      <http:address location="http://localhost:1390/ControlSecuenciaLibroIva.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
