@@ -1,6 +1,7 @@
 package org.clusterer.strategy;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +21,13 @@ public abstract class ClusteringStrategy implements IClusteringStrategy
 	protected List<OperationNode> operationNodes;
 	private double threshold = 0.75;
 	private AbstractClusterer clusterer;
+	
+	//Agregado Luciano - Brian.
+	protected boolean doSplitTerms = true;
+	protected boolean doFiltering = true;
+	protected ArrayList<String> blacklist = new ArrayList<String>();
+	protected int filterTermsSize = 2;
+	
 
 	public ClusteringStrategy()
 	{
@@ -135,5 +143,44 @@ public abstract class ClusteringStrategy implements IClusteringStrategy
 	public void setClusterer(final AbstractClusterer clusterer)
 	{
 		this.clusterer = clusterer;
+	}
+	
+	public ArrayList<String> getBlacklist() {
+		return blacklist;
+	}
+
+	public void setBlacklist(ArrayList<String> blacklist) {
+		this.blacklist = blacklist;
+	}
+
+	public boolean getDoSplitTerms() {
+		return doSplitTerms;
+	}
+
+	public void setDoSplitTerms(boolean doSplitTerms) {
+		this.doSplitTerms = doSplitTerms;
+	}
+	
+	protected boolean filterTerm(String term) {
+		if(term.length() <= filterTermsSize || blacklist.contains(term)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean getDoFiltering() {
+		return doFiltering;
+	}
+
+	public void setDoFiltering(boolean doFiltering) {
+		this.doFiltering = doFiltering;
+	}
+
+	public int getFilterTermsSize() {
+		return filterTermsSize;
+	}
+
+	public void setFilterTermsSize(int filterTermsSize) {
+		this.filterTermsSize = filterTermsSize;
 	}
 }

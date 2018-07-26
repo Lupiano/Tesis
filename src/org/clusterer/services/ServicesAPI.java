@@ -39,6 +39,13 @@ public class ServicesAPI //extends HttpServlet
 	private static int TOPTHRESHOLD = 80;
 	private static String CLUSTERING_STRATEGY = "";
 	private static Integer CLUSTER_COUNT = 0;
+	private static boolean DO_WSDL_CLUSTERING = true;
+	private static String WSDL_CLUSTERING_STRATEGY = "";
+	private static boolean SPLIT_TERMS = true;
+	private static ArrayList<String> BLACKLIST;
+	private static int FILTER_TERMS_SIZE = 2;
+	private static int WSDL_CLUSTER_COUNT = 2;
+	private static boolean DO_FILTERING = true;
 
 
 	/**
@@ -71,6 +78,8 @@ public class ServicesAPI //extends HttpServlet
 		TOPTHRESHOLD = Integer.parseInt(request.getParameter("files[topsimil]"));
 		CLUSTERING_STRATEGY = request.getParameter("files[clusteringstrategy]");
 		CLUSTER_COUNT = Integer.parseInt(request.getParameter("files[numberofclusters]"));
+		DO_WSDL_CLUSTERING = Boolean.parseBoolean(request.getParameter("files[dowsdlclustering]"));
+		WSDL_CLUSTERING_STRATEGY = request.getParameter("files[wsdlclusteringstrategy]");
 		final Iterator<String> itr = mRequest.getFileNames();
 		while (itr.hasNext())
 		{
@@ -81,7 +90,7 @@ public class ServicesAPI //extends HttpServlet
 			System.out.println(fileName);
 		}
 		final DataReader data = new HEBServiceAdapter(listFiles, BOTTHRESHOLD / 100.0, TOPTHRESHOLD / 100.0, CLUSTERING_STRATEGY,
-				CLUSTER_COUNT);
+				CLUSTER_COUNT, DO_WSDL_CLUSTERING, WSDL_CLUSTERING_STRATEGY, SPLIT_TERMS, BLACKLIST, FILTER_TERMS_SIZE, DO_FILTERING, WSDL_CLUSTER_COUNT);
 
 		final String jsonTreeMap = createJsonTreeData(data);
 		final String jsonFileMap = createJsonMapData(data);

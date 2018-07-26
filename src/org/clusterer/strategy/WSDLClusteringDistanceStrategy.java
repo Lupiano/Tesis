@@ -36,35 +36,8 @@ public class WSDLClusteringDistanceStrategy extends ClusteringStrategy
 	protected Instances dataset;
 	protected Hashtable<Integer, ArrayList<Instance>> hashClustering = new Hashtable<Integer, ArrayList<Instance>>();
 	protected List<MultipartFile> listWsdls;
-	private List<List<MultipartFile>> wsdlClusters;
-	
-	protected ArrayList<String> blacklist = new ArrayList<String>();
-	
-	public WSDLClusteringDistanceStrategy() {
-		super();
-		loadBlacklist();
-	}
+	private ArrayList<List<MultipartFile>> wsdlClusters;
 
-	
-	private void loadBlacklist() {
-		blacklist.add("tipo");
-		blacklist.add("codigo");
-		blacklist.add("numero");
-		blacklist.add("desde");
-		blacklist.add("hasta");
-		blacklist.add("nro");
-		blacklist.add("ing");
-		blacklist.add("sin");
-		blacklist.add("con");
-		blacklist.add("dar");
-		blacklist.add("para");
-		blacklist.add("otros");
-		blacklist.add("propio");
-		blacklist.add("entre");
-		blacklist.add("comp");
-		blacklist.add("segun");
-	}
-	
 	@Override
 	public void generateCluster()
 	{
@@ -101,8 +74,15 @@ public class WSDLClusteringDistanceStrategy extends ClusteringStrategy
 			wsdlNames.add(nombreWsdl);
 			final double[] newInst = new double[dataset.numAttributes()];
 			ArrayList<String> terms = new ArrayList<String>();
-			//terms = flattenOperationTerms(wsdl);
-			terms = flattenAndSplitOperationTerms(wsdl);
+			
+			if(doSplitTerms) {
+				terms = flattenAndSplitOperationTerms(wsdl);
+			}
+			else {
+				terms = flattenOperationTerms(wsdl);
+			}
+			
+			
 			for (int i = 0; i < allTerms.size(); i++)
 			{
 				final Integer freq = Collections.frequency(terms, allTerms.get(i));
@@ -127,17 +107,23 @@ public class WSDLClusteringDistanceStrategy extends ClusteringStrategy
 			final Hashtable<String, Integer> WsdlCluster = new Hashtable<String, Integer>();
 			for (int i = 0; i < dataset.numInstances(); i++)
 			{
-				WsdlCluster.put(wsdlNames.get(i), clusterer.clusterInstance(dataset.instance(i)));
-				if (clusterInstances.get(clusterer.clusterInstance(dataset.instance(i))) == null)
-				{
-					final List<MultipartFile> newCluster = new ArrayList<MultipartFile>();
-					newCluster.add(getWsdls().get(i));
-					clusterInstances.put(clusterer.clusterInstance(dataset.instance(i)), newCluster);
+				try {
+					WsdlCluster.put(wsdlNames.get(i), clusterer.clusterInstance(dataset.instance(i)));
+					if (clusterInstances.get(clusterer.clusterInstance(dataset.instance(i))) == null)
+					{
+						final List<MultipartFile> newCluster = new ArrayList<MultipartFile>();
+						newCluster.add(getWsdls().get(i));
+						clusterInstances.put(clusterer.clusterInstance(dataset.instance(i)), newCluster);
+					}
+					else
+					{
+						clusterInstances.get(clusterer.clusterInstance(dataset.instance(i))).add(getWsdls().get(i));
+					}
 				}
-				else
-				{
-					clusterInstances.get(clusterer.clusterInstance(dataset.instance(i))).add(getWsdls().get(i));
+				catch (Exception e){
+					System.out.println("Operacion no clusterizada.");
 				}
+				
 			}
 			
 			this.wsdlClusters = Collections.list(clusterInstances.elements());
@@ -165,12 +151,14 @@ public class WSDLClusteringDistanceStrategy extends ClusteringStrategy
 		
 		for (final MultipartFile wsdl : getWsdls())
 		{	
-			//Con split.
-			ArrayList<String> opTerms = flattenAndSplitOperationTerms(wsdl);
+			ArrayList<String> opTerms = new ArrayList<String>();
 			
-			//Sin split.
-		    //ArrayList<String> opTerms = flattenOperationTerms(wsdl);
-			
+			if(doSplitTerms) {
+				opTerms = flattenAndSplitOperationTerms(wsdl);
+			}
+			else {
+				opTerms = flattenOperationTerms(wsdl);
+			}
 			uniqueTerms.addAll(opTerms);
 			repeatedTerms.addAll(opTerms);
 		}
@@ -178,14 +166,30 @@ public class WSDLClusteringDistanceStrategy extends ClusteringStrategy
 	}
 
 	private ArrayList<String> flattenOperationTerms(final MultipartFile wsdl) {
+		
 		final ArrayList<String> terms = new ArrayList<String>();
 		
 		final Description description = getDescriptionFromWSDLFile(wsdl);
 		final InterfaceType portType = description.getInterfaces().get(0);
 		
 		for (final Operation op : portType.getOperations()) {
+			final DataTypeNode d1 = new DataTypeNode(op.getInput().getElement());
+			final Hashtable<String, String> childrensInput = d1.internFlattenDataTypes(op.getInput().getElement());
+			final Hashtable<String, String> childrensOutput = d1.internFlattenDataTypes(op.getOutput().getElement());
+			
+			for (final String children : childrensInput.keySet())
+			{
+				terms.add(children);
+			}
+			for (final String children : childrensOutput.keySet())
+			{
+				terms.add(children);
+			}
+			
 			terms.add(op.getQName().getLocalPart().toString());
 		}
+		
+		terms.add(parseWSDLName(wsdl.getName()));
 		
 		return terms;
 	}
@@ -205,42 +209,48 @@ public class WSDLClusteringDistanceStrategy extends ClusteringStrategy
 			for (final String children : childrensInput.keySet())
 			{
 				ArrayList<String> splitedChildrensInput = splitTerms(children);
-				for(String t: splitedChildrensInput) {
-					if(!filterTerm(t)) {
-						terms.add(t);
+				if(doFiltering)
+					for(String t: splitedChildrensInput) {
+						if(!filterTerm(t)) {
+							terms.add(t);
+						}
 					}
-				}
-				//terms.addAll(splitedChildrensInput);
-				//terms.add(children+"_"+String.valueOf(childrensInput.get(children)));
+				else
+					terms.addAll(splitedChildrensInput);
 			}
 			for (final String children : childrensOutput.keySet())
 			{
 				ArrayList<String> splitedChildrensOutput = splitTerms(children);
-				for(String t: splitedChildrensOutput) {
+				if(doFiltering)
+					for(String t: splitedChildrensOutput) {
+						if(!filterTerm(t)) {
+							terms.add(t);
+						}
+					}
+				else
+					terms.addAll(splitedChildrensOutput);
+			}
+			
+			ArrayList<String> opName = splitTerms(op.getQName().getLocalPart().toString());
+			if(doFiltering)
+				for(String t: opName) {
 					if(!filterTerm(t)) {
 						terms.add(t);
 					}
 				}
-				//terms.addAll(splitedChildrensOutput);
-				//terms.add(children+"_"+String.valueOf(childrensOutput.get(children)));
-			}
-			
-			ArrayList<String> opName = splitTerms(op.getQName().getLocalPart().toString());
-			for(String t: opName) {
+			else
+				terms.addAll(splitTerms(op.getQName().getLocalPart().toString()));
+		}
+		
+		ArrayList<String> wsdlName = splitTerms(parseWSDLName(wsdl.getName()));
+		if(doFiltering)
+			for(String t: wsdlName) {
 				if(!filterTerm(t)) {
 					terms.add(t);
 				}
 			}
-			//terms.addAll(splitTerms(op.getQName().getLocalPart().toString()));
-		}
-		
-		ArrayList<String> wsdlName = splitTerms(parseWSDLName(wsdl.getName()));
-		for(String t: wsdlName) {
-			if(!filterTerm(t)) {
-				terms.add(t);
-			}
-		}
-		//terms.addAll(splitTerms(wsdlName));
+		else
+			terms.addAll(wsdlName);
 		return terms;
 	}
 	
@@ -312,22 +322,17 @@ public class WSDLClusteringDistanceStrategy extends ClusteringStrategy
 		return null;
 	}
 
-	public List<List<MultipartFile>> getWsdlClusters() {
+	public ArrayList<List<MultipartFile>> getWsdlClusters() {
 		return wsdlClusters;
 	}
 
-	public void setWsdlClusters(List<List<MultipartFile>> clusters) {
+	public void setWsdlClusters(ArrayList<List<MultipartFile>> clusters) {
 		this.wsdlClusters = clusters;
 	}
 	private String parseWSDLName(String name) {
 		//Eliminar .wsdl
 		return name.substring(0, name.length() - 5);
 	}
-	private boolean filterTerm(String term) {
-		if(term.length() < 3 || blacklist.contains(term)) {
-			return true;
-		}
-		return false;
-	}
+
 
 }

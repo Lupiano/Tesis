@@ -95,8 +95,14 @@ public abstract class ClusteringDistanceStrategy extends ClusteringStrategy
 			operationNames.add(op.getQName().getLocalPart().toString());
 			final double[] newInst = new double[dataset.numAttributes()];
 			ArrayList<String> terms = new ArrayList<String>();
-			//terms = flattenOperationTerms(op);
-			terms = flattenAndSplitOperationTerms(op);
+			if(doSplitTerms) {
+				terms = flattenAndSplitOperationTerms(op);
+			}
+			else {
+				terms = flattenOperationTerms(op);
+			}
+			
+			
 			//terms = flattenOperationTermsAddType(op);
 			//terms = flattenAndSplitOperationTermsAddType(op);
 			for (int i = 0; i < allTerms.size(); i++)
@@ -255,6 +261,14 @@ public abstract class ClusteringDistanceStrategy extends ClusteringStrategy
 		
 		for (final Operation op : getOperations())
 		{
+			ArrayList<String> opTerms = new ArrayList<String>();
+			if(doSplitTerms) {
+				opTerms = flattenAndSplitOperationTerms(op);
+			}
+			else {
+				opTerms = flattenOperationTerms(op);
+			}
+			
 			//uniqueTerms.addAll(flattenOperationTerms(op));
 			//ArrayList<String> opTerms = flattenOperationTerms(op);
 			
@@ -265,7 +279,7 @@ public abstract class ClusteringDistanceStrategy extends ClusteringStrategy
 			//ArrayList<String> opTerms = flattenAndSplitOperationTermsAddType(op);
 			
 			//Con split.
-			ArrayList<String> opTerms = flattenAndSplitOperationTerms(op);
+			
 			
 			uniqueTerms.addAll(opTerms);
 			repeatedTerms.addAll(opTerms);
@@ -281,23 +295,28 @@ public abstract class ClusteringDistanceStrategy extends ClusteringStrategy
 		final Hashtable<String, String> childrensOutput = d1.internFlattenDataTypes(op.getOutput().getElement());
 		
 		//Operation name.
-		ArrayList<String> splitedNameChildren = splitTerms(op.getQName().getLocalPart().toString());
-		for(String t: splitedNameChildren) {
-			if(!filterTerm(t)) {
-				terms.add(t);
+		ArrayList<String> splitedName = splitTerms(op.getQName().getLocalPart().toString());
+		if(doFiltering)
+			for(String t: splitedName) {
+				if(!filterTerm(t)) {
+					terms.add(t);
+				}
 			}
-		}
+		else
+			terms.addAll(splitedName);
 		
 		//Operation input.
 		for (final String children : childrensInput.keySet())
 		{
 			ArrayList<String> splitedChildren = splitTerms(children);
-			for(String t: splitedChildren) {
-				if(!filterTerm(t)) {
-					terms.add(t);
+			if(doFiltering)
+				for(String t: splitedChildren) {
+					if(!filterTerm(t)) {
+						terms.add(t);
+					}
 				}
-			}
-			//terms.addAll(splitedChildren);
+			else
+				terms.addAll(splitedChildren);
 			//terms.add(String.valueOf(childrensInput.get(children)));
 		}
 		
@@ -305,12 +324,14 @@ public abstract class ClusteringDistanceStrategy extends ClusteringStrategy
 		for (final String children : childrensOutput.keySet())
 		{
 			ArrayList<String> splitedChildren = splitTerms(children);
-			for(String t: splitedChildren) {
-				if(!filterTerm(t)) {
-					terms.add(t);
+			if(doFiltering)
+				for(String t: splitedChildren) {
+					if(!filterTerm(t)) {
+						terms.add(t);
+					}
 				}
-			}
-			//terms.addAll(splitedChildren);
+			else
+				terms.addAll(splitedChildren);
 			//terms.add(String.valueOf(childrensOutput.get(children)));
 		}
 		return terms;
@@ -350,12 +371,12 @@ public abstract class ClusteringDistanceStrategy extends ClusteringStrategy
 		for (final String children : childrensInput.keySet())
 		{	
 			terms.add(children);
-			terms.add(String.valueOf(childrensInput.get(children)));
+			//terms.add(String.valueOf(childrensInput.get(children)));
 		}
 		for (final String children : childrensOutput.keySet())
 		{
 			terms.add(children);
-			terms.add(String.valueOf(childrensOutput.get(children)));
+			//terms.add(String.valueOf(childrensOutput.get(children)));
 		}
 		return terms;
 	}
@@ -411,13 +432,6 @@ public abstract class ClusteringDistanceStrategy extends ClusteringStrategy
 				}
 			}
 		}
-	}
-	
-	private boolean filterTerm(String term) {
-		if(term.length() < 3 || blacklist.contains(term)) {
-			return true;
-		}
-		return false;
 	}
 
 	protected double getEsquaredErrors(final int numClusters, final DistanceFunction euclidean, final Instances centroids)

@@ -20,6 +20,7 @@ import org.clusterer.strategy.ClusteringHierarchyStrategy;
 import org.clusterer.strategy.ClusteringStrategy;
 import org.clusterer.strategy.KmeansStrategy;
 import org.clusterer.strategy.WSDLClusteringDistanceStrategy;
+import org.clusterer.strategy.XmeansStrategy;
 import org.clusterer.util.DataTypeNode;
 import org.ow2.easywsdl.wsdl.WSDLFactory;
 import org.ow2.easywsdl.wsdl.api.Description;
@@ -31,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.InputSource;
 
 import weka.clusterers.Cobweb;
+import weka.clusterers.DBSCAN;
 import weka.clusterers.XMeans;
 import weka.core.DistanceFunction;
 
@@ -95,7 +97,7 @@ public class ClusteringHandler
 	 * @param threshold
 	 * @return cluster of WS operations
 	 */
-	public HashMap<String, Object> clusterWSDLDocumentsForCluster(final List<MultipartFile> listFiles, final double threshold)
+	public HashMap<String, Object> clusterWSDLDocumentsForCluster(final List<MultipartFile> listFiles, boolean splitTerms, boolean doFiltering, final int filterTermsSize, ArrayList<String> blacklist, final double threshold)
 	{
 		final List<List<Operation>> clusters = new LinkedList<List<Operation>>();
 		final HashMap<String, String> mapFiles = new HashMap<String, String>();
@@ -128,7 +130,13 @@ public class ClusteringHandler
 		
 		final ClusteringStrategy clusterer = getClustererStrategy();
 		clusterer.setOperations(operations);
+		clusterer.setDoSplitTerms(splitTerms);
+		clusterer.setBlacklist(blacklist);
+		clusterer.setDoFiltering(doFiltering);
+		clusterer.setFilterTermsSize(filterTermsSize);
+		
 		clusterer.generateCluster();
+		
 
 		final List<DataTypeNode> nodes = clusterer.getMergedClusters();
 		for (final DataTypeNode node : nodes)
@@ -150,7 +158,7 @@ public class ClusteringHandler
 			}
 		}
 		
-		((ClusteringDistanceStrategy)clusterer).printDistances();
+		//((ClusteringDistanceStrategy)clusterer).printDistances();
 		
 		return clusterInfo;
 	}
@@ -252,25 +260,16 @@ public class ClusteringHandler
 		return clusterInfo;
 	}
 
-
 	//Agregado Luciano - Brian.
 	//Agrupar servicios por nombres de operaciones.
-	public List<List<MultipartFile>> clusterWSDL(List<MultipartFile> listFiles) throws Exception {
+	public ArrayList<List<MultipartFile>> clusterWSDL(List<MultipartFile> listFiles, boolean splitTerms, boolean doFiltering, int filterTermsSize, ArrayList<String> blacklist) throws Exception {
 		
-		
-		final ClusteringStrategy strategy = new WSDLClusteringDistanceStrategy();
-		
-		/*
-		final XMeans xmeans = new XMeans();
-		xmeans.setMinNumClusters(1);
-		xmeans.setMaxNumClusters(150);
-		xmeans.setMaxIterations(10000);
-		*/
-		
-		final Cobweb cobweb = new Cobweb();
-		
-		strategy.setClusterer(cobweb);
+		final ClusteringStrategy strategy = getClustererStrategy();
 		((WSDLClusteringDistanceStrategy)strategy).setWsdls(listFiles);
+		strategy.setDoSplitTerms(splitTerms);
+		strategy.setBlacklist(blacklist);
+		strategy.setDoFiltering(doFiltering);
+		strategy.setFilterTermsSize(filterTermsSize);
 		
 		strategy.generateCluster();
 		

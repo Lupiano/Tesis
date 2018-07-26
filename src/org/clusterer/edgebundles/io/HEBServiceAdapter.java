@@ -39,12 +39,21 @@ public class HEBServiceAdapter implements DataReader
 	 */
 	@SuppressWarnings("unchecked")
 	public HEBServiceAdapter(final List<MultipartFile> listFiles, final double botThreshold, final double topThreshold,
-			final String clusteringStrategy, final Integer clusterCount) throws IOException
+			final String clusteringStrategy, final Integer clusterCount, final boolean doWSDLClustering, 
+			final String wsdlClusteringStrategy, final boolean SPLIT_TERMS, final ArrayList<String> BLACKLIST, final int FILTER_TERMS_SIZE,
+			final boolean DO_FILTERING, final int WSDL_CLUSTER_COUNT) throws IOException
+	
 	{
-
 		final ServicesMediator serMed = new ServicesMediator(listFiles, botThreshold, topThreshold);
+		serMed.setSplitTerms(SPLIT_TERMS);
+		serMed.setBlacklist(BLACKLIST);
 		serMed.setClusteringStrategy(clusteringStrategy);
 		serMed.setClusterNumber(clusterCount);
+		serMed.setDoWSDLClustering(doWSDLClustering);
+		serMed.setWsdlClusteringStrategy(wsdlClusteringStrategy);
+		serMed.setDoFiltering(DO_FILTERING);
+		serMed.setWsdlClusterNumber(WSDL_CLUSTER_COUNT);
+		serMed.setFilterTermsSize(FILTER_TERMS_SIZE);
 		serMed.doAllInferences();
 		numberOfClusters = serMed.getClusterNumber();
 		validationInfo = serMed.getValidationInfo();

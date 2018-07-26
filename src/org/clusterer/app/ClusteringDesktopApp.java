@@ -35,18 +35,49 @@ import edu.cuny.qc.speech.ContingencyTable;
 
 import com.google.gson.Gson;
 
-public class DesktopApp {
+public class ClusteringDesktopApp {
 	
 	private static final long serialVersionUID = 1L;
 	private final File folder = new File("dataset");
 	private List<MultipartFile> listFiles;
 	private List<String> listFileNames;
-	private static int BOTTHRESHOLD = 30;
-	private static int TOPTHRESHOLD = 80;
-	private static String CLUSTERING_STRATEGY = "cobweb";
-	private static Integer CLUSTER_COUNT = 38;
+	private int BOTTHRESHOLD = 30;
+	private int TOPTHRESHOLD = 80;
+	
+	private String CLUSTERING_STRATEGY = "em";
+	private Integer CLUSTER_COUNT = 144;
+	
+	//Configuración mejoras.
+	private boolean SPLIT_TERMS = false;
+	private boolean DO_FILTERING = false;
+	private ArrayList<String> BLACKLIST = new ArrayList<String>();
+	private int FILTER_TERMS_SIZE = 2;
+	
+	//División nivel WSDL.
+	private boolean DO_WSDL_CLUSTERING = false;
+	private String WSDL_CLUSTERING_STRATEGY = "kmeans";
+	private int WSDL_CLUSTER_COUNT = 38; //59 (cobweb)
 	
 	public ArrayList<ArrayList<String>> operations = new ArrayList<ArrayList<String>>();
+	
+	public ClusteringDesktopApp() {
+		BLACKLIST.add("tipo");
+		BLACKLIST.add("codigo");
+		BLACKLIST.add("numero");
+		BLACKLIST.add("desde");
+		BLACKLIST.add("hasta");
+		BLACKLIST.add("nro");
+		BLACKLIST.add("ing");
+		BLACKLIST.add("sin");
+		BLACKLIST.add("con");
+		BLACKLIST.add("dar");
+		BLACKLIST.add("para");
+		BLACKLIST.add("otros");
+		BLACKLIST.add("propio");
+		BLACKLIST.add("entre");
+		BLACKLIST.add("comp");
+		BLACKLIST.add("segun");
+	}
 
 
 	public ArrayList<ArrayList<String>> getOperations() {
@@ -83,7 +114,7 @@ public class DesktopApp {
 			//System.out.println(fileName);
 		}
 		final DataReader data = new HEBServiceAdapter(listFiles, BOTTHRESHOLD / 100.0, TOPTHRESHOLD / 100.0, CLUSTERING_STRATEGY,
-				CLUSTER_COUNT);
+				CLUSTER_COUNT, DO_WSDL_CLUSTERING, WSDL_CLUSTERING_STRATEGY, SPLIT_TERMS, BLACKLIST, FILTER_TERMS_SIZE, DO_FILTERING, WSDL_CLUSTER_COUNT);
 		
 		ArrayList<ArrayList<Operation>> clusteredOperations = data.getClusteredOperations();
 		
@@ -233,7 +264,7 @@ public class DesktopApp {
 	public static void main(String[] args) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		DesktopApp app = new DesktopApp();
+		ClusteringDesktopApp app = new ClusteringDesktopApp();
 		
 		app.treeGenerator();
 		
@@ -276,7 +307,7 @@ public class DesktopApp {
 	    
 
 	    System.out.println("Solution A");
-	    System.out.println(eval.getData());
+	    //System.out.println(eval.getData());
 	    System.out.println("V:" + eval.getVMeasure(1));
 		//Fin prueba
 		

@@ -35,6 +35,15 @@ public class ServicesMediator
 	private final double bottomThreshold;
 	private String clusteringStrategy;
 
+	//Agregado Luciano - Brian
+	private boolean doWSDLClustering;
+	private String wsdlClusteringStrategy;
+	private boolean splitTerms;
+	private boolean doFiltering;
+	private ArrayList<String> blacklist;
+	private int wsdlClusterNumber;
+	private int filterTermsSize;
+
 	public ServicesMediator(final List<MultipartFile> listFiles, final double botThreshold, final double topThreshold)
 	{
 		this.topThreshold = topThreshold;
@@ -48,18 +57,25 @@ public class ServicesMediator
 
 	private void doClustering() throws Exception
 	{
-		ClusteringStrategy strategy = StrategyConstructor.getStrategy(getClusteringStrategy(), getClusterNumber());
-		strategy.setThreshold(topThreshold);
-		ch.setClustererStrategy(strategy);
-		// operaciones agrupadas por similitud
+		ArrayList<List<MultipartFile>> wsdlClusters = new ArrayList<List<MultipartFile>>();
+		
+		wsdlClusters.add((ArrayList<MultipartFile>)listFiles);
 		
 		
 		//Agregado Luciano - Brian.
-		ClusteringHandler chWSDL = new ClusteringHandler();
-		chWSDL.setClustererStrategy(strategy);
-		List<List<MultipartFile>> wsdlClusters = chWSDL.clusterWSDL(listFiles);
+		//Agrupar a nivel WSDL si es true
+		if(getDoWSDLClustering()) {
+			ClusteringStrategy wsdlStrategy = StrategyConstructor.getWsdlStrategy(getWsdlClusteringStrategy(), getWsdlClusterNumber());
+			ClusteringHandler chWSDL = new ClusteringHandler();
+			chWSDL.setClustererStrategy(wsdlStrategy);
+			wsdlClusters = chWSDL.clusterWSDL(listFiles, splitTerms, doFiltering, filterTermsSize, blacklist);
+			
+			System.out.println("Total WSDL Clusters: " + wsdlClusters.size());
+		}
 		
-		System.out.println("Total WSDL Clusters: " + wsdlClusters.size());
+
+		//Si no se hace la división a nivel WSDL, wsdlClusters tiene un solo cluster WSDL con los archivos iniciales.
+		ClusteringStrategy strategy = null;
 		
 		List<List<Operation>> totalClusters = new ArrayList<List<Operation>>();
 		int k = 0;
@@ -70,7 +86,7 @@ public class ServicesMediator
 			System.out.println("");
 			System.out.println("WSDL Cluster " + k);
 			@SuppressWarnings("unchecked")
-			List<List<Operation>> aux = (List<List<Operation>>)ch.clusterWSDLDocumentsForCluster(list, topThreshold).get("clusterOperations");
+			List<List<Operation>> aux = (List<List<Operation>>)ch.clusterWSDLDocumentsForCluster(list, splitTerms, doFiltering, filterTermsSize, blacklist, topThreshold).get("clusterOperations");
 			
 			totalClusters.addAll(aux);
 			k++;
@@ -97,7 +113,9 @@ public class ServicesMediator
 			System.out.println("Cluster " + x + " (" + totalClusters.get(x).size() + " operaciones)");
 		}
 		
-		//clusteredInfo = ch.clusterWSDLDocumentsForCluster(list, topThreshold);
+		clusteredInfo = new HashMap<String, Object>();
+		
+		clusteredInfo.put("clusterOperations", totalClusters);
 		
 		/*
 		@SuppressWarnings("unchecked")
@@ -194,6 +212,16 @@ public class ServicesMediator
 		return clusterNumber;
 	}
 
+	public void setWsdlClusterNumber(final Integer clusterNumber)
+	{
+		this.wsdlClusterNumber = clusterNumber;
+	}
+	
+	public Integer getWsdlClusterNumber()
+	{
+		return wsdlClusterNumber;
+	}
+
 	public void setClusterNumber(final Integer clusterNumber)
 	{
 		this.clusterNumber = clusterNumber;
@@ -217,5 +245,53 @@ public class ServicesMediator
 	public void setValidationInfo(final JSONObject validationInfo)
 	{
 		this.validationInfo = validationInfo;
+	}
+
+	public boolean getDoWSDLClustering() {
+		return doWSDLClustering;
+	}
+
+	public void setDoWSDLClustering(boolean doWSDLClustering) {
+		this.doWSDLClustering = doWSDLClustering;
+	}
+	
+	public String getWsdlClusteringStrategy() {
+		return wsdlClusteringStrategy;
+	}
+
+	public void setWsdlClusteringStrategy(String wsdlClusteringStrategy) {
+		this.wsdlClusteringStrategy = wsdlClusteringStrategy;
+	}
+
+	public boolean isSplitTerms() {
+		return splitTerms;
+	}
+
+	public void setSplitTerms(boolean splitTerms) {
+		this.splitTerms = splitTerms;
+	}
+
+	public ArrayList<String> getBlacklist() {
+		return blacklist;
+	}
+
+	public void setBlacklist(ArrayList<String> blacklist) {
+		this.blacklist = blacklist;
+	}
+	
+	public boolean getDoFiltering() {
+		return doFiltering;
+	}
+
+	public void setDoFiltering(boolean doFiltering) {
+		this.doFiltering = doFiltering;
+	}
+
+	public int getFilterTermsSize() {
+		return filterTermsSize;
+	}
+
+	public void setFilterTermsSize(int filterTermsSize) {
+		this.filterTermsSize = filterTermsSize;
 	}
 }
