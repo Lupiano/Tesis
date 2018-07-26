@@ -288,7 +288,8 @@ public class DesktopApp {
 		System.out.println(contingencyTable.toString());	
 		
 		ClusterEvaluator eval = new ClusterEvaluator();
-		
+		XMeans xmeans = new XMeans();
+
 		
 		eval.setData(contingencyTable);
 		
