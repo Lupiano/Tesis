@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ModificarArrastreCaja">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_saldo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_saldo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_saldo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="hoja" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificarArrastreCajaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificarArrastreCajaResult" type="tns:DatosArrastreCaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosArrastreCaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionCorrecta" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosArrastreCaja" nillable="true" type="tns:DatosArrastreCaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ModificarArrastreCajaSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificarArrastreCaja" />
+  </wsdl:message>
+  <wsdl:message name="ModificarArrastreCajaSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificarArrastreCajaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificarArrastreCajaHttpGetIn">
+    <wsdl:part name="saldo" type="s:double" />
+    <wsdl:part name="dia_saldo" type="s:short" />
+    <wsdl:part name="mes_saldo" type="s:short" />
+    <wsdl:part name="anio_saldo" type="s:short" />
+    <wsdl:part name="hoja" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ModificarArrastreCajaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosArrastreCaja" />
+  </wsdl:message>
+  <wsdl:message name="ModificarArrastreCajaHttpPostIn">
+    <wsdl:part name="saldo" type="s:double" />
+    <wsdl:part name="dia_saldo" type="s:short" />
+    <wsdl:part name="mes_saldo" type="s:short" />
+    <wsdl:part name="anio_saldo" type="s:short" />
+    <wsdl:part name="hoja" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ModificarArrastreCajaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosArrastreCaja" />
+  </wsdl:message>
+  <wsdl:portType name="ModificacionesArrastreCajaSoap">
+    <wsdl:operation name="ModificarArrastreCaja">
+      <wsdl:input message="tns:ModificarArrastreCajaSoapIn" />
+      <wsdl:output message="tns:ModificarArrastreCajaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ModificacionesArrastreCajaHttpGet">
+    <wsdl:operation name="ModificarArrastreCaja">
+      <wsdl:input message="tns:ModificarArrastreCajaHttpGetIn" />
+      <wsdl:output message="tns:ModificarArrastreCajaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ModificacionesArrastreCajaHttpPost">
+    <wsdl:operation name="ModificarArrastreCaja">
+      <wsdl:input message="tns:ModificarArrastreCajaHttpPostIn" />
+      <wsdl:output message="tns:ModificarArrastreCajaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ModificacionesArrastreCajaSoap" type="tns:ModificacionesArrastreCajaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ModificarArrastreCaja">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificarArrastreCaja" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ModificacionesArrastreCajaSoap12" type="tns:ModificacionesArrastreCajaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ModificarArrastreCaja">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificarArrastreCaja" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ModificacionesArrastreCajaHttpGet" type="tns:ModificacionesArrastreCajaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ModificarArrastreCaja">
+      <http:operation location="/ModificarArrastreCaja" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ModificacionesArrastreCajaHttpPost" type="tns:ModificacionesArrastreCajaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ModificarArrastreCaja">
+      <http:operation location="/ModificarArrastreCaja" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ModificacionesArrastreCaja">
+    <wsdl:port name="ModificacionesArrastreCajaSoap" binding="tns:ModificacionesArrastreCajaSoap">
+      <soap:address location="http://localhost:1390/ModificacionesArrastreCaja.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ModificacionesArrastreCajaSoap12" binding="tns:ModificacionesArrastreCajaSoap12">
+      <soap12:address location="http://localhost:1390/ModificacionesArrastreCaja.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ModificacionesArrastreCajaHttpGet" binding="tns:ModificacionesArrastreCajaHttpGet">
+      <http:address location="http://localhost:1390/ModificacionesArrastreCaja.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ModificacionesArrastreCajaHttpPost" binding="tns:ModificacionesArrastreCajaHttpPost">
+      <http:address location="http://localhost:1390/ModificacionesArrastreCaja.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

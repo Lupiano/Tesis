@@ -80,6 +80,7 @@
 	<classpathentry kind="lib" path="lib/tomcat-embed-websocket-8.0.23.jar"/>
 	<classpathentry kind="lib" path="lib/validation-api-1.1.0.Final.jar"/>
 	<classpathentry kind="lib" path="lib/wagon-provider-api-1.0-beta-2.jar"/>
-	<classpathentry kind="lib" path="lib/weka-dev-3.7.10.jar"/>
+	<classpathentry kind="lib" path="lib/weka-3-8-0-monolithic.jar"/>
+	<classpathentry kind="lib" path="lib/optics_dbScan.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

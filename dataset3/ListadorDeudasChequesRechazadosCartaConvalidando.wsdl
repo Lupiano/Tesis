@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_listado" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="zona_hasta" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="letra_desde" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="letra_hasta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoDeudasChequesRechazadosCartaReclamoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoDeudasChequesRechazadosCartaReclamoResult" type="tns:ArrayOfDatosChequesRechazados" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosChequesRechazados">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosChequesRechazados" nillable="true" type="tns:DatosChequesRechazados" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosChequesRechazados">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_cliente" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="denominacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_cheque" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_cheque" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_cheque" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="descripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_firmante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit_firmante" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="dia_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="observaciones" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="bolsas" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="condicion_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="neto_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saldo_anterior_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe_total" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosChequesRechazados" nillable="true" type="tns:ArrayOfDatosChequesRechazados" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoDeudasChequesRechazadosCartaReclamoSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamo" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasChequesRechazadosCartaReclamoSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpGetIn">
+  	<wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosChequesRechazados" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpPostIn">
+    <wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosChequesRechazados" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorDeudasChequesRechazadosCartaConvalidandoSoap">
+    <wsdl:operation name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+      <wsdl:input message="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamoSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorDeudasChequesRechazadosCartaConvalidandoHttpGet">
+    <wsdl:operation name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+      <wsdl:input message="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorDeudasChequesRechazadosCartaConvalidandoHttpPost">
+    <wsdl:operation name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+      <wsdl:input message="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoDeudasChequesRechazadosCartaReclamoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorDeudasChequesRechazadosCartaConvalidandoSoap" type="tns:ListadorDeudasChequesRechazadosCartaConvalidandoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudasChequesRechazadosCartaReclamo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorDeudasChequesRechazadosCartaConvalidandoSoap12" type="tns:ListadorDeudasChequesRechazadosCartaConvalidandoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoDeudasChequesRechazadosCartaReclamo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorDeudasChequesRechazadosCartaConvalidandoHttpGet" type="tns:ListadorDeudasChequesRechazadosCartaConvalidandoHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+      <http:operation location="/ObtenerListadoDeudasChequesRechazadosCartaReclamo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorDeudasChequesRechazadosCartaConvalidandoHttpPost" type="tns:ListadorDeudasChequesRechazadosCartaConvalidandoHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoDeudasChequesRechazadosCartaReclamo">
+      <http:operation location="/ObtenerListadoDeudasChequesRechazadosCartaReclamo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorDeudasChequesRechazadosCartaConvalidando">
+    <wsdl:port name="ListadorDeudasChequesRechazadosCartaConvalidandoSoap" binding="tns:ListadorDeudasChequesRechazadosCartaConvalidandoSoap">
+      <soap:address location="http://localhost:1390/ListadorDeudasChequesRechazadosCartaConvalidando.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorDeudasChequesRechazadosCartaConvalidandoSoap12" binding="tns:ListadorDeudasChequesRechazadosCartaConvalidandoSoap12">
+      <soap12:address location="http://localhost:1390/ListadorDeudasChequesRechazadosCartaConvalidando.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorDeudasChequesRechazadosCartaConvalidandoHttpGet" binding="tns:ListadorDeudasChequesRechazadosCartaConvalidandoHttpGet">
+      <http:address location="http://localhost:1390/ListadorDeudasChequesRechazadosCartaConvalidando.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorDeudasChequesRechazadosCartaConvalidandoHttpPost" binding="tns:ListadorDeudasChequesRechazadosCartaConvalidandoHttpPost">
+      <http:address location="http://localhost:1390/ListadorDeudasChequesRechazadosCartaConvalidando.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

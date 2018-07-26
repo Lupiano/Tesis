@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ArmarListadosSubsidios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArmarListadosSubsidiosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArmarListadosSubsidiosResult" type="tns:ArrayOfDatosSubsidio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosSubsidio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosSubsidio" nillable="true" type="tns:DatosSubsidio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosSubsidio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="letra_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="kilos" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="precio" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosSubsidio" nillable="true" type="tns:ArrayOfDatosSubsidio" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ArmarListadosSubsidiosSoapIn">
+    <wsdl:part name="parameters" element="tns:ArmarListadosSubsidios" />
+  </wsdl:message>
+  <wsdl:message name="ArmarListadosSubsidiosSoapOut">
+    <wsdl:part name="parameters" element="tns:ArmarListadosSubsidiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArmarListadosSubsidiosHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarListadosSubsidiosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSubsidio" />
+  </wsdl:message>
+  <wsdl:message name="ArmarListadosSubsidiosHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarListadosSubsidiosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosSubsidio" />
+  </wsdl:message>
+  <wsdl:portType name="ArmadoListadosSubsidiosSalidaExcelSoap">
+    <wsdl:operation name="ArmarListadosSubsidios">
+      <wsdl:input message="tns:ArmarListadosSubsidiosSoapIn" />
+      <wsdl:output message="tns:ArmarListadosSubsidiosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoListadosSubsidiosSalidaExcelHttpGet">
+    <wsdl:operation name="ArmarListadosSubsidios">
+      <wsdl:input message="tns:ArmarListadosSubsidiosHttpGetIn" />
+      <wsdl:output message="tns:ArmarListadosSubsidiosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoListadosSubsidiosSalidaExcelHttpPost">
+    <wsdl:operation name="ArmarListadosSubsidios">
+      <wsdl:input message="tns:ArmarListadosSubsidiosHttpPostIn" />
+      <wsdl:output message="tns:ArmarListadosSubsidiosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ArmadoListadosSubsidiosSalidaExcelSoap" type="tns:ArmadoListadosSubsidiosSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarListadosSubsidios">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ArmarListadosSubsidios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoListadosSubsidiosSalidaExcelSoap12" type="tns:ArmadoListadosSubsidiosSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarListadosSubsidios">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ArmarListadosSubsidios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoListadosSubsidiosSalidaExcelHttpGet" type="tns:ArmadoListadosSubsidiosSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ArmarListadosSubsidios">
+      <http:operation location="/ArmarListadosSubsidios" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoListadosSubsidiosSalidaExcelHttpPost" type="tns:ArmadoListadosSubsidiosSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ArmarListadosSubsidios">
+      <http:operation location="/ArmarListadosSubsidios" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ArmadoListadosSubsidiosSalidaExcel">
+    <wsdl:port name="ArmadoListadosSubsidiosSalidaExcelSoap" binding="tns:ArmadoListadosSubsidiosSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ArmadoListadosSubsidiosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoListadosSubsidiosSalidaExcelSoap12" binding="tns:ArmadoListadosSubsidiosSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ArmadoListadosSubsidiosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoListadosSubsidiosSalidaExcelHttpGet" binding="tns:ArmadoListadosSubsidiosSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ArmadoListadosSubsidiosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoListadosSubsidiosSalidaExcelHttpPost" binding="tns:ArmadoListadosSubsidiosSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ArmadoListadosSubsidiosSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

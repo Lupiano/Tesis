@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaTalonario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="arma_numero" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="desde_talonario" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="hasta_talonario" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaTalonarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaTalonarioResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="BajaTalonario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="arma_numero" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="desde_talonario" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="hasta_talonario" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaTalonarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaTalonarioResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaTalonarioSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaTalonario" />
+  </wsdl:message>
+  <wsdl:message name="AltaTalonarioSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaTalonarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaTalonarioHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="codigo_zona" type="s:short" />
+    <wsdl:part name="arma_numero" type="s:long" />
+    <wsdl:part name="desde_talonario" type="s:long" />
+    <wsdl:part name="hasta_talonario" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="AltaTalonarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaTalonarioHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+    <wsdl:part name="codigo_zona" type="s:short" />
+    <wsdl:part name="arma_numero" type="s:long" />
+    <wsdl:part name="desde_talonario" type="s:long" />
+    <wsdl:part name="hasta_talonario" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="AltaTalonarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="BajaTalonarioSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaTalonario" />
+  </wsdl:message>
+  <wsdl:message name="BajaTalonarioSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaTalonarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaTalonarioHttpGetIn">
+    <wsdl:part name="arma_numero" type="s:long" />
+    <wsdl:part name="desde_talonario" type="s:long" />
+    <wsdl:part name="hasta_talonario" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="BajaTalonarioHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaTalonarioHttpPostIn">
+    <wsdl:part name="arma_numero" type="s:long" />
+    <wsdl:part name="desde_talonario" type="s:long" />
+    <wsdl:part name="hasta_talonario" type="s:long" />
+  </wsdl:message>
+  <wsdl:message name="BajaTalonarioHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap">
+    <wsdl:operation name="AltaTalonario">
+      <wsdl:input message="tns:AltaTalonarioSoapIn" />
+      <wsdl:output message="tns:AltaTalonarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaTalonario">
+      <wsdl:input message="tns:BajaTalonarioSoapIn" />
+      <wsdl:output message="tns:BajaTalonarioSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpGet">
+    <wsdl:operation name="AltaTalonario">
+      <wsdl:input message="tns:AltaTalonarioHttpGetIn" />
+      <wsdl:output message="tns:AltaTalonarioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaTalonario">
+      <wsdl:input message="tns:BajaTalonarioHttpGetIn" />
+      <wsdl:output message="tns:BajaTalonarioHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpPost">
+    <wsdl:operation name="AltaTalonario">
+      <wsdl:input message="tns:AltaTalonarioHttpPostIn" />
+      <wsdl:output message="tns:AltaTalonarioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaTalonario">
+      <wsdl:input message="tns:BajaTalonarioHttpPostIn" />
+      <wsdl:output message="tns:BajaTalonarioHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap" type="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaTalonario">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaTalonario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTalonario">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaTalonario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap12" type="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaTalonario">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaTalonario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTalonario">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaTalonario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpGet" type="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaTalonario">
+      <http:operation location="/AltaTalonario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTalonario">
+      <http:operation location="/BajaTalonario" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpPost" type="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaTalonario">
+      <http:operation location="/AltaTalonario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaTalonario">
+      <http:operation location="/BajaTalonario" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AltasYBajasTalonariosRecibosProvisoriosEnviados">
+    <wsdl:port name="AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap" binding="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap">
+      <soap:address location="http://localhost:1390/AltasYBajasTalonariosRecibosProvisoriosEnviados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap12" binding="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosSoap12">
+      <soap12:address location="http://localhost:1390/AltasYBajasTalonariosRecibosProvisoriosEnviados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpGet" binding="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpGet">
+      <http:address location="http://localhost:1390/AltasYBajasTalonariosRecibosProvisoriosEnviados.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpPost" binding="tns:AltasYBajasTalonariosRecibosProvisoriosEnviadosHttpPost">
+      <http:address location="http://localhost:1390/AltasYBajasTalonariosRecibosProvisoriosEnviados.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

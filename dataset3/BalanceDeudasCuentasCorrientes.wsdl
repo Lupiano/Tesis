@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerBalanceDeudasCuentasCorrientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerBalanceDeudasCuentasCorrientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerBalanceDeudasCuentasCorrientesResult" type="tns:ArrayOfDatosBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosBalance" nillable="true" type="tns:DatosBalance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosBalance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="zona_cliente" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_deudas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="total_cuentas" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="neto" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosBalance" nillable="true" type="tns:ArrayOfDatosBalance" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerBalanceDeudasCuentasCorrientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceDeudasCuentasCorrientes" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceDeudasCuentasCorrientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerBalanceDeudasCuentasCorrientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceDeudasCuentasCorrientesHttpGetIn">
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceDeudasCuentasCorrientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceDeudasCuentasCorrientesHttpPostIn">
+  	<wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerBalanceDeudasCuentasCorrientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosBalance" />
+  </wsdl:message>
+  <wsdl:portType name="BalanceDeudasCuentasCorrientesSoap">
+    <wsdl:operation name="ObtenerBalanceDeudasCuentasCorrientes">
+      <wsdl:input message="tns:ObtenerBalanceDeudasCuentasCorrientesSoapIn" />
+      <wsdl:output message="tns:ObtenerBalanceDeudasCuentasCorrientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceDeudasCuentasCorrientesHttpGet">
+    <wsdl:operation name="ObtenerBalanceDeudasCuentasCorrientes">
+      <wsdl:input message="tns:ObtenerBalanceDeudasCuentasCorrientesHttpGetIn" />
+      <wsdl:output message="tns:ObtenerBalanceDeudasCuentasCorrientesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BalanceDeudasCuentasCorrientesHttpPost">
+    <wsdl:operation name="ObtenerBalanceDeudasCuentasCorrientes">
+      <wsdl:input message="tns:ObtenerBalanceDeudasCuentasCorrientesHttpPostIn" />
+      <wsdl:output message="tns:ObtenerBalanceDeudasCuentasCorrientesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BalanceDeudasCuentasCorrientesSoap" type="tns:BalanceDeudasCuentasCorrientesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceDeudasCuentasCorrientes">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceDeudasCuentasCorrientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceDeudasCuentasCorrientesSoap12" type="tns:BalanceDeudasCuentasCorrientesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerBalanceDeudasCuentasCorrientes">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerBalanceDeudasCuentasCorrientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceDeudasCuentasCorrientesHttpGet" type="tns:BalanceDeudasCuentasCorrientesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerBalanceDeudasCuentasCorrientes">
+      <http:operation location="/ObtenerBalanceDeudasCuentasCorrientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BalanceDeudasCuentasCorrientesHttpPost" type="tns:BalanceDeudasCuentasCorrientesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerBalanceDeudasCuentasCorrientes">
+      <http:operation location="/ObtenerBalanceDeudasCuentasCorrientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BalanceDeudasCuentasCorrientes">
+    <wsdl:port name="BalanceDeudasCuentasCorrientesSoap" binding="tns:BalanceDeudasCuentasCorrientesSoap">
+      <soap:address location="http://localhost:1390/BalanceDeudasCuentasCorrientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceDeudasCuentasCorrientesSoap12" binding="tns:BalanceDeudasCuentasCorrientesSoap12">
+      <soap12:address location="http://localhost:1390/BalanceDeudasCuentasCorrientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceDeudasCuentasCorrientesHttpGet" binding="tns:BalanceDeudasCuentasCorrientesHttpGet">
+      <http:address location="http://localhost:1390/BalanceDeudasCuentasCorrientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BalanceDeudasCuentasCorrientesHttpPost" binding="tns:BalanceDeudasCuentasCorrientesHttpPost">
+      <http:address location="http://localhost:1390/BalanceDeudasCuentasCorrientes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

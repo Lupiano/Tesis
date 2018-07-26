@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="GenerarListadoCheques">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerarListadoChequesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerarListadoChequesResult" type="tns:ArrayOfDatosCheque" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCheque">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCheque" nillable="true" type="tns:DatosCheque" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCheque">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio_vencimiento" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />'
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCheque" nillable="true" type="tns:ArrayOfDatosCheque" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GenerarListadoChequesSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerarListadoCheques" />
+  </wsdl:message>
+  <wsdl:message name="GenerarListadoChequesSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerarListadoChequesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerarListadoChequesHttpGetIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="GenerarListadoChequesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCheque" />
+  </wsdl:message>
+  <wsdl:message name="GenerarListadoChequesHttpPostIn">
+    <wsdl:part name="dia" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="GenerarListadoChequesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCheque" />
+  </wsdl:message>
+  <wsdl:portType name="ChequesAFechaPorZonaMesSoap">
+    <wsdl:operation name="GenerarListadoCheques">
+      <wsdl:input message="tns:GenerarListadoChequesSoapIn" />
+      <wsdl:output message="tns:GenerarListadoChequesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ChequesAFechaPorZonaMesHttpGet">
+    <wsdl:operation name="GenerarListadoCheques">
+      <wsdl:input message="tns:GenerarListadoChequesHttpGetIn" />
+      <wsdl:output message="tns:GenerarListadoChequesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ChequesAFechaPorZonaMesHttpPost">
+    <wsdl:operation name="GenerarListadoCheques">
+      <wsdl:input message="tns:GenerarListadoChequesHttpPostIn" />
+      <wsdl:output message="tns:GenerarListadoChequesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ChequesAFechaPorZonaMesSoap" type="tns:ChequesAFechaPorZonaMesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerarListadoCheques">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/GenerarListadoCheques" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ChequesAFechaPorZonaMesSoap12" type="tns:ChequesAFechaPorZonaMesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GenerarListadoCheques">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/GenerarListadoCheques" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ChequesAFechaPorZonaMesHttpGet" type="tns:ChequesAFechaPorZonaMesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GenerarListadoCheques">
+      <http:operation location="/GenerarListadoCheques" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ChequesAFechaPorZonaMesHttpPost" type="tns:ChequesAFechaPorZonaMesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GenerarListadoCheques">
+      <http:operation location="/GenerarListadoCheques" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ChequesAFechaPorZonaMes">
+    <wsdl:port name="ChequesAFechaPorZonaMesSoap" binding="tns:ChequesAFechaPorZonaMesSoap">
+      <soap:address location="http://localhost:1390/ChequesAFechaPorZonaMes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ChequesAFechaPorZonaMesSoap12" binding="tns:ChequesAFechaPorZonaMesSoap12">
+      <soap12:address location="http://localhost:1390/ChequesAFechaPorZonaMes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ChequesAFechaPorZonaMesHttpGet" binding="tns:ChequesAFechaPorZonaMesHttpGet">
+      <http:address location="http://localhost:1390/ChequesAFechaPorZonaMes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ChequesAFechaPorZonaMesHttpPost" binding="tns:ChequesAFechaPorZonaMesHttpPost">
+      <http:address location="http://localhost:1390/ChequesAFechaPorZonaMes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

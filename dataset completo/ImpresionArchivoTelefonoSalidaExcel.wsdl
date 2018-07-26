@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoTelefonos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="letra_desde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_hasta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoTelefonosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoTelefonosResult" type="tns:ArrayOfDatosTelefono" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosTelefono">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosTelefono" nillable="true" type="tns:DatosTelefono" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosTelefono">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="localidad" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosTelefono" nillable="true" type="tns:ArrayOfDatosTelefono" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoTelefonosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTelefonos" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTelefonosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTelefonosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTelefonosHttpGetIn">
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTelefonosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosTelefono" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTelefonosHttpPostIn">
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTelefonosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosTelefono" />
+  </wsdl:message>
+  <wsdl:portType name="ImpresionArchivoTelefonoSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoTelefonos">
+      <wsdl:input message="tns:ObtenerListadoTelefonosSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoTelefonosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionArchivoTelefonoSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoTelefonos">
+      <wsdl:input message="tns:ObtenerListadoTelefonosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoTelefonosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionArchivoTelefonoSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoTelefonos">
+      <wsdl:input message="tns:ObtenerListadoTelefonosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoTelefonosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImpresionArchivoTelefonoSalidaExcelSoap" type="tns:ImpresionArchivoTelefonoSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTelefonos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTelefonos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionArchivoTelefonoSalidaExcelSoap12" type="tns:ImpresionArchivoTelefonoSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTelefonos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTelefonos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionArchivoTelefonoSalidaExcelHttpGet" type="tns:ImpresionArchivoTelefonoSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoTelefonos">
+      <http:operation location="/ObtenerListadoTelefonos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionArchivoTelefonoSalidaExcelHttpPost" type="tns:ImpresionArchivoTelefonoSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoTelefonos">
+      <http:operation location="/ObtenerListadoTelefonos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ImpresionArchivoTelefonoSalidaExcel">
+    <wsdl:port name="ImpresionArchivoTelefonoSalidaExcelSoap" binding="tns:ImpresionArchivoTelefonoSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ImpresionArchivoTelefonoSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionArchivoTelefonoSalidaExcelSoap12" binding="tns:ImpresionArchivoTelefonoSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ImpresionArchivoTelefonoSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionArchivoTelefonoSalidaExcelHttpGet" binding="tns:ImpresionArchivoTelefonoSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ImpresionArchivoTelefonoSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionArchivoTelefonoSalidaExcelHttpPost" binding="tns:ImpresionArchivoTelefonoSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ImpresionArchivoTelefonoSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -2,6 +2,8 @@ package org.clusterer.strategy;
 
 import java.util.ArrayList;
 
+import org.clusterer.distance.JaccardDistance;
+
 import net.sf.json.JSONObject;
 import weka.clusterers.SimpleKMeans;
 import weka.core.DistanceFunction;
@@ -114,6 +116,5 @@ public class XmeansStrategy extends ClusteringDistanceStrategy
 		}
 		return total;
 	}
-
 
 }

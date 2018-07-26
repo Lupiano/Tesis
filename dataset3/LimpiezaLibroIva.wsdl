@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="LimpiarLibroIva">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpiarLibroIvaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LimpiarLibroIvaResult" type="tns:DatosLibroIva" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosLibroIva">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="borradoCorrecto" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosLibroIva" nillable="true" type="tns:DatosLibroIva" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LimpiarLibroIvaSoapIn">
+    <wsdl:part name="parameters" element="tns:LimpiarLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroIvaSoapOut">
+    <wsdl:part name="parameters" element="tns:LimpiarLibroIvaResponse" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroIvaHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroIvaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosLibroIva" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroIvaHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarLibroIvaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosLibroIva" />
+  </wsdl:message>
+  <wsdl:portType name="LimpiezaLibroIvaSoap">
+    <wsdl:operation name="LimpiarLibroIva">
+      <wsdl:input message="tns:LimpiarLibroIvaSoapIn" />
+      <wsdl:output message="tns:LimpiarLibroIvaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaLibroIvaHttpGet">
+    <wsdl:operation name="LimpiarLibroIva">
+      <wsdl:input message="tns:LimpiarLibroIvaHttpGetIn" />
+      <wsdl:output message="tns:LimpiarLibroIvaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaLibroIvaHttpPost">
+    <wsdl:operation name="LimpiarLibroIva">
+      <wsdl:input message="tns:LimpiarLibroIvaHttpPostIn" />
+      <wsdl:output message="tns:LimpiarLibroIvaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LimpiezaLibroIvaSoap" type="tns:LimpiezaLibroIvaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarLibroIva">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/LimpiarLibroIva" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaLibroIvaSoap12" type="tns:LimpiezaLibroIvaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarLibroIva">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/LimpiarLibroIva" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaLibroIvaHttpGet" type="tns:LimpiezaLibroIvaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="LimpiarLibroIva">
+      <http:operation location="/LimpiarLibroIva" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaLibroIvaHttpPost" type="tns:LimpiezaLibroIvaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="LimpiarLibroIva">
+      <http:operation location="/LimpiarLibroIva" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LimpiezaLibroIva">
+    <wsdl:port name="LimpiezaLibroIvaSoap" binding="tns:LimpiezaLibroIvaSoap">
+      <soap:address location="http://localhost:1390/LimpiezaLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaLibroIvaSoap12" binding="tns:LimpiezaLibroIvaSoap12">
+      <soap12:address location="http://localhost:1390/LimpiezaLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaLibroIvaHttpGet" binding="tns:LimpiezaLibroIvaHttpGet">
+      <http:address location="http://localhost:1390/LimpiezaLibroIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaLibroIvaHttpPost" binding="tns:LimpiezaLibroIvaHttpPost">
+      <http:address location="http://localhost:1390/LimpiezaLibroIva.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListaContabilizaBorraCaja">
+        <s:complexType>
+          <s:sequence>
+          	<s:element minOccurs="1" maxOccurs="1" name="wempresa" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="wdia" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="wmes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="wanio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="wmayor" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListaContabilizaBorraCajaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListaContabilizaBorraCajaResult" type="tns:ArrayOfDatosCaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCaja">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCaja" nillable="true" type="tns:DatosCaja" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCaja" nillable="true" type="tns:ArrayOfDatosCaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListaContabilizaBorraCajaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListaContabilizaBorraCaja" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListaContabilizaBorraCajaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListaContabilizaBorraCajaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListaContabilizaBorraCajaHttpGetIn">
+  	<wsdl:part name="wempresa" type="s:string" />
+    <wsdl:part name="wdia" type="s:short" />
+    <wsdl:part name="wmes" type="s:short" />
+    <wsdl:part name="wanio" type="s:short" />
+    <wsdl:part name="wmayor" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListaContabilizaBorraCajaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCaja" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListaContabilizaBorraCajaHttpPostIn">
+  	<wsdl:part name="wempresa" type="s:string" />
+    <wsdl:part name="wdia" type="s:short" />
+    <wsdl:part name="wmes" type="s:short" />
+    <wsdl:part name="wanio" type="s:short" />
+    <wsdl:part name="wmayor" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListaContabilizaBorraCajaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCaja" />
+  </wsdl:message>
+  <wsdl:portType name="ListaContabilizaBorraCajaSoap">
+    <wsdl:operation name="ObtenerListaContabilizaBorraCaja">
+      <wsdl:input message="tns:ObtenerListaContabilizaBorraCajaSoapIn" />
+      <wsdl:output message="tns:ObtenerListaContabilizaBorraCajaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaContabilizaBorraCajaHttpGet">
+    <wsdl:operation name="ObtenerListaContabilizaBorraCaja">
+      <wsdl:input message="tns:ObtenerListaContabilizaBorraCajaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListaContabilizaBorraCajaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListaContabilizaBorraCajaHttpPost">
+    <wsdl:operation name="ObtenerListaContabilizaBorraCaja">
+      <wsdl:input message="tns:ObtenerListaContabilizaBorraCajaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListaContabilizaBorraCajaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListaContabilizaBorraCajaSoap" type="tns:ListaContabilizaBorraCajaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListaContabilizaBorraCaja">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListaContabilizaBorraCaja" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaContabilizaBorraCajaSoap12" type="tns:ListaContabilizaBorraCajaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListaContabilizaBorraCaja">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListaContabilizaBorraCaja" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaContabilizaBorraCajaHttpGet" type="tns:ListaContabilizaBorraCajaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListaContabilizaBorraCaja">
+      <http:operation location="/ObtenerListaContabilizaBorraCaja" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListaContabilizaBorraCajaHttpPost" type="tns:ListaContabilizaBorraCajaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListaContabilizaBorraCaja">
+      <http:operation location="/ObtenerListaContabilizaBorraCaja" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListaContabilizaBorraCaja">
+    <wsdl:port name="ListaContabilizaBorraCajaSoap" binding="tns:ListaContabilizaBorraCajaSoap">
+      <soap:address location="http://localhost:1390/ListaContabilizaBorraCaja.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaContabilizaBorraCajaSoap12" binding="tns:ListaContabilizaBorraCajaSoap12">
+      <soap12:address location="http://localhost:1390/ListaContabilizaBorraCaja.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaContabilizaBorraCajaHttpGet" binding="tns:ListaContabilizaBorraCajaHttpGet">
+      <http:address location="http://localhost:1390/ListaContabilizaBorraCaja.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListaContabilizaBorraCajaHttpPost" binding="tns:ListaContabilizaBorraCajaHttpPost">
+      <http:address location="http://localhost:1390/ListaContabilizaBorraCaja.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

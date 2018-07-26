@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoClientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_listado" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_desde" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="letra_hasta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoClientesResult" type="tns:ArrayOfDatosCliente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCliente" nillable="true" type="tns:DatosCliente" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCliente">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuit" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCliente" nillable="true" type="tns:ArrayOfDatosCliente" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoClientes" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoClientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoClientesHttpGetIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="mes_desde" type="s:short" />
+    <wsdl:part name="anio_desde" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoClientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCliente" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoClientesHttpPostIn">
+    <wsdl:part name="tipo_listado" type="s:short" />
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="letra_desde" type="s:string" />
+    <wsdl:part name="letra_hasta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoClientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCliente" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorArchivoClientesMonotributistasSoap">
+    <wsdl:operation name="ObtenerListadoClientes">
+      <wsdl:input message="tns:ObtenerListadoClientesSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoClientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorArchivoClientesMonotributistasHttpGet">
+    <wsdl:operation name="ObtenerListadoClientes">
+      <wsdl:input message="tns:ObtenerListadoClientesHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoClientesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorArchivoClientesMonotributistasHttpPost">
+    <wsdl:operation name="ObtenerListadoClientes">
+      <wsdl:input message="tns:ObtenerListadoClientesHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoClientesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorArchivoClientesMonotributistasSoap" type="tns:ListadorArchivoClientesMonotributistasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoClientes">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorArchivoClientesMonotributistasSoap12" type="tns:ListadorArchivoClientesMonotributistasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoClientes">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorArchivoClientesMonotributistasHttpGet" type="tns:ListadorArchivoClientesMonotributistasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoClientes">
+      <http:operation location="/ObtenerListadoClientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorArchivoClientesMonotributistasHttpPost" type="tns:ListadorArchivoClientesMonotributistasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoClientes">
+      <http:operation location="/ObtenerListadoClientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorArchivoClientesMonotributistas">
+    <wsdl:port name="ListadorArchivoClientesMonotributistasSoap" binding="tns:ListadorArchivoClientesMonotributistasSoap">
+      <soap:address location="http://localhost:1390/ListadorArchivoClientesMonotributistas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorArchivoClientesMonotributistasSoap12" binding="tns:ListadorArchivoClientesMonotributistasSoap12">
+      <soap12:address location="http://localhost:1390/ListadorArchivoClientesMonotributistas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorArchivoClientesMonotributistasHttpGet" binding="tns:ListadorArchivoClientesMonotributistasHttpGet">
+      <http:address location="http://localhost:1390/ListadorArchivoClientesMonotributistas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorArchivoClientesMonotributistasHttpPost" binding="tns:ListadorArchivoClientesMonotributistasHttpPost">
+      <http:address location="http://localhost:1390/ListadorArchivoClientesMonotributistas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

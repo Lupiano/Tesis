@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoTalonariosEntregados">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoTalonariosEntregadosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoTalonariosEntregadosResult" type="tns:ArrayOfDatosTalonario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosTalonario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosTalonario" nillable="true" type="tns:DatosTalonario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosTalonario">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosTalonario" nillable="true" type="tns:ArrayOfDatosTalonario" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoTalonariosEntregadosSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTalonariosEntregados" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTalonariosEntregadosSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoTalonariosEntregadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTalonariosEntregadosHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTalonariosEntregadosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosTalonario" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTalonariosEntregadosHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoTalonariosEntregadosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosTalonario" />
+  </wsdl:message>
+  <wsdl:portType name="TalonariosentregadosSalidaExcelSoap">
+    <wsdl:operation name="ObtenerListadoTalonariosEntregados">
+      <wsdl:input message="tns:ObtenerListadoTalonariosEntregadosSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoTalonariosEntregadosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TalonariosentregadosSalidaExcelHttpGet">
+    <wsdl:operation name="ObtenerListadoTalonariosEntregados">
+      <wsdl:input message="tns:ObtenerListadoTalonariosEntregadosHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoTalonariosEntregadosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TalonariosentregadosSalidaExcelHttpPost">
+    <wsdl:operation name="ObtenerListadoTalonariosEntregados">
+      <wsdl:input message="tns:ObtenerListadoTalonariosEntregadosHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoTalonariosEntregadosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TalonariosentregadosSalidaExcelSoap" type="tns:TalonariosentregadosSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTalonariosEntregados">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTalonariosEntregados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TalonariosentregadosSalidaExcelSoap12" type="tns:TalonariosentregadosSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoTalonariosEntregados">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoTalonariosEntregados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TalonariosentregadosSalidaExcelHttpGet" type="tns:TalonariosentregadosSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoTalonariosEntregados">
+      <http:operation location="/ObtenerListadoTalonariosEntregados" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TalonariosentregadosSalidaExcelHttpPost" type="tns:TalonariosentregadosSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoTalonariosEntregados">
+      <http:operation location="/ObtenerListadoTalonariosEntregados" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TalonariosentregadosSalidaExcel">
+    <wsdl:port name="TalonariosentregadosSalidaExcelSoap" binding="tns:TalonariosentregadosSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/TalonariosentregadosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TalonariosentregadosSalidaExcelSoap12" binding="tns:TalonariosentregadosSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/TalonariosentregadosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TalonariosentregadosSalidaExcelHttpGet" binding="tns:TalonariosentregadosSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/TalonariosentregadosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TalonariosentregadosSalidaExcelHttpPost" binding="tns:TalonariosentregadosSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/TalonariosentregadosSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

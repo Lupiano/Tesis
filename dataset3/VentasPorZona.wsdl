@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoVentasPorZona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="zona_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_hasta" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoVentasPorZonaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoVentasPorZonaResult" type="tns:ArrayOfDatosVentaPorZona" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosVentaPorZona">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosVentaPorZona" nillable="true" type="tns:DatosVentaPorZona" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosVentaPorZona">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="comentario" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_gravado" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosVentaPorZona" nillable="true" type="tns:ArrayOfDatosVentaPorZona" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoVentasPorZona" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoVentasPorZonaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaHttpGetIn">
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosVentaPorZona" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaHttpPostIn">
+    <wsdl:part name="zona_desde" type="s:short" />
+    <wsdl:part name="zona_hasta" type="s:short" />
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoVentasPorZonaHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosVentaPorZona" />
+  </wsdl:message>
+  <wsdl:portType name="VentasPorZonaSoap">
+    <wsdl:operation name="ObtenerListadoVentasPorZona">
+      <wsdl:input message="tns:ObtenerListadoVentasPorZonaSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoVentasPorZonaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VentasPorZonaHttpGet">
+    <wsdl:operation name="ObtenerListadoVentasPorZona">
+      <wsdl:input message="tns:ObtenerListadoVentasPorZonaHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoVentasPorZonaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="VentasPorZonaHttpPost">
+    <wsdl:operation name="ObtenerListadoVentasPorZona">
+      <wsdl:input message="tns:ObtenerListadoVentasPorZonaHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoVentasPorZonaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VentasPorZonaSoap" type="tns:VentasPorZonaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoVentasPorZona">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoVentasPorZona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VentasPorZonaSoap12" type="tns:VentasPorZonaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoVentasPorZona">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoVentasPorZona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VentasPorZonaHttpGet" type="tns:VentasPorZonaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoVentasPorZona">
+      <http:operation location="/ObtenerListadoVentasPorZona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="VentasPorZonaHttpPost" type="tns:VentasPorZonaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoVentasPorZona">
+      <http:operation location="/ObtenerListadoVentasPorZona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VentasPorZona">
+    <wsdl:port name="VentasPorZonaSoap" binding="tns:VentasPorZonaSoap">
+      <soap:address location="http://localhost:1390/VentasPorZona.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VentasPorZonaSoap12" binding="tns:VentasPorZonaSoap12">
+      <soap12:address location="http://localhost:1390/VentasPorZona.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VentasPorZonaHttpGet" binding="tns:VentasPorZonaHttpGet">
+      <http:address location="http://localhost:1390/VentasPorZona.asmx" />
+    </wsdl:port>
+    <wsdl:port name="VentasPorZonaHttpPost" binding="tns:VentasPorZonaHttpPost">
+      <http:address location="http://localhost:1390/VentasPorZona.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

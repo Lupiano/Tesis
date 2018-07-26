@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaCondicion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_condicion" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="texto_condicion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_vencimiento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dias_pago" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaCondicionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaCondicionResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionCondicion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_condicion" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="texto_condicion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_vencimiento" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dias_pago" type="s:integer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionCondicionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionCondicionResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaCondicion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_condicion" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaCondicionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaCondicionResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaCondicionSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaCondicion" />
+  </wsdl:message>
+  <wsdl:message name="AltaCondicionSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaCondicionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaCondicionHttpGetIn">
+    <wsdl:part name="codigo_condicion" type="s:short" />
+    <wsdl:part name="texto_condicion" type="s:string" />
+    <wsdl:part name="tipo_vencimiento" type="s:short" />
+    <wsdl:part name="dias_pago" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AltaCondicionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaCondicionHttpPostIn">
+    <wsdl:part name="codigo_condicion" type="s:short" />
+    <wsdl:part name="texto_condicion" type="s:string" />
+    <wsdl:part name="tipo_vencimiento" type="s:short" />
+    <wsdl:part name="dias_pago" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="AltaCondicionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCondicionSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionCondicion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCondicionSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionCondicionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCondicionHttpGetIn">
+    <wsdl:part name="codigo_condicion" type="s:short" />
+    <wsdl:part name="texto_condicion" type="s:string" />
+    <wsdl:part name="tipo_vencimiento" type="s:short" />
+    <wsdl:part name="dias_pago" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCondicionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCondicionHttpPostIn">
+    <wsdl:part name="codigo_condicion" type="s:short" />
+    <wsdl:part name="texto_condicion" type="s:string" />
+    <wsdl:part name="tipo_vencimiento" type="s:short" />
+    <wsdl:part name="dias_pago" type="s:integer" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionCondicionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaCondicionSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaCondicion" />
+  </wsdl:message>
+  <wsdl:message name="BajaCondicionSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaCondicionResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaCondicionHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaCondicionHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaCondicionHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaCondicionHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmCondicionesSoap">
+    <wsdl:operation name="AltaCondicion">
+      <wsdl:input message="tns:AltaCondicionSoapIn" />
+      <wsdl:output message="tns:AltaCondicionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCondicion">
+      <wsdl:input message="tns:ModificacionCondicionSoapIn" />
+      <wsdl:output message="tns:ModificacionCondicionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCondicion">
+      <wsdl:input message="tns:BajaCondicionSoapIn" />
+      <wsdl:output message="tns:BajaCondicionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmCondicionesHttpGet">
+    <wsdl:operation name="AltaCondicion">
+      <wsdl:input message="tns:AltaCondicionHttpGetIn" />
+      <wsdl:output message="tns:AltaCondicionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCondicion">
+      <wsdl:input message="tns:ModificacionCondicionHttpGetIn" />
+      <wsdl:output message="tns:ModificacionCondicionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCondicion">
+      <wsdl:input message="tns:BajaCondicionHttpGetIn" />
+      <wsdl:output message="tns:BajaCondicionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmCondicionesHttpPost">
+    <wsdl:operation name="AltaCondicion">
+      <wsdl:input message="tns:AltaCondicionHttpPostIn" />
+      <wsdl:output message="tns:AltaCondicionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCondicion">
+      <wsdl:input message="tns:ModificacionCondicionHttpPostIn" />
+      <wsdl:output message="tns:ModificacionCondicionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaCondicion">
+      <wsdl:input message="tns:BajaCondicionHttpPostIn" />
+      <wsdl:output message="tns:BajaCondicionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmCondicionesSoap" type="tns:AbmCondicionesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCondicion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaCondicion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCondicion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCondicion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCondicion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaCondicion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmCondicionesSoap12" type="tns:AbmCondicionesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaCondicion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaCondicion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCondicion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionCondicion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCondicion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaCondicion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmCondicionesHttpGet" type="tns:AbmCondicionesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaCondicion">
+      <http:operation location="/AltaCondicion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCondicion">
+      <http:operation location="/ModificacionCondicion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCondicion">
+      <http:operation location="/BajaCondicion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmCondicionesHttpPost" type="tns:AbmCondicionesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaCondicion">
+      <http:operation location="/AltaCondicion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionCondicion">
+      <http:operation location="/ModificacionCondicion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaCondicion">
+      <http:operation location="/BajaCondicion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmCondiciones">
+    <wsdl:port name="AbmCondicionesSoap" binding="tns:AbmCondicionesSoap">
+      <soap:address location="http://localhost:1390/AbmCondiciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmCondicionesSoap12" binding="tns:AbmCondicionesSoap12">
+      <soap12:address location="http://localhost:1390/AbmCondiciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmCondicionesHttpGet" binding="tns:AbmCondicionesHttpGet">
+      <http:address location="http://localhost:1390/AbmCondiciones.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmCondicionesHttpPost" binding="tns:AbmCondicionesHttpPost">
+      <http:address location="http://localhost:1390/AbmCondiciones.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

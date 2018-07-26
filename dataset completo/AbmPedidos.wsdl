@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaPedidos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="pedido" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orden" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="descuento" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_entrega" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_entrega" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_entrega" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_precio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="precio_basico" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaPedidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaPedidosResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionPedidos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipo_tarea" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_cliente" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="pedido" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orden" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="descuento" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="dia_entrega" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="mes_entrega" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio_entrega" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_precio" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="precio_basico" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionPedidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionPedidosResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaPedidos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pedido" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaPedidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaPedidosResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaPedidosSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaPedidos" />
+  </wsdl:message>
+  <wsdl:message name="AltaPedidosSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaPedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaPedidosHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="pedido" type="s:integer" />
+    <wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="orden" type="s:string" />
+    <wsdl:part name="condicion" type="s:integer" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="dia_entrega" type="s:short" />
+    <wsdl:part name="mes_entrega" type="s:short" />
+    <wsdl:part name="anio_entrega" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="tipo_precio" type="s:short" />
+    <wsdl:part name="precio_basico" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="AltaPedidosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaPedidosHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="pedido" type="s:integer" />
+    <wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="orden" type="s:string" />
+    <wsdl:part name="condicion" type="s:integer" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="dia_entrega" type="s:short" />
+    <wsdl:part name="mes_entrega" type="s:short" />
+    <wsdl:part name="anio_entrega" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="tipo_precio" type="s:short" />
+    <wsdl:part name="precio_basico" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="AltaPedidosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionPedidosSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionPedidos" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionPedidosSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionPedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionPedidosHttpGetIn">
+  	<wsdl:part name="tipo_tarea" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="pedido" type="s:integer" />
+    <wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="orden" type="s:string" />
+    <wsdl:part name="condicion" type="s:integer" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="dia_entrega" type="s:short" />
+    <wsdl:part name="mes_entrega" type="s:short" />
+    <wsdl:part name="anio_entrega" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="tipo_precio" type="s:short" />
+    <wsdl:part name="precio_basico" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionPedidosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionPedidosHttpPostIn">
+    <wsdl:part name="tipo_tarea" type="s:short" />
+    <wsdl:part name="codigo_cliente" type="s:short" />
+    <wsdl:part name="pedido" type="s:integer" />
+    <wsdl:part name="fecha" type="s:string" />
+    <wsdl:part name="orden" type="s:string" />
+    <wsdl:part name="condicion" type="s:integer" />
+    <wsdl:part name="descuento" type="s:float" />
+    <wsdl:part name="articulo" type="s:short" />
+    <wsdl:part name="dia_entrega" type="s:short" />
+    <wsdl:part name="mes_entrega" type="s:short" />
+    <wsdl:part name="anio_entrega" type="s:short" />
+    <wsdl:part name="cantidad" type="s:integer" />
+    <wsdl:part name="tipo_precio" type="s:short" />
+    <wsdl:part name="precio_basico" type="s:double" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionPedidosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaPedidosSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaPedidos" />
+  </wsdl:message>
+  <wsdl:message name="BajaPedidosSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaPedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaPedidosHttpGetIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaPedidosHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaPedidosHttpPostIn">
+    <wsdl:part name="codigo_cliente" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaPedidosHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmPedidosSoap">
+    <wsdl:operation name="AltaPedidos">
+      <wsdl:input message="tns:AltaPedidosSoapIn" />
+      <wsdl:output message="tns:AltaPedidosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionPedidos">
+      <wsdl:input message="tns:ModificacionPedidosSoapIn" />
+      <wsdl:output message="tns:ModificacionPedidosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaPedidos">
+      <wsdl:input message="tns:BajaPedidosSoapIn" />
+      <wsdl:output message="tns:BajaPedidosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmPedidosHttpGet">
+    <wsdl:operation name="AltaPedidos">
+      <wsdl:input message="tns:AltaPedidosHttpGetIn" />
+      <wsdl:output message="tns:AltaPedidosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionPedidos">
+      <wsdl:input message="tns:ModificacionPedidosHttpGetIn" />
+      <wsdl:output message="tns:ModificacionPedidosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaPedidos">
+      <wsdl:input message="tns:BajaPedidosHttpGetIn" />
+      <wsdl:output message="tns:BajaPedidosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmPedidosHttpPost">
+    <wsdl:operation name="AltaPedidos">
+      <wsdl:input message="tns:AltaPedidosHttpPostIn" />
+      <wsdl:output message="tns:AltaPedidosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionPedidos">
+      <wsdl:input message="tns:ModificacionPedidosHttpPostIn" />
+      <wsdl:output message="tns:ModificacionPedidosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaPedidos">
+      <wsdl:input message="tns:BajaPedidosHttpPostIn" />
+      <wsdl:output message="tns:BajaPedidosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmPedidosSoap" type="tns:AbmPedidosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaPedidos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaPedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionPedidos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionPedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaPedidos">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaPedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmPedidosSoap12" type="tns:AbmPedidosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaPedidos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaPedidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionPedidos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionPedidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaPedidos">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaPedidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmPedidosHttpGet" type="tns:AbmPedidosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaPedidos">
+      <http:operation location="/AltaPedidos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionPedidos">
+      <http:operation location="/ModificacionPedidos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaPedidos">
+      <http:operation location="/BajaPedidos" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmPedidosHttpPost" type="tns:AbmPedidosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaPedidos">
+      <http:operation location="/AltaPedidos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionPedidos">
+      <http:operation location="/ModificacionPedidos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaPedidos">
+      <http:operation location="/BajaPedidos" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmPedidos">
+    <wsdl:port name="AbmPedidosSoap" binding="tns:AbmPedidosSoap">
+      <soap:address location="http://localhost:1390/AbmPedidos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmPedidosSoap12" binding="tns:AbmPedidosSoap12">
+      <soap12:address location="http://localhost:1390/AbmPedidos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmPedidosHttpGet" binding="tns:AbmPedidosHttpGet">
+      <http:address location="http://localhost:1390/AbmPedidos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmPedidosHttpPost" binding="tns:AbmPedidosHttpPost">
+      <http:address location="http://localhost:1390/AbmPedidos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

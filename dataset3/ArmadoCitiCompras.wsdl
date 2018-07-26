@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ArmarCitiCompras">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="acepta_mes_anio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArmarCitiComprasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArmarCitiComprasResult" type="tns:ArrayOfDatosCompra" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCompra">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCompra" nillable="true" type="tns:DatosCompra" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCompra">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="capitulo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="sub_capitulo" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="rubro" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="sub_rubro" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="denominacion_cuenta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe_haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_iva" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="serie_factura" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="letra_factura" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nro_factura" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="imp_bruto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="imp_iva" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="excento" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="no_inscripto" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="iva_retenido" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="total" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCompra" nillable="true" type="tns:ArrayOfDatosCompra" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ArmarCitiComprasSoapIn">
+    <wsdl:part name="parameters" element="tns:ArmarCitiCompras" />
+  </wsdl:message>
+  <wsdl:message name="ArmarCitiComprasSoapOut">
+    <wsdl:part name="parameters" element="tns:ArmarCitiComprasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArmarCitiComprasHttpGetIn">
+    <wsdl:part name="acepta_mes_anio" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ArmarCitiComprasHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCompra" />
+  </wsdl:message>
+  <wsdl:message name="ArmarCitiComprasHttpPostIn">
+    <wsdl:part name="acepta_mes_anio" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ArmarCitiComprasHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCompra" />
+  </wsdl:message>
+  <wsdl:portType name="ArmadoCitiComprasSoap">
+    <wsdl:operation name="ArmarCitiCompras">
+      <wsdl:input message="tns:ArmarCitiComprasSoapIn" />
+      <wsdl:output message="tns:ArmarCitiComprasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoCitiComprasHttpGet">
+    <wsdl:operation name="ArmarCitiCompras">
+      <wsdl:input message="tns:ArmarCitiComprasHttpGetIn" />
+      <wsdl:output message="tns:ArmarCitiComprasHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoCitiComprasHttpPost">
+    <wsdl:operation name="ArmarCitiCompras">
+      <wsdl:input message="tns:ArmarCitiComprasHttpPostIn" />
+      <wsdl:output message="tns:ArmarCitiComprasHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ArmadoCitiComprasSoap" type="tns:ArmadoCitiComprasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarCitiCompras">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ArmarCitiCompras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoCitiComprasSoap12" type="tns:ArmadoCitiComprasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarCitiCompras">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ArmarCitiCompras" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoCitiComprasHttpGet" type="tns:ArmadoCitiComprasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ArmarCitiCompras">
+      <http:operation location="/ArmarCitiCompras" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoCitiComprasHttpPost" type="tns:ArmadoCitiComprasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ArmarCitiCompras">
+      <http:operation location="/ArmarCitiCompras" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ArmadoCitiCompras">
+    <wsdl:port name="ArmadoCitiComprasSoap" binding="tns:ArmadoCitiComprasSoap">
+      <soap:address location="http://localhost:1390/ArmadoCitiCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoCitiComprasSoap12" binding="tns:ArmadoCitiComprasSoap12">
+      <soap12:address location="http://localhost:1390/ArmadoCitiCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoCitiComprasHttpGet" binding="tns:ArmadoCitiComprasHttpGet">
+      <http:address location="http://localhost:1390/ArmadoCitiCompras.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoCitiComprasHttpPost" binding="tns:ArmadoCitiComprasHttpPost">
+      <http:address location="http://localhost:1390/ArmadoCitiCompras.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

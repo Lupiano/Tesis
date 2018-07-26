@@ -13,9 +13,14 @@ import java.util.List;
 
 import javax.xml.namespace.QName;
 
+import org.clusterer.distance.JaccardDistance;
+import org.clusterer.strategy.ClusteringDistanceStrategy;
 //import org.clusterer.base.NodeBasedClusterer;
 import org.clusterer.strategy.ClusteringHierarchyStrategy;
 import org.clusterer.strategy.ClusteringStrategy;
+import org.clusterer.strategy.KmeansStrategy;
+import org.clusterer.strategy.WSDLClusteringDistanceStrategy;
+import org.clusterer.strategy.XmeansStrategy;
 import org.clusterer.util.DataTypeNode;
 import org.ow2.easywsdl.wsdl.WSDLFactory;
 import org.ow2.easywsdl.wsdl.api.Description;
@@ -25,6 +30,11 @@ import org.ow2.easywsdl.wsdl.api.WSDLException;
 import org.ow2.easywsdl.wsdl.api.WSDLReader;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.InputSource;
+
+import weka.clusterers.Cobweb;
+import weka.clusterers.DBSCAN;
+import weka.clusterers.XMeans;
+import weka.core.DistanceFunction;
 
 
 /**
@@ -87,14 +97,13 @@ public class ClusteringHandler
 	 * @param threshold
 	 * @return cluster of WS operations
 	 */
-	public HashMap<String, Object> clusterWSDLDocumentsForCluster(final List<MultipartFile> listFiles, final double threshold)
+	public HashMap<String, Object> clusterWSDLDocumentsForCluster(final List<MultipartFile> listFiles, boolean splitTerms, boolean doFiltering, final int filterTermsSize, ArrayList<String> blacklist, final double threshold)
 	{
 		final List<List<Operation>> clusters = new LinkedList<List<Operation>>();
 		final HashMap<String, String> mapFiles = new HashMap<String, String>();
 		final List<Operation> operations = new LinkedList<Operation>();
 		fileDescriptions = new HashMap<Operation, Description>();
-
-		System.out.println("El tamaño de la carpeta es: " + listFiles.size());
+		
 		for (final MultipartFile wsdlFile : listFiles)
 		{
 			final Description description = getDescriptionFromWSDLFile(wsdlFile);
@@ -110,31 +119,24 @@ public class ClusteringHandler
 				operation.setQName(new QName(wsdlName + "_" + operationName));
 				//Fin agregado.
 				
+				System.out.println(operation.getQName().getLocalPart().toString());
 				operations.add(operation);
 				fileDescriptions.put(operation, description);
 				mapFiles.put(operation.getQName().getLocalPart(), wsdlFile.getOriginalFilename());
 			}
 		}
 		
-		ArrayList<String> aux = new ArrayList<String>();
-		
 		System.out.println("Cantidad de operaciones: " + operations.size());
-		
-		for(Operation op: operations) {
-			System.out.println("Agregando " + op.getQName().toString());
-			if(!aux.contains(op.getQName().toString())) {
-				aux.add(op.getQName().toString());
-			}
-			else {
-				System.out.println("Repetida");
-			}
-		}
-		
-		System.out.println("Cantidad de operaciones no repetidas: "+aux.size());
 		
 		final ClusteringStrategy clusterer = getClustererStrategy();
 		clusterer.setOperations(operations);
+		clusterer.setDoSplitTerms(splitTerms);
+		clusterer.setBlacklist(blacklist);
+		clusterer.setDoFiltering(doFiltering);
+		clusterer.setFilterTermsSize(filterTermsSize);
+		
 		clusterer.generateCluster();
+		
 
 		final List<DataTypeNode> nodes = clusterer.getMergedClusters();
 		for (final DataTypeNode node : nodes)
@@ -144,10 +146,22 @@ public class ClusteringHandler
 		final HashMap<String, Object> clusterInfo = new HashMap<String, Object>();
 		clusterInfo.put("clusterOperations", clusters);
 		clusterInfo.put("mapFiles", mapFiles);
+		
+		@SuppressWarnings("unchecked")
+		List<List<Operation>> aux = (List<List<Operation>>)clusterInfo.get("clusterOperations");
+		
+		for(int x=0; x<aux.size(); x++) {
+			System.out.println("");
+			System.out.println("Cluster " + x + " (" + aux.get(x).size() + " operaciones)");
+			for(Operation op: aux.get(x)) {
+				System.out.println(op.getQName().getLocalPart().toString());
+			}
+		}
+		
+		//((ClusteringDistanceStrategy)clusterer).printDistances();
+		
 		return clusterInfo;
 	}
-
-
 
 	//Agregado Luciano - Brian.
 	private String parseOperationName(QName qName) {
@@ -244,6 +258,22 @@ public class ClusteringHandler
 		clusterInfo.put("clusterOperations", clusters);
 		clusterInfo.put("mapFiles", mapFiles);
 		return clusterInfo;
+	}
+
+	//Agregado Luciano - Brian.
+	//Agrupar servicios por nombres de operaciones.
+	public ArrayList<List<MultipartFile>> clusterWSDL(List<MultipartFile> listFiles, boolean splitTerms, boolean doFiltering, int filterTermsSize, ArrayList<String> blacklist) throws Exception {
+		
+		final ClusteringStrategy strategy = getClustererStrategy();
+		((WSDLClusteringDistanceStrategy)strategy).setWsdls(listFiles);
+		strategy.setDoSplitTerms(splitTerms);
+		strategy.setBlacklist(blacklist);
+		strategy.setDoFiltering(doFiltering);
+		strategy.setFilterTermsSize(filterTermsSize);
+		
+		strategy.generateCluster();
+		
+		return ((WSDLClusteringDistanceStrategy)strategy).getWsdlClusters();
 	}
 
 }

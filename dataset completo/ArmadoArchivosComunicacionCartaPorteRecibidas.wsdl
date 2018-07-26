@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ArmarArchivosComunicacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ArmarArchivosComunicacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArmarArchivosComunicacionResult" type="tns:ArrayOfDatosCartaPorteRecibida" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCartaPorteRecibida">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCartaPorteRecibida" nillable="true" type="tns:DatosCartaPorteRecibida" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCartaPorteRecibida">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_carta" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="serie_carta" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_carta" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_establecimiento" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_transporte" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="parte1_cuit" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="parte2_cuit" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="parte3_cuit" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="nombre_cargador" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_domicilio_cargador" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="calle_cargador" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_cargador" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_postal_cargador" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_provincia_cargador" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_partido_cargador" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_localidad_cargador" type="s:integer" />
+          <s:element minOccurs="1" maxOccurs="1" name="situacion_iva_cargador" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_onca_cargador" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_especie" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_grano_porte" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="cantidad_porte" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="provincia_procedencia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="partido_procedencia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="provincia_destino" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="partido_destino" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="dia_carga" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="mes_carga" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio_carga" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="tipo_pesado_porte" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="peso_neto_carga" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="situacion_iva_destinatario" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="cuit_transporte" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="transporte" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="situacion_iva_transporte" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="domicilio_transporte" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="patente_transporte" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="tarifa_tonelada_porte" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="cuit_chofer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="nombre_chofer" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dia_descarga" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="mes_descarga" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio_descarga" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="peso_neto_descarga" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero_cau_porte" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="fecha_vencimiento_cau" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCartaPorteRecibida" nillable="true" type="tns:ArrayOfDatosCartaPorteRecibida" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ArmarArchivosComunicacionSoapIn">
+    <wsdl:part name="parameters" element="tns:ArmarArchivosComunicacion" />
+  </wsdl:message>
+  <wsdl:message name="ArmarArchivosComunicacionSoapOut">
+    <wsdl:part name="parameters" element="tns:ArmarArchivosComunicacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ArmarArchivosComunicacionHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarArchivosComunicacionHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCartaPorteRecibida" />
+  </wsdl:message>
+  <wsdl:message name="ArmarArchivosComunicacionHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ArmarArchivosComunicacionHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCartaPorteRecibida" />
+  </wsdl:message>
+  <wsdl:portType name="ArmadoArchivosComunicacionCartaPorteRecibidasSoap">
+    <wsdl:operation name="ArmarArchivosComunicacion">
+      <wsdl:input message="tns:ArmarArchivosComunicacionSoapIn" />
+      <wsdl:output message="tns:ArmarArchivosComunicacionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoArchivosComunicacionCartaPorteRecibidasHttpGet">
+    <wsdl:operation name="ArmarArchivosComunicacion">
+      <wsdl:input message="tns:ArmarArchivosComunicacionHttpGetIn" />
+      <wsdl:output message="tns:ArmarArchivosComunicacionHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ArmadoArchivosComunicacionCartaPorteRecibidasHttpPost">
+    <wsdl:operation name="ArmarArchivosComunicacion">
+      <wsdl:input message="tns:ArmarArchivosComunicacionHttpPostIn" />
+      <wsdl:output message="tns:ArmarArchivosComunicacionHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ArmadoArchivosComunicacionCartaPorteRecibidasSoap" type="tns:ArmadoArchivosComunicacionCartaPorteRecibidasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarArchivosComunicacion">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ArmarArchivosComunicacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoArchivosComunicacionCartaPorteRecibidasSoap12" type="tns:ArmadoArchivosComunicacionCartaPorteRecibidasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ArmarArchivosComunicacion">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ArmarArchivosComunicacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoArchivosComunicacionCartaPorteRecibidasHttpGet" type="tns:ArmadoArchivosComunicacionCartaPorteRecibidasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ArmarArchivosComunicacion">
+      <http:operation location="/ArmarArchivosComunicacion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ArmadoArchivosComunicacionCartaPorteRecibidasHttpPost" type="tns:ArmadoArchivosComunicacionCartaPorteRecibidasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ArmarArchivosComunicacion">
+      <http:operation location="/ArmarArchivosComunicacion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ArmadoArchivosComunicacionCartaPorteRecibidas">
+    <wsdl:port name="ArmadoArchivosComunicacionCartaPorteRecibidasSoap" binding="tns:ArmadoArchivosComunicacionCartaPorteRecibidasSoap">
+      <soap:address location="http://localhost:1390/ArmadoArchivosComunicacionCartaPorteRecibidas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoArchivosComunicacionCartaPorteRecibidasSoap12" binding="tns:ArmadoArchivosComunicacionCartaPorteRecibidasSoap12">
+      <soap12:address location="http://localhost:1390/ArmadoArchivosComunicacionCartaPorteRecibidas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoArchivosComunicacionCartaPorteRecibidasHttpGet" binding="tns:ArmadoArchivosComunicacionCartaPorteRecibidasHttpGet">
+      <http:address location="http://localhost:1390/ArmadoArchivosComunicacionCartaPorteRecibidas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ArmadoArchivosComunicacionCartaPorteRecibidasHttpPost" binding="tns:ArmadoArchivosComunicacionCartaPorteRecibidasHttpPost">
+      <http:address location="http://localhost:1390/ArmadoArchivosComunicacionCartaPorteRecibidas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

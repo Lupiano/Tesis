@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaArticulo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_producto" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_articulo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_hijo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tasa_iva" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaArticuloResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaArticuloResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionArticulo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_producto" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_articulo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_hijo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tasa_iva" type="s:float" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionArticuloResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionArticuloResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaArticulo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_producto" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaArticuloResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaArticuloResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaArticulo" />
+  </wsdl:message>
+  <wsdl:message name="AltaArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaArticuloResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaArticuloHttpGetIn">
+    <wsdl:part name="codigo_producto" type="s:short" />
+    <wsdl:part name="nombre_articulo" type="s:string" />
+    <wsdl:part name="nombre_hijo" type="s:string" />
+    <wsdl:part name="tasa_iva" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="AltaArticuloHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaArticuloHttpPostIn">
+    <wsdl:part name="codigo_producto" type="s:short" />
+    <wsdl:part name="nombre_articulo" type="s:string" />
+    <wsdl:part name="nombre_hijo" type="s:string" />
+    <wsdl:part name="tasa_iva" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="AltaArticuloHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionArticulo" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionArticuloResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionArticuloHttpGetIn">
+    <wsdl:part name="codigo_producto" type="s:short" />
+    <wsdl:part name="nombre_articulo" type="s:string" />
+    <wsdl:part name="nombre_hijo" type="s:string" />
+    <wsdl:part name="tasa_iva" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionArticuloHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionArticuloHttpPostIn">
+    <wsdl:part name="codigo_producto" type="s:short" />
+    <wsdl:part name="nombre_articulo" type="s:string" />
+    <wsdl:part name="nombre_hijo" type="s:string" />
+    <wsdl:part name="tasa_iva" type="s:float" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionArticuloHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaArticuloSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaArticulo" />
+  </wsdl:message>
+  <wsdl:message name="BajaArticuloSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaArticuloResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaArticuloHttpGetIn">
+    <wsdl:part name="codigo_producto" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaArticuloHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaArticuloHttpPostIn">
+    <wsdl:part name="codigo_producto" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaArticuloHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmArticulosSoap">
+    <wsdl:operation name="AltaArticulo">
+      <wsdl:input message="tns:AltaArticuloSoapIn" />
+      <wsdl:output message="tns:AltaArticuloSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionArticulo">
+      <wsdl:input message="tns:ModificacionArticuloSoapIn" />
+      <wsdl:output message="tns:ModificacionArticuloSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaArticulo">
+      <wsdl:input message="tns:BajaArticuloSoapIn" />
+      <wsdl:output message="tns:BajaArticuloSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmArticulosHttpGet">
+    <wsdl:operation name="AltaArticulo">
+      <wsdl:input message="tns:AltaArticuloHttpGetIn" />
+      <wsdl:output message="tns:AltaArticuloHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionArticulo">
+      <wsdl:input message="tns:ModificacionArticuloHttpGetIn" />
+      <wsdl:output message="tns:ModificacionArticuloHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaArticulo">
+      <wsdl:input message="tns:BajaArticuloHttpGetIn" />
+      <wsdl:output message="tns:BajaArticuloHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmArticulosHttpPost">
+    <wsdl:operation name="AltaArticulo">
+      <wsdl:input message="tns:AltaArticuloHttpPostIn" />
+      <wsdl:output message="tns:AltaArticuloHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionArticulo">
+      <wsdl:input message="tns:ModificacionArticuloHttpPostIn" />
+      <wsdl:output message="tns:ModificacionArticuloHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaArticulo">
+      <wsdl:input message="tns:BajaArticuloHttpPostIn" />
+      <wsdl:output message="tns:BajaArticuloHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmArticulosSoap" type="tns:AbmArticulosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaArticulo">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaArticulo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionArticulo">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionArticulo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaArticulo">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaArticulo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArticulosSoap12" type="tns:AbmArticulosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaArticulo">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaArticulo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionArticulo">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionArticulo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaArticulo">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaArticulo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArticulosHttpGet" type="tns:AbmArticulosHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaArticulo">
+      <http:operation location="/AltaArticulo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionArticulo">
+      <http:operation location="/ModificacionArticulo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaArticulo">
+      <http:operation location="/BajaArticulo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArticulosHttpPost" type="tns:AbmArticulosHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaArticulo">
+      <http:operation location="/AltaArticulo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionArticulo">
+      <http:operation location="/ModificacionArticulo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaArticulo">
+      <http:operation location="/BajaArticulo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmArticulos">
+    <wsdl:port name="AbmArticulosSoap" binding="tns:AbmArticulosSoap">
+      <soap:address location="http://localhost:1390/AbmArticulos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArticulosSoap12" binding="tns:AbmArticulosSoap12">
+      <soap12:address location="http://localhost:1390/AbmArticulos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArticulosHttpGet" binding="tns:AbmArticulosHttpGet">
+      <http:address location="http://localhost:1390/AbmArticulos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArticulosHttpPost" binding="tns:AbmArticulosHttpPost">
+      <http:address location="http://localhost:1390/AbmArticulos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

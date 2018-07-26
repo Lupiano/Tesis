@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="AltaVendedores">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nro_direccion_vendedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="provincia_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_provincia_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuit_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ing_brutos_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultima_oper_vendedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion_iva_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_documento_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento_vendedor" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_flete_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="credito_vendedor" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="calificacion_vendedor" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AltaVendedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AltaVendedoresResult" type="tns:DatosAlta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosAlta">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="altaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosAlta" nillable="true" type="tns:DatosAlta" />
+      <s:element name="ModificacionVendedores">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="apellido_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccion_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nro_direccion_vendedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="localidad_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="provincia_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_provincia_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_postal" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cuit_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ing_brutos_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultima_oper_vendedor" type="s:integer" />
+            <s:element minOccurs="0" maxOccurs="1" name="condicion_iva_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo_documento_vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="numero_documento_vendedor" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="zona_flete_vendedor" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="credito_vendedor" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="calificacion_vendedor" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModificacionVendedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ModificacionVendedoresResult" type="tns:DatosModificacion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosModificacion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modificacionExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosModificacion" nillable="true" type="tns:DatosModificacion" />
+      <s:element name="BajaVendedores">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codigo_vendedor" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BajaVendedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BajaVendedoresResult" type="tns:DatosBaja" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosBaja">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="bajaExitosa" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosBaja" nillable="true" type="tns:DatosBaja" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AltaVendedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:AltaVendedores" />
+  </wsdl:message>
+  <wsdl:message name="AltaVendedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:AltaVendedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="AltaVendedoresHttpGetIn">
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="apellido_vendedor" type="s:string" />
+    <wsdl:part name="nombre_vendedor" type="s:string" />
+    <wsdl:part name="direccion_vendedor" type="s:string" />
+    <wsdl:part name="nro_direccion_vendedor" type="s:integer" />
+    <wsdl:part name="localidad_vendedor" type="s:string" />
+    <wsdl:part name="provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_vendedor" type="s:string" />
+    <wsdl:part name="cuit_vendedor" type="s:string" />
+    <wsdl:part name="ing_brutos_vendedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_vendedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_vendedor" type="s:short" />
+    <wsdl:part name="tipo_documento_vendedor" type="s:string" />
+    <wsdl:part name="numero_documento_vendedor" type="s:long" />
+    <wsdl:part name="zona_flete_vendedor" type="s:short" />
+    <wsdl:part name="credito_vendedor" type="s:long" />
+    <wsdl:part name="calificacion_vendedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AltaVendedoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="AltaVendedoresHttpPostIn">
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="apellido_vendedor" type="s:string" />
+    <wsdl:part name="nombre_vendedor" type="s:string" />
+    <wsdl:part name="direccion_vendedor" type="s:string" />
+    <wsdl:part name="nro_direccion_vendedor" type="s:integer" />
+    <wsdl:part name="localidad_vendedor" type="s:string" />
+    <wsdl:part name="provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_vendedor" type="s:string" />
+    <wsdl:part name="cuit_vendedor" type="s:string" />
+    <wsdl:part name="ing_brutos_vendedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_vendedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_vendedor" type="s:short" />
+    <wsdl:part name="tipo_documento_vendedor" type="s:string" />
+    <wsdl:part name="numero_documento_vendedor" type="s:long" />
+    <wsdl:part name="zona_flete_vendedor" type="s:short" />
+    <wsdl:part name="credito_vendedor" type="s:long" />
+    <wsdl:part name="calificacion_vendedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="AltaVendedoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosAlta" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionVendedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:ModificacionVendedores" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionVendedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:ModificacionVendedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionVendedoresHttpGetIn">
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="apellido_vendedor" type="s:string" />
+    <wsdl:part name="nombre_vendedor" type="s:string" />
+    <wsdl:part name="direccion_vendedor" type="s:string" />
+    <wsdl:part name="nro_direccion_vendedor" type="s:integer" />
+    <wsdl:part name="localidad_vendedor" type="s:string" />
+    <wsdl:part name="provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_vendedor" type="s:string" />
+    <wsdl:part name="cuit_vendedor" type="s:string" />
+    <wsdl:part name="ing_brutos_vendedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_vendedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_vendedor" type="s:short" />
+    <wsdl:part name="tipo_documento_vendedor" type="s:string" />
+    <wsdl:part name="numero_documento_vendedor" type="s:long" />
+    <wsdl:part name="zona_flete_vendedor" type="s:short" />
+    <wsdl:part name="credito_vendedor" type="s:long" />
+    <wsdl:part name="calificacion_vendedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionVendedoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionVendedoresHttpPostIn">
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+    <wsdl:part name="apellido_vendedor" type="s:string" />
+    <wsdl:part name="nombre_vendedor" type="s:string" />
+    <wsdl:part name="direccion_vendedor" type="s:string" />
+    <wsdl:part name="nro_direccion_vendedor" type="s:integer" />
+    <wsdl:part name="localidad_vendedor" type="s:string" />
+    <wsdl:part name="provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_provincia_vendedor" type="s:string" />
+    <wsdl:part name="codigo_postal" type="s:short" />
+    <wsdl:part name="telefono_vendedor" type="s:string" />
+    <wsdl:part name="cuit_vendedor" type="s:string" />
+    <wsdl:part name="ing_brutos_vendedor" type="s:string" />
+    <wsdl:part name="zona" type="s:short" />
+    <wsdl:part name="ultima_oper_vendedor" type="s:integer" />
+    <wsdl:part name="condicion_iva_vendedor" type="s:short" />
+    <wsdl:part name="tipo_documento_vendedor" type="s:string" />
+    <wsdl:part name="numero_documento_vendedor" type="s:long" />
+    <wsdl:part name="zona_flete_vendedor" type="s:short" />
+    <wsdl:part name="credito_vendedor" type="s:long" />
+    <wsdl:part name="calificacion_vendedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ModificacionVendedoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosModificacion" />
+  </wsdl:message>
+   <wsdl:message name="BajaVendedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:BajaVendedores" />
+  </wsdl:message>
+  <wsdl:message name="BajaVendedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:BajaVendedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="BajaVendedoresHttpGetIn">
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaVendedoresHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:message name="BajaVendedoresHttpPostIn">
+    <wsdl:part name="codigo_vendedor" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="BajaVendedoresHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosBaja" />
+  </wsdl:message>
+  <wsdl:portType name="AbmArchivoVendedoressSoap">
+    <wsdl:operation name="AltaVendedores">
+      <wsdl:input message="tns:AltaVendedoresSoapIn" />
+      <wsdl:output message="tns:AltaVendedoresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionVendedores">
+      <wsdl:input message="tns:ModificacionVendedoresSoapIn" />
+      <wsdl:output message="tns:ModificacionVendedoresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaVendedores">
+      <wsdl:input message="tns:BajaVendedoresSoapIn" />
+      <wsdl:output message="tns:BajaVendedoresSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmArchivoVendedoressHttpGet">
+    <wsdl:operation name="AltaVendedores">
+      <wsdl:input message="tns:AltaVendedoresHttpGetIn" />
+      <wsdl:output message="tns:AltaVendedoresHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionVendedores">
+      <wsdl:input message="tns:ModificacionVendedoresHttpGetIn" />
+      <wsdl:output message="tns:ModificacionVendedoresHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaVendedores">
+      <wsdl:input message="tns:BajaVendedoresHttpGetIn" />
+      <wsdl:output message="tns:BajaVendedoresHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AbmArchivoVendedoressHttpPost">
+    <wsdl:operation name="AltaVendedores">
+      <wsdl:input message="tns:AltaVendedoresHttpPostIn" />
+      <wsdl:output message="tns:AltaVendedoresHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionVendedores">
+      <wsdl:input message="tns:ModificacionVendedoresHttpPostIn" />
+      <wsdl:output message="tns:ModificacionVendedoresHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BajaVendedores">
+      <wsdl:input message="tns:BajaVendedoresHttpPostIn" />
+      <wsdl:output message="tns:BajaVendedoresHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AbmArchivoVendedoressSoap" type="tns:AbmArchivoVendedoressSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaVendedores">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/AltaVendedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionVendedores">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ModificacionVendedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaVendedores">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/BajaVendedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArchivoVendedoressSoap12" type="tns:AbmArchivoVendedoressSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AltaVendedores">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/AltaVendedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionVendedores">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ModificacionVendedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaVendedores">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/BajaVendedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArchivoVendedoressHttpGet" type="tns:AbmArchivoVendedoressHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AltaVendedores">
+      <http:operation location="/AltaVendedores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionVendedores">
+      <http:operation location="/ModificacionVendedores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaVendedores">
+      <http:operation location="/BajaVendedores" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AbmArchivoVendedoressHttpPost" type="tns:AbmArchivoVendedoressHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AltaVendedores">
+      <http:operation location="/AltaVendedores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModificacionVendedores">
+      <http:operation location="/ModificacionVendedores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BajaVendedores">
+      <http:operation location="/BajaVendedores" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AbmArchivoVendedoress">
+    <wsdl:port name="AbmArchivoVendedoressSoap" binding="tns:AbmArchivoVendedoressSoap">
+      <soap:address location="http://localhost:1390/AbmArchivoVendedoress.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArchivoVendedoressSoap12" binding="tns:AbmArchivoVendedoressSoap12">
+      <soap12:address location="http://localhost:1390/AbmArchivoVendedoress.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArchivoVendedoressHttpGet" binding="tns:AbmArchivoVendedoressHttpGet">
+      <http:address location="http://localhost:1390/AbmArchivoVendedoress.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AbmArchivoVendedoressHttpPost" binding="tns:AbmArchivoVendedoressHttpPost">
+      <http:address location="http://localhost:1390/AbmArchivoVendedoress.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

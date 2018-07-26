@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoLibroCartasPorteEmitidas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoLibroCartasPorteEmitidasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoLibroCartasPorteEmitidasResult" type="tns:ArrayOfDatosCartaPorteEmitida" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCartaPorteEmitida">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCartaPorteEmitida" nillable="true" type="tns:DatosCartaPorteEmitida" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCartaPorteEmitida">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_remito" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_factura" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="kilos_neto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_producto" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre_cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_partido" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="codigo_provincia" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="codigo_cuidad" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="cuit_cliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="nombre_transportista" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="cuit_transportista" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCartaPorteEmitida" nillable="true" type="tns:ArrayOfDatosCartaPorteEmitida" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoLibroCartasPorteEmitidasSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroCartasPorteEmitidas" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroCartasPorteEmitidasSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoLibroCartasPorteEmitidasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroCartasPorteEmitidasHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroCartasPorteEmitidasHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCartaPorteEmitida" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroCartasPorteEmitidasHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoLibroCartasPorteEmitidasHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCartaPorteEmitida" />
+  </wsdl:message>
+  <wsdl:portType name="ImpresionLibroCartasPorteEmitidasSoap">
+    <wsdl:operation name="ObtenerListadoLibroCartasPorteEmitidas">
+      <wsdl:input message="tns:ObtenerListadoLibroCartasPorteEmitidasSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroCartasPorteEmitidasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionLibroCartasPorteEmitidasHttpGet">
+    <wsdl:operation name="ObtenerListadoLibroCartasPorteEmitidas">
+      <wsdl:input message="tns:ObtenerListadoLibroCartasPorteEmitidasHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroCartasPorteEmitidasHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImpresionLibroCartasPorteEmitidasHttpPost">
+    <wsdl:operation name="ObtenerListadoLibroCartasPorteEmitidas">
+      <wsdl:input message="tns:ObtenerListadoLibroCartasPorteEmitidasHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoLibroCartasPorteEmitidasHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImpresionLibroCartasPorteEmitidasSoap" type="tns:ImpresionLibroCartasPorteEmitidasSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroCartasPorteEmitidas">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroCartasPorteEmitidas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionLibroCartasPorteEmitidasSoap12" type="tns:ImpresionLibroCartasPorteEmitidasSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoLibroCartasPorteEmitidas">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoLibroCartasPorteEmitidas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionLibroCartasPorteEmitidasHttpGet" type="tns:ImpresionLibroCartasPorteEmitidasHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoLibroCartasPorteEmitidas">
+      <http:operation location="/ObtenerListadoLibroCartasPorteEmitidas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImpresionLibroCartasPorteEmitidasHttpPost" type="tns:ImpresionLibroCartasPorteEmitidasHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoLibroCartasPorteEmitidas">
+      <http:operation location="/ObtenerListadoLibroCartasPorteEmitidas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ImpresionLibroCartasPorteEmitidas">
+    <wsdl:port name="ImpresionLibroCartasPorteEmitidasSoap" binding="tns:ImpresionLibroCartasPorteEmitidasSoap">
+      <soap:address location="http://localhost:1390/ImpresionLibroCartasPorteEmitidas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionLibroCartasPorteEmitidasSoap12" binding="tns:ImpresionLibroCartasPorteEmitidasSoap12">
+      <soap12:address location="http://localhost:1390/ImpresionLibroCartasPorteEmitidas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionLibroCartasPorteEmitidasHttpGet" binding="tns:ImpresionLibroCartasPorteEmitidasHttpGet">
+      <http:address location="http://localhost:1390/ImpresionLibroCartasPorteEmitidas.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImpresionLibroCartasPorteEmitidasHttpPost" binding="tns:ImpresionLibroCartasPorteEmitidasHttpPost">
+      <http:address location="http://localhost:1390/ImpresionLibroCartasPorteEmitidas.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

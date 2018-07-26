@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"	
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ControlarRecibosProvisorios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="zona" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ControlarRecibosProvisoriosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ControlarRecibosProvisoriosResult" type="tns:ArrayOfDatosReciboProvisorio" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosReciboProvisorio">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosReciboProvisorio" nillable="true" type="tns:DatosReciboProvisorio" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosReciboProvisorio">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="desde_renglon" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="hasta_renglon" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="zona" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="faltante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="no_entregado" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="ultimo" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosReciboProvisorio" nillable="true" type="tns:ArrayOfDatosReciboProvisorio" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ControlarRecibosProvisoriosSoapIn">
+    <wsdl:part name="parameters" element="tns:ControlarRecibosProvisorios" />
+  </wsdl:message>
+  <wsdl:message name="ControlarRecibosProvisoriosSoapOut">
+    <wsdl:part name="parameters" element="tns:ControlarRecibosProvisoriosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ControlarRecibosProvisoriosHttpGetIn">
+    <wsdl:part name="zona" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ControlarRecibosProvisoriosHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosReciboProvisorio" />
+  </wsdl:message>
+  <wsdl:message name="ControlarRecibosProvisoriosHttpPostIn">
+    <wsdl:part name="zona" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ControlarRecibosProvisoriosHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosReciboProvisorio" />
+  </wsdl:message>
+  <wsdl:portType name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap">
+    <wsdl:operation name="ControlarRecibosProvisorios">
+      <wsdl:input message="tns:ControlarRecibosProvisoriosSoapIn" />
+      <wsdl:output message="tns:ControlarRecibosProvisoriosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpGet">
+    <wsdl:operation name="ControlarRecibosProvisorios">
+      <wsdl:input message="tns:ControlarRecibosProvisoriosHttpGetIn" />
+      <wsdl:output message="tns:ControlarRecibosProvisoriosHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpPost">
+    <wsdl:operation name="ControlarRecibosProvisorios">
+      <wsdl:input message="tns:ControlarRecibosProvisoriosHttpPostIn" />
+      <wsdl:output message="tns:ControlarRecibosProvisoriosHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap" type="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ControlarRecibosProvisorios">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ControlarRecibosProvisorios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap12" type="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ControlarRecibosProvisorios">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ControlarRecibosProvisorios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpGet" type="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ControlarRecibosProvisorios">
+      <http:operation location="/ControlarRecibosProvisorios" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpPost" type="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ControlarRecibosProvisorios">
+      <http:operation location="/ControlarRecibosProvisorios" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcel">
+    <wsdl:port name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap" binding="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap">
+      <soap:address location="http://localhost:1390/ControlRecibosProvisoriosEnviadosRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap12" binding="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelSoap12">
+      <soap12:address location="http://localhost:1390/ControlRecibosProvisoriosEnviadosRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpGet" binding="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpGet">
+      <http:address location="http://localhost:1390/ControlRecibosProvisoriosEnviadosRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpPost" binding="tns:ControlRecibosProvisoriosEnviadosRecibidosSalidaExcelHttpPost">
+      <http:address location="http://localhost:1390/ControlRecibosProvisoriosEnviadosRecibidosSalidaExcel.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

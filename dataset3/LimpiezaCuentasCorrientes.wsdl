@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="LimpiarCuentasCorrientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LimpiarCuentasCorrientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LimpiarCuentasCorrientesResult" type="tns:DatosCuentaCorriente" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatosCuentaCorriente">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="borradoCorrecto" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DatosCuentaCorriente" nillable="true" type="tns:DatosCuentaCorriente" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LimpiarCuentasCorrientesSoapIn">
+    <wsdl:part name="parameters" element="tns:LimpiarCuentasCorrientes" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarCuentasCorrientesSoapOut">
+    <wsdl:part name="parameters" element="tns:LimpiarCuentasCorrientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarCuentasCorrientesHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarCuentasCorrientesHttpGetOut">
+    <wsdl:part name="Body" element="tns:DatosCuentaCorriente" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarCuentasCorrientesHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="LimpiarCuentasCorrientesHttpPostOut">
+    <wsdl:part name="Body" element="tns:DatosCuentaCorriente" />
+  </wsdl:message>
+  <wsdl:portType name="LimpiezaCuentasCorrientesSoap">
+    <wsdl:operation name="LimpiarCuentasCorrientes">
+      <wsdl:input message="tns:LimpiarCuentasCorrientesSoapIn" />
+      <wsdl:output message="tns:LimpiarCuentasCorrientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaCuentasCorrientesHttpGet">
+    <wsdl:operation name="LimpiarCuentasCorrientes">
+      <wsdl:input message="tns:LimpiarCuentasCorrientesHttpGetIn" />
+      <wsdl:output message="tns:LimpiarCuentasCorrientesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="LimpiezaCuentasCorrientesHttpPost">
+    <wsdl:operation name="LimpiarCuentasCorrientes">
+      <wsdl:input message="tns:LimpiarCuentasCorrientesHttpPostIn" />
+      <wsdl:output message="tns:LimpiarCuentasCorrientesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LimpiezaCuentasCorrientesSoap" type="tns:LimpiezaCuentasCorrientesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarCuentasCorrientes">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/LimpiarCuentasCorrientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaCuentasCorrientesSoap12" type="tns:LimpiezaCuentasCorrientesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="LimpiarCuentasCorrientes">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/LimpiarCuentasCorrientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaCuentasCorrientesHttpGet" type="tns:LimpiezaCuentasCorrientesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="LimpiarCuentasCorrientes">
+      <http:operation location="/LimpiarCuentasCorrientes" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LimpiezaCuentasCorrientesHttpPost" type="tns:LimpiezaCuentasCorrientesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="LimpiarCuentasCorrientes">
+      <http:operation location="/LimpiarCuentasCorrientes" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LimpiezaCuentasCorrientes">
+    <wsdl:port name="LimpiezaCuentasCorrientesSoap" binding="tns:LimpiezaCuentasCorrientesSoap">
+      <soap:address location="http://localhost:1390/LimpiezaCuentasCorrientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaCuentasCorrientesSoap12" binding="tns:LimpiezaCuentasCorrientesSoap12">
+      <soap12:address location="http://localhost:1390/LimpiezaCuentasCorrientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaCuentasCorrientesHttpGet" binding="tns:LimpiezaCuentasCorrientesHttpGet">
+      <http:address location="http://localhost:1390/LimpiezaCuentasCorrientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LimpiezaCuentasCorrientesHttpPost" binding="tns:LimpiezaCuentasCorrientesHttpPost">
+      <http:address location="http://localhost:1390/LimpiezaCuentasCorrientes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

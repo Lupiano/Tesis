@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoPagado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoPagadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoPagadoResult" type="tns:ArrayOfDatosPago" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosPago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosPago" nillable="true" type="tns:DatosPago" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosPago">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="cliente" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="numero" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="importe" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosPago" nillable="true" type="tns:ArrayOfDatosPago" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoPagadoSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoPagado" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPagadoSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoPagadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPagadoHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPagadoHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosPago" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPagadoHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoPagadoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosPago" />
+  </wsdl:message>
+  <wsdl:portType name="PagadoCtaCtePorAcreedorYFechaSoap">
+    <wsdl:operation name="ObtenerListadoPagado">
+      <wsdl:input message="tns:ObtenerListadoPagadoSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoPagadoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PagadoCtaCtePorAcreedorYFechaHttpGet">
+    <wsdl:operation name="ObtenerListadoPagado">
+      <wsdl:input message="tns:ObtenerListadoPagadoHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoPagadoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="PagadoCtaCtePorAcreedorYFechaHttpPost">
+    <wsdl:operation name="ObtenerListadoPagado">
+      <wsdl:input message="tns:ObtenerListadoPagadoHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoPagadoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PagadoCtaCtePorAcreedorYFechaSoap" type="tns:PagadoCtaCtePorAcreedorYFechaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoPagado">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoPagado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PagadoCtaCtePorAcreedorYFechaSoap12" type="tns:PagadoCtaCtePorAcreedorYFechaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoPagado">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoPagado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PagadoCtaCtePorAcreedorYFechaHttpGet" type="tns:PagadoCtaCtePorAcreedorYFechaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoPagado">
+      <http:operation location="/ObtenerListadoPagado" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PagadoCtaCtePorAcreedorYFechaHttpPost" type="tns:PagadoCtaCtePorAcreedorYFechaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoPagado">
+      <http:operation location="/ObtenerListadoPagado" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PagadoCtaCtePorAcreedorYFecha">
+    <wsdl:port name="PagadoCtaCtePorAcreedorYFechaSoap" binding="tns:PagadoCtaCtePorAcreedorYFechaSoap">
+      <soap:address location="http://localhost:1390/PagadoCtaCtePorAcreedorYFecha.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PagadoCtaCtePorAcreedorYFechaSoap12" binding="tns:PagadoCtaCtePorAcreedorYFechaSoap12">
+      <soap12:address location="http://localhost:1390/PagadoCtaCtePorAcreedorYFecha.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PagadoCtaCtePorAcreedorYFechaHttpGet" binding="tns:PagadoCtaCtePorAcreedorYFechaHttpGet">
+      <http:address location="http://localhost:1390/PagadoCtaCtePorAcreedorYFecha.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PagadoCtaCtePorAcreedorYFechaHttpPost" binding="tns:PagadoCtaCtePorAcreedorYFechaHttpPost">
+      <http:address location="http://localhost:1390/PagadoCtaCtePorAcreedorYFecha.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

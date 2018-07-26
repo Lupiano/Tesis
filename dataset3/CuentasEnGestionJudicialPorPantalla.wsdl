@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoCuentasEnGestionJudicial">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_desde" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo_hasta" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoCuentasEnGestionJudicialResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoCuentasEnGestionJudicialResult" type="tns:ArrayOfDatosCuentaEnGestionJudicial" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosCuentaEnGestionJudicial">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosCuentaEnGestionJudicial" nillable="true" type="tns:DatosCuentaEnGestionJudicial" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosCuentaEnGestionJudicial">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="dia" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="alfa_comprobante" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tipo_comprobante" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="numero_comprobante" type="s:integer" />
+          <s:element minOccurs="0" maxOccurs="1" name="debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="haber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalle_1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="detalle_2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_haber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="saldo_anterior_debe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="saldo_anterior_haber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosCuentaEnGestionJudicial" nillable="true" type="tns:ArrayOfDatosCuentaEnGestionJudicial" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoCuentasEnGestionJudicialSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCuentasEnGestionJudicial" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasEnGestionJudicialSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoCuentasEnGestionJudicialResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasEnGestionJudicialHttpGetIn">
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasEnGestionJudicialHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaEnGestionJudicial" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasEnGestionJudicialHttpPostIn">
+    <wsdl:part name="codigo_desde" type="s:short" />
+    <wsdl:part name="codigo_hasta" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoCuentasEnGestionJudicialHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosCuentaEnGestionJudicial" />
+  </wsdl:message>
+  <wsdl:portType name="CuentasEnGestionJudicialPorPantallaSoap">
+    <wsdl:operation name="ObtenerListadoCuentasEnGestionJudicial">
+      <wsdl:input message="tns:ObtenerListadoCuentasEnGestionJudicialSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasEnGestionJudicialSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CuentasEnGestionJudicialPorPantallaHttpGet">
+    <wsdl:operation name="ObtenerListadoCuentasEnGestionJudicial">
+      <wsdl:input message="tns:ObtenerListadoCuentasEnGestionJudicialHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasEnGestionJudicialHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CuentasEnGestionJudicialPorPantallaHttpPost">
+    <wsdl:operation name="ObtenerListadoCuentasEnGestionJudicial">
+      <wsdl:input message="tns:ObtenerListadoCuentasEnGestionJudicialHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoCuentasEnGestionJudicialHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CuentasEnGestionJudicialPorPantallaSoap" type="tns:CuentasEnGestionJudicialPorPantallaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCuentasEnGestionJudicial">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCuentasEnGestionJudicial" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CuentasEnGestionJudicialPorPantallaSoap12" type="tns:CuentasEnGestionJudicialPorPantallaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoCuentasEnGestionJudicial">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoCuentasEnGestionJudicial" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CuentasEnGestionJudicialPorPantallaHttpGet" type="tns:CuentasEnGestionJudicialPorPantallaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoCuentasEnGestionJudicial">
+      <http:operation location="/ObtenerListadoCuentasEnGestionJudicial" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CuentasEnGestionJudicialPorPantallaHttpPost" type="tns:CuentasEnGestionJudicialPorPantallaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoCuentasEnGestionJudicial">
+      <http:operation location="/ObtenerListadoCuentasEnGestionJudicial" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CuentasEnGestionJudicialPorPantalla">
+    <wsdl:port name="CuentasEnGestionJudicialPorPantallaSoap" binding="tns:CuentasEnGestionJudicialPorPantallaSoap">
+      <soap:address location="http://localhost:1390/CuentasEnGestionJudicialPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CuentasEnGestionJudicialPorPantallaSoap12" binding="tns:CuentasEnGestionJudicialPorPantallaSoap12">
+      <soap12:address location="http://localhost:1390/CuentasEnGestionJudicialPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CuentasEnGestionJudicialPorPantallaHttpGet" binding="tns:CuentasEnGestionJudicialPorPantallaHttpGet">
+      <http:address location="http://localhost:1390/CuentasEnGestionJudicialPorPantalla.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CuentasEnGestionJudicialPorPantallaHttpPost" binding="tns:CuentasEnGestionJudicialPorPantallaHttpPost">
+      <http:address location="http://localhost:1390/CuentasEnGestionJudicialPorPantalla.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

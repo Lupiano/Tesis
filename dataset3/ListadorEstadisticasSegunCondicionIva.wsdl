@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:tns="http://molinosbalcarce.com.ar" xmlns:s="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+	targetNamespace="http://molinosbalcarce.com.ar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://molinosbalcarce.com.ar">
+      <s:element name="ObtenerListadoEstadisticas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="anio" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerListadoEstadisticasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerListadoEstadisticasResult" type="tns:ArrayOfDatosEstadistica" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDatosEstadistica">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DatosEstadistica" nillable="true" type="tns:DatosEstadistica" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DatosEstadistica">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="mes" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="anio" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="cantidad" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfDatosEstadistica" nillable="true" type="tns:ArrayOfDatosEstadistica" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerListadoEstadisticasSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoEstadisticas" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoEstadisticasSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerListadoEstadisticasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoEstadisticasHttpGetIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoEstadisticasHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosEstadistica" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoEstadisticasHttpPostIn">
+    <wsdl:part name="mes" type="s:short" />
+    <wsdl:part name="anio" type="s:short" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerListadoEstadisticasHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDatosEstadistica" />
+  </wsdl:message>
+  <wsdl:portType name="ListadorEstadisticasSegunCondicionIvaSoap">
+    <wsdl:operation name="ObtenerListadoEstadisticas">
+      <wsdl:input message="tns:ObtenerListadoEstadisticasSoapIn" />
+      <wsdl:output message="tns:ObtenerListadoEstadisticasSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorEstadisticasSegunCondicionIvaHttpGet">
+    <wsdl:operation name="ObtenerListadoEstadisticas">
+      <wsdl:input message="tns:ObtenerListadoEstadisticasHttpGetIn" />
+      <wsdl:output message="tns:ObtenerListadoEstadisticasHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ListadorEstadisticasSegunCondicionIvaHttpPost">
+    <wsdl:operation name="ObtenerListadoEstadisticas">
+      <wsdl:input message="tns:ObtenerListadoEstadisticasHttpPostIn" />
+      <wsdl:output message="tns:ObtenerListadoEstadisticasHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ListadorEstadisticasSegunCondicionIvaSoap" type="tns:ListadorEstadisticasSegunCondicionIvaSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoEstadisticas">
+      <soap:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoEstadisticas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorEstadisticasSegunCondicionIvaSoap12" type="tns:ListadorEstadisticasSegunCondicionIvaSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ObtenerListadoEstadisticas">
+      <soap12:operation soapAction="http://molinosbalcarce.com.ar/ObtenerListadoEstadisticas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorEstadisticasSegunCondicionIvaHttpGet" type="tns:ListadorEstadisticasSegunCondicionIvaHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="ObtenerListadoEstadisticas">
+      <http:operation location="/ObtenerListadoEstadisticas" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ListadorEstadisticasSegunCondicionIvaHttpPost" type="tns:ListadorEstadisticasSegunCondicionIvaHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ObtenerListadoEstadisticas">
+      <http:operation location="/ObtenerListadoEstadisticas" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ListadorEstadisticasSegunCondicionIva">
+    <wsdl:port name="ListadorEstadisticasSegunCondicionIvaSoap" binding="tns:ListadorEstadisticasSegunCondicionIvaSoap">
+      <soap:address location="http://localhost:1390/ListadorEstadisticasSegunCondicionIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorEstadisticasSegunCondicionIvaSoap12" binding="tns:ListadorEstadisticasSegunCondicionIvaSoap12">
+      <soap12:address location="http://localhost:1390/ListadorEstadisticasSegunCondicionIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorEstadisticasSegunCondicionIvaHttpGet" binding="tns:ListadorEstadisticasSegunCondicionIvaHttpGet">
+      <http:address location="http://localhost:1390/ListadorEstadisticasSegunCondicionIva.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ListadorEstadisticasSegunCondicionIvaHttpPost" binding="tns:ListadorEstadisticasSegunCondicionIvaHttpPost">
+      <http:address location="http://localhost:1390/ListadorEstadisticasSegunCondicionIva.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
