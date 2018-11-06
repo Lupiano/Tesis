@@ -44,8 +44,8 @@ public class ClusteringDesktopApp {
 	private int BOTTHRESHOLD = 30;
 	private int TOPTHRESHOLD = 80;
 	
-	private String CLUSTERING_STRATEGY = "em";
-	private Integer CLUSTER_COUNT = 144;
+	private String CLUSTERING_STRATEGY = "kmeans";
+	private Integer CLUSTER_COUNT = 38;
 	
 	//Configuración mejoras.
 	private boolean SPLIT_TERMS = false;
@@ -55,8 +55,8 @@ public class ClusteringDesktopApp {
 	
 	//División nivel WSDL.
 	private boolean DO_WSDL_CLUSTERING = false;
-	private String WSDL_CLUSTERING_STRATEGY = "kmeans";
-	private int WSDL_CLUSTER_COUNT = 38; //59 (cobweb)
+	private String WSDL_CLUSTERING_STRATEGY = "cobweb";
+	private int WSDL_CLUSTER_COUNT = 59;
 	
 	public ArrayList<ArrayList<String>> operations = new ArrayList<ArrayList<String>>();
 	
@@ -262,7 +262,6 @@ public class ClusteringDesktopApp {
 
 
 	public static void main(String[] args) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		ClusteringDesktopApp app = new ClusteringDesktopApp();
 		
@@ -270,13 +269,11 @@ public class ClusteringDesktopApp {
 		
 		ArrayList<ArrayList<String>> clusters = app.getOperations();
 		
-		//CasoManualPreFijosEsteberena casoManual = new CasoManualPreFijosEsteberena(); // 252 OPERACIONES
-		//CasoManualPreFijosImeroni casoManual = new CasoManualPreFijosImeroni(); // 252 OPERACIONES
-		CasoManualPreFijosMalavolta casoManual = new CasoManualPreFijosMalavolta(); // 252 OPERACIONES
+		CasoManual casoManual = new CasoManual();
+		ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON("config/Imeroni.json");
+		//ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON("config/Malavolta.json");
+		//ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON("config/Esteberena.json");
 		
-		casoManual.cargarListas();
-		
-		ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasosManuales();
 		
 		ArrayList<Clase> clases = (ArrayList<Clase>)refManual.get(0).getClases();
 		
@@ -305,43 +302,10 @@ public class ClusteringDesktopApp {
 		
 	    eval.setData(new ContingencyTable(data1));
 	    
-
 	    System.out.println("Solution A");
 	    //System.out.println(eval.getData());
 	    System.out.println("V:" + eval.getVMeasure(1));
-		//Fin prueba
-		
-	    /*
-		//Carga de datos.
-		Double[][] data = new Double[clusters.size()][clases.size()];
-		
-		ContingencyTable contingencyTable = new ContingencyTable(clusters.size(),clases.size());
-		
-		for(int i=0; i<clusters.size(); i++) {
-			for(int j=0; j<clases.size(); j++) {
-				data[i][j] = comparador.obtenerIntersecciones(clusters.get(i), (ArrayList<String>)clases.get(j).getOperaciones());
-				contingencyTable.set(i, j, data[i][j]);
-			}
-		}
-		
-		
-		System.out.println("");
-		System.out.println("Contingency: ");
-		System.out.println(contingencyTable.toString());	
-		
-		ClusterEvaluator eval = new ClusterEvaluator();
-		XMeans xmeans = new XMeans();
 
-		
-		eval.setData(contingencyTable);
-		
-		System.out.println("Solucion:");
-		System.out.println(eval.getVMeasure(1));
-
-		
-		//System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("output1.txt"))));
-		System.out.println("Termina.");
-		*/
 	}
 
 }

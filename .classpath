@@ -82,5 +82,6 @@
 	<classpathentry kind="lib" path="lib/wagon-provider-api-1.0-beta-2.jar"/>
 	<classpathentry kind="lib" path="lib/weka-3-8-0-monolithic.jar"/>
 	<classpathentry kind="lib" path="lib/optics_dbScan.jar"/>
+	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
