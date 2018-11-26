@@ -38,7 +38,7 @@ public class CasoManual {
             RefactorizacionManual rm = new RefactorizacionManual();
             // loop array
             List<Clase> listaClases = new ArrayList<Clase>();
-            JSONArray clusters = (JSONArray) jsonObject.get("Cluster");
+            JSONArray clusters = (JSONArray) jsonObject.get("clusters");
             Iterator<List<String>> iterator = clusters.iterator();
             int num = 0;
             while (iterator.hasNext()) {

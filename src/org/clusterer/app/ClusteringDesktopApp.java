@@ -270,9 +270,9 @@ public class ClusteringDesktopApp {
 		ArrayList<ArrayList<String>> clusters = app.getOperations();
 		
 		CasoManual casoManual = new CasoManual();
-		ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON("config/Imeroni.json");
-		//ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON("config/Malavolta.json");
-		//ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON("config/Esteberena.json");
+		//A, B o C
+		String fRefManual = "config/RefactorizacionA.json";
+		ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON(fRefManual);
 		
 		
 		ArrayList<Clase> clases = (ArrayList<Clase>)refManual.get(0).getClases();
