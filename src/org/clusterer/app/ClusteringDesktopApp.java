@@ -1,7 +1,9 @@
 package org.clusterer.app;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -23,6 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.clusterer.edgebundles.io.DataReader;
 import org.clusterer.edgebundles.io.HEBServiceAdapter;
 import org.clusterer.services.response.VisualTreeResponse;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.ow2.easywsdl.wsdl.api.Operation;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,23 +50,35 @@ public class ClusteringDesktopApp {
 	private int BOTTHRESHOLD = 30;
 	private int TOPTHRESHOLD = 80;
 	
-	private String CLUSTERING_STRATEGY = "kmeans";
-	private Integer CLUSTER_COUNT = 38;
+	private String CLUSTERING_STRATEGY;
+	private Integer CLUSTER_COUNT;
 	
 	//Configuración mejoras.
-	private boolean SPLIT_TERMS = false;
-	private boolean DO_FILTERING = false;
+	private boolean SPLIT_TERMS;
+	private boolean DO_FILTERING;
 	private ArrayList<String> BLACKLIST = new ArrayList<String>();
-	private int FILTER_TERMS_SIZE = 2;
+	private int FILTER_TERMS_SIZE;
 	
 	//División nivel WSDL.
-	private boolean DO_WSDL_CLUSTERING = false;
-	private String WSDL_CLUSTERING_STRATEGY = "cobweb";
-	private int WSDL_CLUSTER_COUNT = 59;
+	private boolean DO_WSDL_CLUSTERING;
+	private String WSDL_CLUSTERING_STRATEGY;
+	private int WSDL_CLUSTER_COUNT;
 	
 	public ArrayList<ArrayList<String>> operations = new ArrayList<ArrayList<String>>();
 	
-	public ClusteringDesktopApp() {
+	public ClusteringDesktopApp(JSONObject configJSON) {
+		
+		CLUSTERING_STRATEGY = (String)configJSON.get("clustering_strategy");
+		CLUSTER_COUNT = (int)(long)configJSON.get("cluster_count");
+		SPLIT_TERMS = (Boolean)configJSON.get("split_terms");
+		DO_FILTERING = (Boolean)configJSON.get("do_filtering");
+		FILTER_TERMS_SIZE = (int)(long)configJSON.get("filter_terms_size");
+		DO_WSDL_CLUSTERING = (Boolean)configJSON.get("do_wsdl_clustering");
+		WSDL_CLUSTERING_STRATEGY = (String)configJSON.get("wsdl_clustering_strategy");
+		WSDL_CLUSTER_COUNT = (int)(long)configJSON.get("wsdl_cluster_count");
+        BLACKLIST = (ArrayList<String>) configJSON.get("blacklist");
+
+		
 		BLACKLIST.add("tipo");
 		BLACKLIST.add("codigo");
 		BLACKLIST.add("numero");
@@ -263,15 +281,30 @@ public class ClusteringDesktopApp {
 
 	public static void main(String[] args) throws ServletException, IOException {
 		
-		ClusteringDesktopApp app = new ClusteringDesktopApp();
+		JSONParser parser = new JSONParser();
+		JSONObject configJSON = new JSONObject();
+		try {
+
+			configJSON = (JSONObject)parser.parse(new FileReader("config.json"));
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+		
+		ClusteringDesktopApp app = new ClusteringDesktopApp(configJSON);
 		
 		app.treeGenerator();
 		
+		String nombreRefManual = (String)configJSON.get("manual_refactoring");
 		ArrayList<ArrayList<String>> clusters = app.getOperations();
 		
 		CasoManual casoManual = new CasoManual();
 		//A, B o C
-		String fRefManual = "config/RefactorizacionA.json";
+		String fRefManual = "config/" + nombreRefManual;
 		ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON(fRefManual);
 		
 		
@@ -305,6 +338,13 @@ public class ClusteringDesktopApp {
 	    System.out.println("Solution A");
 	    //System.out.println(eval.getData());
 	    System.out.println("V:" + eval.getVMeasure(1));
+	    
+	    PrintWriter writer = new PrintWriter("results.txt", "UTF-8");
+	    writer.println("Cantidad de clusters: " + clusters.size());
+	    writer.println("Cantidad de clases: " + clases.size());
+	    writer.println("");
+	    writer.println("Distancia V-Measure: " + eval.getVMeasure(1));
+	    writer.close();
 
 	}
 

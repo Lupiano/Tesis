@@ -1,0 +1,14 @@
+{
+    "manual_refactoring": "RefactorizacionC.json",
+    "clustering_strategy": "hierarchy",
+    "cluster_count": 38,
+
+    "split_terms": true,
+    "do_filtering": true,
+    "filter_terms_size": 2,
+    "blacklist": [ "tipo", "codigo", "numero", "desde", "hasta", "nro", "ing", "sin", "con", "dar","para", "otros", "propio", "entre", "comp", "segun" ],
+
+    "do_wsdl_clustering": true,
+    "wsdl_clustering_strategy": "cobweb",
+    "wsdl_cluster_count": 59
+}
