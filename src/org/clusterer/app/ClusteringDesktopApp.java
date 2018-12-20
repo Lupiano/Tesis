@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -279,7 +281,7 @@ public class ClusteringDesktopApp {
 	}
 
 
-	public static void main(String[] args) throws ServletException, IOException {
+	public static void main(String[] args) throws IOException {
 		
 		JSONParser parser = new JSONParser();
 		JSONObject configJSON = new JSONObject();
@@ -295,56 +297,71 @@ public class ClusteringDesktopApp {
             e.printStackTrace();
         }
 		
-		ClusteringDesktopApp app = new ClusteringDesktopApp(configJSON);
+		try {
+			
 		
-		app.treeGenerator();
-		
-		String nombreRefManual = (String)configJSON.get("manual_refactoring");
-		ArrayList<ArrayList<String>> clusters = app.getOperations();
-		
-		CasoManual casoManual = new CasoManual();
-		//A, B o C
-		String fRefManual = "config/" + nombreRefManual;
-		ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON(fRefManual);
-		
-		
-		ArrayList<Clase> clases = (ArrayList<Clase>)refManual.get(0).getClases();
-		
-		System.out.println("Cantidad de clusters: " + clusters.size());
-		System.out.println("Cantidad de clases: " + clases.size());
-
-		ComparadorClusterClase comparador = new ComparadorClusterClase();
-		comparador.setMetodoOcurrencia(new MetodoOcurrenciaSinRep());
-		
-		//Prueba.
-		ClusterEvaluator eval = new ClusterEvaluator();
-		
-		Double[][] data = new Double[2][2];
-
-	    data[0][0] = 1.0;
-	    data[0][1] = 1.0;
-	    data[1][0] = 1.0;
-	    data[1][1] = 0.0;
-		
-		Double[][] data1 = new Double[clusters.size()][clases.size()];
-		for(int i=0; i<clusters.size(); i++) {
-			for(int j=0; j<clases.size(); j++) {
-				data1[i][j] = comparador.obtenerIntersecciones(clusters.get(i), (ArrayList<String>)clases.get(j).getOperaciones());
+			ClusteringDesktopApp app = new ClusteringDesktopApp(configJSON);
+			
+			app.treeGenerator();
+			
+			String nombreRefManual = (String)configJSON.get("manual_refactoring");
+			ArrayList<ArrayList<String>> clusters = app.getOperations();
+			
+			CasoManual casoManual = new CasoManual();
+			//A, B o C
+			String fRefManual = "config/" + nombreRefManual;
+			ArrayList<RefactorizacionManual> refManual = (ArrayList<RefactorizacionManual>)casoManual.getCasoManualJSON(fRefManual);
+			
+			
+			ArrayList<Clase> clases = (ArrayList<Clase>)refManual.get(0).getClases();
+			
+			System.out.println("Cantidad de clusters: " + clusters.size());
+			System.out.println("Cantidad de clases: " + clases.size());
+	
+			ComparadorClusterClase comparador = new ComparadorClusterClase();
+			comparador.setMetodoOcurrencia(new MetodoOcurrenciaSinRep());
+			
+			//Prueba.
+			ClusterEvaluator eval = new ClusterEvaluator();
+			
+			Double[][] data = new Double[2][2];
+	
+		    data[0][0] = 1.0;
+		    data[0][1] = 1.0;
+		    data[1][0] = 1.0;
+		    data[1][1] = 0.0;
+			
+			Double[][] data1 = new Double[clusters.size()][clases.size()];
+			for(int i=0; i<clusters.size(); i++) {
+				for(int j=0; j<clases.size(); j++) {
+					data1[i][j] = comparador.obtenerIntersecciones(clusters.get(i), (ArrayList<String>)clases.get(j).getOperaciones());
+				}
 			}
+			
+		    eval.setData(new ContingencyTable(data1));
+		    
+		    System.out.println("Solution A");
+		    //System.out.println(eval.getData());
+		    System.out.println("V:" + eval.getVMeasure(1));
+		    
+		    PrintWriter writer = new PrintWriter("results.txt", "UTF-8");
+		    writer.println("Cantidad de clusters: " + clusters.size());
+		    writer.println("Cantidad de clases: " + clases.size());
+		    writer.println("");
+		    writer.println("Distancia V-Measure: " + eval.getVMeasure(1));
+		    writer.close();
+	    
 		}
-		
-	    eval.setData(new ContingencyTable(data1));
-	    
-	    System.out.println("Solution A");
-	    //System.out.println(eval.getData());
-	    System.out.println("V:" + eval.getVMeasure(1));
-	    
-	    PrintWriter writer = new PrintWriter("results.txt", "UTF-8");
-	    writer.println("Cantidad de clusters: " + clusters.size());
-	    writer.println("Cantidad de clases: " + clases.size());
-	    writer.println("");
-	    writer.println("Distancia V-Measure: " + eval.getVMeasure(1));
-	    writer.close();
+		catch(Exception e){
+			FileWriter fw = new FileWriter("error_logs.txt",true);
+			PrintWriter writer = new PrintWriter(fw);
+			Date now = new Date();
+			writer.println("");
+			writer.println("");
+			writer.print(now + ": ");
+			e.printStackTrace (writer);
+			writer.close();
+		}
 
 	}
 

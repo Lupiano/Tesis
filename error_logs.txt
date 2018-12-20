@@ -1,0 +1,6 @@
+
+
+Thu Dec 20 20:09:01 ART 2018: java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:657)
+	at java.util.ArrayList.get(ArrayList.java:433)
+	at org.clusterer.app.ClusteringDesktopApp.main(ClusteringDesktopApp.java:316)
