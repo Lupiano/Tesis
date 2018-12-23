@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 import org.clusterer.edgebundles.io.DataReader;
 import org.clusterer.edgebundles.io.HEBServiceAdapter;
@@ -283,6 +284,14 @@ public class ClusteringDesktopApp {
 
 	public static void main(String[] args) throws IOException {
 		
+		Thread t = new Thread(new Runnable(){
+	        public void run(){
+	        	JOptionPane.showOptionDialog(null, "Generando los clusters y calculando V-Measure...","Algoritmos Clustering", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
+	            //JOptionPane.showMessageDialog(null, "Generando los clusters...");
+	        }
+	    });
+		t.start();
+		//JOptionPane.showOptionDialog(null, "Generando los clusters...","Algoritmos Clustering", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
 		JSONParser parser = new JSONParser();
 		JSONObject configJSON = new JSONObject();
 		try {
@@ -350,6 +359,8 @@ public class ClusteringDesktopApp {
 		    writer.println("");
 		    writer.println("Distancia V-Measure: " + eval.getVMeasure(1));
 		    writer.close();
+		    t.interrupt();
+		    JOptionPane.showMessageDialog(null, "Los clusters se generaron con éxito. Los resultados de V-Measure se encuentran en results.txt");
 	    
 		}
 		catch(Exception e){
@@ -361,8 +372,10 @@ public class ClusteringDesktopApp {
 			writer.print(now + ": ");
 			e.printStackTrace (writer);
 			writer.close();
+		    t.interrupt();
+			JOptionPane.showMessageDialog(null, "Los clusters no se pudieron generar correctamente. Más detalles en error_logs.txt");
 		}
-
+		
 	}
 
 }

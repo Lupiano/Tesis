@@ -1,4 +1,0 @@
-Cantidad de clusters: 102
-Cantidad de clases: 144
-
-Distancia V-Measure: 0.8191458776946869
