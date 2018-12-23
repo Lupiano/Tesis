@@ -4,7 +4,7 @@ Los resultados serán guardados en results.txt. En caso de errores, los logs se 
 
 Archvios y carpetas necesarias para la ejecución de ClusterApp.jar:
 
-### Config
+### config
 
 Carpeta que contiene las refactorizaciones manuales en formato JSON.
 
