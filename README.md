@@ -1,5 +1,7 @@
 ## ClusterApp.jar
 
+Los resultados serán guardados en results.txt. En caso de errores, los logs se guardarán en error_logs.txt.
+
 Archvios y carpetas necesarias para la ejecución de ClusterApp.jar:
 
 ### Config
